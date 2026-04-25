@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Consultation</title>
+</head>
+<body>
+ 
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drafting of contract</title>
+</head>
+<body>
+    <div class="form-container" style="padding: 20px; max-width: 500px; margin: auto; font-family:'Times New Roman', Times, serif;">
+    <h3>Maombi ya Msaada wa sheria/Request for consultation</h3>
+    <p>Tafadhari jaza taarifa zako hapa chini/Please fill the information below:</p>
+
+    <form onsubmit="tumaWhatsApp(event)">
+        <strong><label for="fname">Jina Kamili/Full Name:</label></strong><br>
+        <input type="text" id="fname" name="fname" placeholder="Andika jina lako/Write your name.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="miaka">Miaka/Age:</label></strong><br>
+        <input type="text" id="miaka" name="miaka" placeholder="Andika miaka yako/Write your age.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="makazi">Makazi/Resident:</label></strong><br>
+        <input type="text" id="makazi" name="makazi" placeholder="Andika makazi yako/Write your resident.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="hadhi">Hadhi ya ndoa/Mariage status:</label></strong><br>
+        <input type="text" id="hadhi" name="hadhi" placeholder="Andika hadhi ya ndoa/Write your mariage status.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="phone">Namba ya Simu/Contact:</label></strong><br>
+        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: 0712XXXXXX" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="contract-type">Asili ya tatizo/Nature of the legal problem:</label></strong><br>
+        <select id="contract-type" name="contract-type" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
+            <option value="pango">Msaada wa sheria ya ndoa (Consultation on Marriage)</option>
+            <option value="ajira">Msaada wa sheria za Ajira (Consultation on Employment)</option>
+            <option value="biashara">Msaada wa sheria za Biashara (Consultation on Business)</option>
+            <option value="mauzo">Msaada wa sheria za Mauzo ya Ardhi (Consultation on Sales)</option>
+            <option value="mauzo">Msaada wa sheria za Mirathi (Consultation on Probate)</option>
+            <option value="mauzo">Msaada wa sheria za Jinai (Consultation on Criminal)</option>
+            <option value="mauzo">Msaada wa sheria za Rufaa (Consultation on Appeal)</option>
+             <option value="mauzo">Msaada tofauti na orodha (Consultation not from list)</option>
+
+        </select><br>
+
+        <strong><label for="details">Maelezo ya ziada/More information:</label></strong><br>
+        <textarea id="details" name="details" rows="4" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"></textarea><br>
+
+        <button type="submit" style="background-color: teal; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px;">
+            Tuma Maombi/Send
+        </button>
+    </form>
+    <br>
+    <p>Thank You for contact us, our customer will respond for your request soon as possible in your phone via mobile phone please make sure youre mobile phone is online</p>
+    <a href="index.html" style="color: rgb(111, 0, 255); text-decoration: none;">← Back</a>
+</div>
+    <script>
+function tumaWhatsApp(event) {
+    event.preventDefault(); // Hii inazuia ukurasa usijirefresh
+
+    // 1. Chukua thamani kutoka kwenye fomu
+    let jina = document.getElementById("fname").value;
+    let miaka = document.getElementById("miaka").value;
+    let makazi = document.getElementById("makazi").value;
+    let hadhi = document.getElementById("hadhi").value;
+    let simu = document.getElementById("phone").value;
+    let mkataba = document.getElementById("contract-type").value;
+    let maelezo = document.getElementById("details").value;
+
+    // 2. Namba yako ya simu itakayopokea ujumbe (Anza na 255)
+    let nambaYako = "255622920518"; // Weka namba yako hapa
+
+    // 3. Tengeneza ujumbe utakaokuja kwenye WhatsApp yako
+    let ujumbe = "HABARI LEGAL KNOWLEDGE,\n\n" +
+                 "*Maombi Mapya ya Mkataba*\n" +
+                 "--------------------------\n" +
+                 "👤 Jina: " + jina + "\n" +
+                 "  Miaka: " + miaka + "\n" +
+                 "  Makazi " + makazi + "\n" +
+                 "  Hadhi ya ndoa " + hadhi + "\n" + 
+                 "📞 Simu: " + simu + "\n" +
+                 "📄 Aina: " + mkataba + "\n" +
+                 "📝 Maelezo: " + maelezo;
+
+    // 4. Fungua WhatsApp na ujumbe huo
+    // Kufungua WhatsApp
+    let url = "https://wa.me/" + nambaYako + "?text=" + encodeURIComponent(ujumbe);
+    window.open(url, '_blank').focus();
+}
+</script>
+</body>
+</html>
+       <script>
+function tumaWhatsApp(event) {
+    event.preventDefault(); // Inazuia ukurasa usijirefresh
+   
+    // Kuchukua taarifa kutoka kwenye fomu
+    let jina = document.getElementById("fname").value;
+    let miaka = document.getElementById("miaka").value;
+    let makazi = document.getElementById("makazi").value;
+    let hadhi = document.getElementById("hadhi").value;
+    let simu = document.getElementById("phone").value;
+    let mkataba = document.getElementById("contract-type").value;
+    let maelezo = document.getElementById("details").value;
+
+    // Namba yako ya WhatsApp (Ianze na 255...)
+    let nambaYako = "255622920518"; // WEKA NAMBA YAKO HAPA
+
+    // Kutengeneza ujumbe
+    let ujumbe = "Habari, Naitwa " + jina + ". " +
+                 "Namba yangu ni " + simu + ". " +
+                 "Nahitaji msaada wa mkataba wa: " + mkataba + ". " +
+                 "Maelezo ya ziada: " + maelezo;
+
+    // Kufungua WhatsApp
+    let url = "https://wa.me/" + nambaYako + "?text=" + encodeURIComponent(ujumbe);
+    window.open(url, '_blank').focus();
+}
+</script>
+    <a href="index.html"></a>
+</body>
+</html>

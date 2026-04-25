@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Drafting of contract</title>
+</head>
+<body>
+    
+    <div class="form-container" style="padding: 20px; max-width: 500px; margin: auto; font-family: 'Times New Roman', Times, serif;">
+    <h3>Maombi ya uandishi wa mkataba/Request for drating of contract</h3>
+    <p>Tafadhari jaza taarifa zako hapa chini/Please fill the information below:</p>
+
+    <form onsubmit="tumaWhatsApp(event)">
+        <strong><label for="fname">Jina Kamili/Full Name:</label></strong><br>
+        <input type="text" id="fname" name="fname" placeholder="Andika jina lako/Write your name.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="fname">Miaka/Age:</label></strong><br>
+        <input type="text" id="miaka" name="miaka" placeholder="Andika miaka yako/Write your age.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="fname">Makazi/Resident:</label></strong><br>
+        <input type="text" id="makazi" name="makazi" placeholder="Andika makazi yako/Write your resident.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="fname">Hadhi ya ndoa/Mariage status:</label></strong><br>
+        <input type="text" id="hadhi" name="hadhi" placeholder="Andika hadhi ya ndoa/Write your mariage status.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="phone">Namba ya Simu/Contact:</label></strong><br>
+        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: 0712XXXXXX" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="contract-type">Aina ya Mkataba/Categories of contract:</label></strong><br>
+        <select id="contract-type" name="contract-type" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
+            <option value="pango">Mkataba wa Pango (Lease)</option>
+            <option value="ajira">Mkataba wa Ajira (Employment)</option>
+            <option value="biashara">Mkataba wa Biashara (Business)</option>
+            <option value="mauzo">Mkataba wa Mauzo ya Ardhi (Sale)</option>
+        </select><br>
+
+        <strong><label for="details">Maelezo ya ziada/More information:</label></strong><br>
+        <textarea id="details" name="details" rows="4" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"></textarea><br>
+
+        <button type="submit" style="background-color: teal; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px;">
+            Tuma Maombi/Send
+        </button>
+    </form>
+    <br>
+    <p>Thank You for contact us, our customer will respond to your request soon as possible via mobile in your phone via mobile phone please make sure youre mobile phone is online.</p>
+    <a href="index.html" style="color: rgb(111, 0, 255); text-decoration: none;">← Back</a>
+</div>
+    <script>
+function tumaWhatsApp(event) {
+    event.preventDefault(); // Hii inazuia ukurasa usijirefresh
+
+    // 1. Chukua thamani kutoka kwenye fomu
+    let jina = document.getElementById("fname").value;
+    let miaka = document.getElementById("miaka").value;
+    let makazi = document.getElementById("makazi").value;
+    let hadhi = document.getElementById("hadhi").value;
+    let simu = document.getElementById("phone").value;
+    let mkataba = document.getElementById("contract-type").value;
+    let maelezo = document.getElementById("details").value;
+
+    // 2. Namba yako ya simu
+    let nambaYako = "255622920518";
+
+    // 3. Tengeneza ujumbe
+    let ujumbe = "HABARI LEGAL KNOWLEDGE,\n\n" +
+                "*Maombi Mapya ya Mkataba*\n" +
+                "--------------------------\n" +
+                "👤 Jina: " + jina + "\n" +
+                "Miaka: " + miaka + "\n" +
+                "Makazi: " + makazi + "\n" +
+                "Hadhi ya ndoa: " + hadhi + "\n" +
+                "📞 Simu: " + simu + "\n" +
+                "📄 Aina: " + mkataba + "\n" +
+                "📝 Maelezo: " + maelezo;
+
+    // 4. Fungua WhatsApp (HAKIKISHA HII IPO NDANI YA MABANO YA FUNCTION)
+    const url = "https://wa.me/" + nambaYako + "?text=" + encodeURIComponent(ujumbe);
+    window.open(url, '_blank').focus();
+}
+</script>
+</body>
+</html>
