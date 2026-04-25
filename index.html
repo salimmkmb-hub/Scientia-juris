@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="data.js" defer></script>
+</head>
+</html>
+<style>
+
+    /* Kodi hii itafanya kazi kwenye vioo vidogo chini ya pixel 768 (Simu) */
+@media screen and (max-width: 768px) {
+    @media print {
+  body { display: none !important; }
+}
+body {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+}
+   
+    /* 1. Inafanya grid iwe safu 1 badala ya 2 au 3 */
+    .grid-container, .cards-container {
+        grid-template-columns: 1fr ; /* Inalazimisha safu moja */
+        padding: 10px;
+    }
+
+    /* 2. Inarekebisha ukubwa wa maandishi ya kichwa (H1) */
+    h1 {
+        font-size: 1.5rem ;
+    }
+
+    /* 3. Inafanya picha ya background (Kilimanjaro) isivutike vibaya */
+    body {
+        background-attachment: scroll; /* Kwenye simu scroll ni bora zaidi */
+    }
+
+    /* 4. Inahakikisha kadi za maelezo zinajaa vizuri */
+    .card {
+        margin-bottom: 20px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+        body {
+            font-family: 'Segoe UI', 'Times New Roman', Times, serif,;
+            padding: 50px;
+            line-height: 1.8;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #e74c3c; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; }
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        footer {
+    background-color: #2c3e50; /* Rangi ya kishaba iliyokolea */
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    margin-top: 50px; /* Inatoa nafasi kati ya maudhui na footer */
+}
+
+.footer-links a {
+    color: #00d2d3;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+    body {
+        background-image: url('Kilimanjaro.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;/*Hii ni muhimu sana kuzuia vitu kuvimba nje ya kioo*/
+}
+.grid-container {
+display: grid;/*Inatengeneza safu kulingana na nafasi, kima cha chini 280px*/
+grid-template-columns: repeat(2, 1fr);
+gap: 30px;
+max-width: 1100px;
+margin: 40px auto;
+padding: 20px;
+}
+    /* Hii inapanga vitufe katika safu mbili katikati ya ukurasa */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Safu 2, kila moja upana wa px 200 */
+    gap: 20px; /* Nafasi kati ya kitufe na kitufe */
+    justify-content: center; /* Inaweka grid nzima katikati */
+    margin-top: 50px;
+    
+}
+
+/* Hii ni style ya kila kitufe */
+.btn {
+    padding: 18px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Rangi tofauti kwa vitufe */
+.red { background-color: #7b57ff; }
+.teal { background-color: #00d2d3; }
+/* Hii inafanya kitufe kiongezeke ukubwa kidogo kikiguswa */
+.btn:hover {
+    transform: scale(1.1); /* Inaongeza ukubwa kwa 10% */
+    transition: 0.3s; /* Inafanya mabadiliko yawe ya taratibu (smooth) */
+    filter: brightness(1.2); /* Inang'arisha rangi ya kitufe kidogo */
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    width: auto;/*Inaruhusu kitufe kijipanue kulingana na maandishi*/
+    text-align: center;
+    word-wrap:break-word;/*Inakata maneno yakizidi/*
+    front-size: 14px; /*Unaweza kupunguza dont kidogo kwaajili ya simu*/
+}
+/* Sehemu ya pili ya maelezo (chini ya anga) */
+.content-section {
+    background-color:none #f9f9f9; /* Rangi ya kijivu hafifu kama kwenye video */
+    padding: 50px 20px;
+    color: #333;
+}
+
+.cards-container {
+    display: grid;
+    flex-wrap: wrap;/*Hii ni muhimu ili kadi zisishuke chini*/
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Inajipanga yenyewe kulingana na kioo */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: left; /* Maandishi yanaanza kushoto kama video inavyoonyesha */
+}
+.card h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #00d2d3; /* Mstari wa rangi chini ya kichwa cha habari */
+    padding-bottom: 10px;
+}
+.read-more {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background-color: #00d2d3;
+    color: whitesmoke;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+/* Inaficha icon ya hamburger kwenye laptop */
+    .navbar .icon {
+    display: none;
+    }
+@media screen and (max-width: 768px) {
+    /* Inaficha links zote isipokuwa ile ya kwanza (Home) */
+    .navbar a:not(:first-child) {display: none;}
+   
+    /* Inaonyesha icon ya hamburger upande wa kulia */
+.navbar a.icon {
+        float: right;
+        display: block;
+}
+    /* Hii inatokea mtumiaji akibonyeza ile icon (Menu inashuka chini) */
+    .navbar.responsive {position: relative;}
+.navbar.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+}
+.navbar.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+}
+}
+.footer-container {
+    background-color: rgba(0, 0, 0, 0.8); /* Inakuwa na rangi nyeusi yenye uwazi kidogo */
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px; /* Inatengeneza nafasi kati ya kadi na footer */
+    text-align: center;
+}
+/* Hakikisha main content na footer hazikai mstari mmoja */
+.footer-full-width {
+    clear: both; /* Hii inazuia vitu vingine kukaa pembeni yake */
+    width: 100%; /* Inatanda ukurasa mzima */
+    background-color: #1a1a1a; /* Rangi ya giza kama uliyoweka */
+    color: white;
+    padding: 40px 0;
+    margin-top: 40px; /* Inatengeneza nafasi kati ya kadi na footer */
+    display: block; /* Inahakikisha inajitegemea kama block */
+}
+.footer-content {
+    max-width: 800px; /* Huu ni upana wa maelezo yaliyomo ndani */
+    margin: 0 auto;   /* Hii inaiweka katikati ya ukurasa */
+    text-align: center;
+}
+.comment-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    margin: 20px auto; /* Inaiweka fomu katikati ya footer */
+}
+.comment-section form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto 30px auto; /* Inaiweka fomu katikati */
+}
+
+.comment-section input, .comment-section textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.comment-section button {
+    background-color: #008080;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.footer-info {
+    border-top: 1px solid #444;
+    padding-top: 20px;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+}
+/* Container inayoshikilia icons zote */
+.social-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column; /* Inaziweka moja juu ya nyingine */
+    gap: 15px; /* Nafasi kati ya WhatsApp na Instagram */
+    z-index: 9999;
+}
+
+/* Muonekano wa kila icon */
+.social-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+.social-icon img {
+    width: 32px;
+    height: 32px;
+}
+
+/* Rangi ya WhatsApp */
+.whatsapp {
+    background-color: #25d366;
+}
+
+/* Rangi ya Instagram (Gradient) */
+.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* Athari wakati mtu anagusa (Hover) */
+.social-icon:hover {
+    transform: scale(1.15);
+}
+
+</style>
+</head>
+<body>
+<div class="social-float">
+    <a href="https://wa.me/255622920518" class="social-icon whatsapp" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    <a href="https://www.instagram.com/twobrotherhoodtz" class="social-icon instagram" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+    </a>
+</div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <h1>LEGAL KNOWNLEDGE</h1>
+    <div class="navbar" id="myNavbar">
+</div>
+<p>Select our service by click button below:</p>
+<div class="grid-container"> 
+    <a href="drafting.html" style="text-decoration: none;">
+    <button class="btn teal">✔ Dratfing of contract</button>        
+</a>
+ <a href="Legal-consultation.html" style="text-decoration: none;">
+       <button class="btn teal">✔ Legal consultation</button>   
+</a>
+<a href="Legal-representation.html" style="text-decoration: none;">
+        <button class="btn red">✔ Legal representation</button>
+</a>
+<a href="Learning-the-laws.html" style="text-decoration: none;">
+        <button class="btn red">✔ Learning the laws</button>
+</a>
+</div>
+
+<div class="content-section">
+    <div class="cards-container">
+       
+        <div class="card">
+            <h3>⚖️ Introduction to Law</h3>
+            <p>The introduction to law notes will provide you with a broad and critical understanding of the legal system...</p>
+            <a href="introduction-to-law.html" style="text-decoration: none;">
+              <button class="btn teal">✔ Click to read-more</button></a>
+        </div>
+       <div class="card">
+            <h3>Tanzania Constitution & Legal System</h3>
+            <p>Origin of Tanzania Constitution, bill of right, operation, challenges  </p>
+            <a href="tanzania-constitution-right.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Criminal Law</h3>
+            <p>Mens reus, Actus reus, Murder, manslaughter, grievous bodily harm, conspiracy, self-defence and theft. These are just some of the issues...</p>
+            <a href="criminal-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Investment Law</h3>
+            <p>Understand Investment, ways of inestment, legal instrument, authorities for registration as investor in Tanzania</p>
+            <a href="investment-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Land law</h3>
+            <p>Meaning of land, mode of occupation of land, lease, sale, ways of transfer land title...</p>
+            <a href="land-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Environmental Law</h3>
+            <p>Meaning, original of enviromental protection in Africa, legal instrument governing enviromental protection, sector and cross-sector, right and duties, enforcement mechanism and dispute settlement....</p>
+            <a href="environmental-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Family Law</h3>
+            <p>Meaning, ....</p>
+            <a href="family-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Banking and Financial Institution Law</h3>
+            <p>Meaning, ....</p>
+            <a href="banking-and-financial-institution-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Administrative Law</h3>
+            <p>Meaning, ....</p>
+            <a href="administrative-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Law of Tort</h3>
+            <p>Meaning, ....</p>
+            <a href="law-of-tort.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Law of Evidence</h3>
+            <p>Meaning of evidence, tenderin and admission, ....</p>
+            <a href="law-of-evidence.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Insurance Law</h3>
+            <p>Meaning, ....</p>
+            <a href="Insurance-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Law of Force Dispacement</h3>
+            <p>Meaning, ....</p>
+            <a href="law-of-force-displacement.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Business Association Law</h3>
+            <p>Meaning, duties and rights ....</p>
+            <a href="Business-association-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Civil Procedure Law</h3>
+            <p>Meaning, ....</p>
+            <a href="civil-procedure-code.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Jurisprudence of law</h3>
+            <p>Meaning, ....</p>
+            <a href="jurisprudence-of-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Labour Law</h3>
+            <p>Meaning, ....</p>
+            <a href="labour-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Tax Law</h3>
+            <p>Meaning, ....</p>
+            <a href="tax-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Human right's Law</h3>
+            <p>Meaning, ....</p>
+            <a href="human-right's-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Intellectual Propert law</h3>
+            <p>Meaning, ....</p>
+            <a href="intellectual-propert-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Administrative of Estates and Succession Law</h3>
+            <p>Meaning, ....</p>
+            <a href="administrative-of-estates-and-succession-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Mining and Natural resources Law</h3>
+            <p>Meaning, ....</p>
+            <a href="mining-and-natural-resources-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Private International Law</h3>
+            <p>Meaning, ....</p>
+            <a href="private-international-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>International Trade and Finance Law</h3>
+            <p>Meaning, ....</p>
+            <a href="international-trade-and-finance-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Capital Market and Securities Law</h3>
+            <p>Meaning, ....</p>
+            <a href="capital-market-and-securities-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+        <div class="card">
+            <h3>Person with Disabilities Law</h3>
+            <p>Meaning, ....</p>
+            <a href="person-with-disabilities-law.html" class="btn teal" style="text-decoration: none;">
+    ✔ Click to read-more</a>
+        </div>
+    </div class="card-container">
+</div class="grid-container">
+</div class="card">
+</div footer-container>
+<footer class="footer-full-width">
+        <p>About Us</p><br>
+        <p>We made this website for the purpose of learning and understanding the law. Because we believe that human knowleges is limitless if you're willing to seek for it </p>
+        <div class="comment-section">
+            <h3>Comment or ask question</h3>
+            <form action="https://formspree.io/f/xzdjyppa" method="POST">
+              <input type="text" name="name" placeholder="Name" required>
+              <input type="email" name="email" placeholder="Email adress" required>
+              <textarea name="message" placeholder="Comment on..." rows="4" required></textarea>
+              <button type="submit">Send</button>
+             <a>For clarification contact us with<br>
+              Email Adress: Salimmkmb@gmail.com</a>
+              <P>Phone No: +255622920518/+255795153166</P></a>
+            </form>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 Scientia Juris of Tanzania, All Rights Reserved.</p>
+            <p>Powered by [Mr. Kangungu, S.M]</p>
+        </div>
+    </div>
+</footer>
+</html>
