@@ -407,19 +407,50 @@ padding: 20px;
   right: 20px;
   top: 20px;
 }
+/* Ficha maelezo kwanza */
+.dropdown-content {
+  display: none;
+  background-color: #262626; /* Rangi iendane na sidenav yako */
+  padding-left: 20px;
+  font-size: 18px;
+  color: #818181;
+}
 
+/* Urembo wa button ya dropdown */
+.dropdown-btn {
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
 </style>
 </head>
 <body>
  <span class="open-btn" onclick="openNav()">&#9776;</span>
-
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About Us</a>
-  <a href="#">Author</a>
-  <a href="Statutes.html">Statutes</a>
-  <a href="#">Books</a>
+<div class="sidenav" id="mySidenav">
+<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+ <a href="javascript:void(0)" class="dropdown-btn" onclick="funguaMaelezo(this)">Author ▾</a>
+<div class="maelezo-box" style="display:none; padding:10px; background:#333; color:#f1f1f1;">
+    <figure>
+  <img src="Kangungu..jpg" alt="picha ya mwanasheria" style="width:100%">
+  <figcaption>Kangungu, S.M.</figcaption>
+</figure>
+    <p>The author of this website is Salim M. Kangungu, a degree holder in Law, at University of Dodoma-Tanzania. 
+        He is a legal practitioner, legal researcher and legal writer with more than 5 years of experience in the legal field</p>
 </div>
+<a href="javascript:void(0)" class="dropdown-btn" onclick="funguaMaelezo(this)">About us ▾</a>
+<div class="maelezo-box" style="display:none; padding:10px; background:#333; color:#f1f1f1;">
+    <p>This site is created and maintained by individual author with the licence and registration from the relevant authorities in Tanzania</p>
+</div>
+<a href="javascript:void(0)" class="dropdown-btn" onclick="funguaMaelezo(this)">News ▾</a>
+<div class="maelezo-box" style="display:none; padding:10px; background:#333; color:#f1f1f1;">
+    <p>Latest legal news and updates</p>
+    <p>Insights into legal trends and developments</p>
+</div>
+<a href="Statutes.html">Statutes</a>
+  <a href="#">E-Books</a>
+</div>    
 <div class="social-float">
     <a href="https://wa.me/255622920518" class="social-icon whatsapp" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
@@ -611,11 +642,45 @@ padding: 20px;
 </div class="grid-container">
 </div class="card">
 <script>
-    function openNav() {
+    /* 1. Kodi ya kufungua Navigation Bar */
+function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
 }
+
+/* 2. Kodi ya kufunga Navigation Bar */
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
+}
+
+/* 3. Kodi ya kuonyesha maelezo (Dropdown) bila kuhama ukurasa */
+function funguaMaelezo(kipengele) {
+  var maelezo = kipengele.nextElementSibling;
+ 
+  if (maelezo.style.display === "none" || maelezo.style.display === "") {
+    maelezo.style.display = "block";
+  } else {
+    maelezo.style.display = "none";
+  }
+}
+/* 1. Kodi ya kufungua Navigation Bar */
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* 2. Kodi ya kufunga Navigation Bar */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+/* 3. Kodi ya kuonyesha maelezo (Dropdown) bila kuhama ukurasa */
+function funguaMaelezo(kipengele) {
+  var maelezo = kipengele.nextElementSibling;
+ 
+  if (maelezo.style.display === "none" || maelezo.style.display === "") {
+    maelezo.style.display = "block";
+  } else {
+    maelezo.style.display = "none";
+  }
 }
 </script>
 </div footer-container>
