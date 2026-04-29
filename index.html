@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="data.js" defer></script>
+    <script src="data.js" defer>
+    </script>
 </head>
 </html>
 <style>
@@ -316,10 +317,109 @@ padding: 20px;
 .social-icon:hover {
     transform: scale(1.15);
 }
+/* Mtindo wa menu yenyewe */
+.sidenav {
+  height: 100%;
+  width: 0; /* Inaanza ikiwa imejificha (upana ni 0) */
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0; /* Inakaa upande wa kulia */
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s; /* Kasi ya kufunguka */
+  padding-top: 60px;
+}
+
+/* Links ndani ya menu */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Kitufe cha kufungia (X) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Kitufe cha vimistari vitatu */
+.open-btn {
+  font-size: 30px;
+  cursor: pointer;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+/* Mtindo wa menu yenyewe */
+.sidenav {
+  height: 100%;
+  width: 0; /* Inaanza ikiwa imejificha (upana ni 0) */
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0; /* Inakaa upande wa kulia */
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s; /* Kasi ya kufunguka */
+  padding-top: 60px;
+}
+
+/* Links ndani ya menu */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Kitufe cha kufungia (X) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Kitufe cha vimistari vitatu */
+.open-btn {
+  font-size: 30px;
+  cursor: pointer;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
 
 </style>
 </head>
 <body>
+ <span class="open-btn" onclick="openNav()">&#9776;</span>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About Us</a>
+  <a href="#">Author</a>
+  <a href="Statutes.html">Statutes</a>
+  <a href="#">Books</a>
+</div>
 <div class="social-float">
     <a href="https://wa.me/255622920518" class="social-icon whatsapp" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
@@ -510,6 +610,14 @@ padding: 20px;
     </div class="card-container">
 </div class="grid-container">
 </div class="card">
+<script>
+    function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
 </div footer-container>
 <footer class="footer-full-width">
         <p>About Us</p><br>
