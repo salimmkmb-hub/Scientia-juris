@@ -4,6 +4,7 @@
     <!DOCTYPE html>
 <html lang="sw">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="data.js" defer>
@@ -47,21 +48,21 @@ body {
         margin-right: auto;
     }
 }
-        body {
+    body {
             font-family: 'Segoe UI', 'Times New Roman', Times, serif,;
             padding: 50px;
             line-height: 1.8;
             background-color: #f4f4f4;
             color: #333;
-        }
-        .container {
+    }
+    .container {
             max-width: 800px;
             margin: auto;
             background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+    }
         h1 { color: #e74c3c; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; }
         .back-btn {
             display: inline-block;
@@ -424,9 +425,101 @@ padding: 20px;
   width: 100%;
   text-align: left;
 }
+
+/* 2. Muundo wa Sidebar */
+.custom-sidebar {
+    width: 70px;
+    height: 100vh;
+    background-color: #0d1b2a; /* Rangi ya bluu nzito */
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    z-index: 9999; /* Inahakikisha inakaa juu ya kila kitu */
+    gap: 25px;
+}
+
+/* 3. Muundo wa Icons ndani ya Sidebar */
+.sidebar-icon {
+    color: #a9b1d6;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.sidebar-icon:hover, .sidebar-icon.active {
+    color: #4cc9f0;
+    background-color: rgba(76, 201, 240, 0.1);
+}
+/* Sidebar itakuwa imejificha kwanza (Portrait) */
+.custom-sidebar {
+    display: none;
+}
+
+/* Sidebar itaonekana TU simu ikigeuzwa (Landscape) */
+@media screen and (orientation: landscape) {
+    .custom-sidebar {
+        display: flex; /* Inaonekana sasa */
+    }
+   
+    body {
+        margin-left: 70px !important; /* Inasogeza content kutoa nafasi */
+    }
+}
+/* Muundo wa kawaida (Mobile Portrait) */
+.card-wrapper {
+    display: grid;
+    grid-template-columns: 1fr; /* Inakaa moja moja */
+    gap: 10px;
+    padding: 10px;
+}
+/* Muundo wa kadi zenyewe */
+.btn {
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teal { background-color: #008080; }
+.red { background-color: #ff4d4d; }
+
+/* GRID LOGIC */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Moja moja kwenye portrait */
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Hapa ndipo uchawi wa rotation unapotokea */
+@media screen and (orientation: landscape) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Mbili mbili kwenye landscape */
+    }
+}
 </style>
 </head>
 <body>
+<div class="custom-sidebar">
+    <a href="index.html"class="sidebar-icon active"><i class="fas fa-home"></i></a>
+    <a href="books.html" class="sidebar-icon"><i class="fas fa-book"></i></a>
+    <a href="statute-books.html" class="sidebar-icon"><i class="fas fa-balance-scale"></i></a>
+   <a href="https://www.instagram.com/twobrotherhoodtz" class="sidebar-icon"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="sidebar-icon"><i class="fab fa-linkedin"></i></a>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
  <span class="open-btn" onclick="openNav()">&#9776;</span>
 <div class="sidenav" id="mySidenav">
 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -465,20 +558,11 @@ padding: 20px;
 </div>
 <p>Select our service by click button below:</p>
 <div class="grid-container"> 
-    <a href="drafting.html" style="text-decoration: none;">
-    <button class="btn teal">✔ Dratfing of contract</button>        
-</a>
- <a href="Legal-consultation.html" style="text-decoration: none;">
-       <button class="btn teal">✔ Legal consultation</button>   
-</a>
-<a href="Legal-representation.html" style="text-decoration: none;">
-        <button class="btn red">✔ Legal representation</button>
-</a>
-<a href="Learning-the-laws.html" style="text-decoration: none;">
-        <button class="btn red">✔ Learning the laws</button>
-</a>
+    <a href="drafting.html" style="text-decoration: none;"class="btn teal">✔ Dratfing of contract</a>
+ <a href="Legal-consultation.html" style="text-decoration: none;"class="btn teal">✔ Legal consultation</a>
+ <a href="Legal-representation.html" style="text-decoration: none;" class="btn red">✔ Legal representation</a>
+ <a href="Learning-the-laws.html" style="text-decoration: none;"class="btn red">✔ Learning the laws</a>
 </div>
-
 <div class="content-section">
     <div class="cards-container">
        
@@ -487,7 +571,7 @@ padding: 20px;
             <p>The introduction to law notes will provide you with a broad and critical understanding of the legal system...</p>
             <a href="introduction-to-law.html" class="btn teal"style="text-decoration: none;">
                Read-more</a>
-        </div>
+        </div>  
        <div class="card">
             <h3>Tanzania Constitution & Legal System</h3>
             <p>Origin of Tanzania Constitution, bill of right, operation, challenges  </p>
