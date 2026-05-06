@@ -4,56 +4,23 @@
 <meta charset="UTF-8">
 <title>Scientia-Juris - Law Notes</title>
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif, sans-serif;
-    background-color: #f4f4f4; /* Rangi ya background ya ukurasa */
-}
-
-.container {
-    position: relative;
-    min-height: 100vh;
-    padding: 40px;
-    z-index: 1;
-    max-width: 800px;
-    margin: auto;
-    background: white; /* Inafanya maandishi yasomeke vizuri */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-/* Hii ndio kodi ya kuweka Logo nyuma kama Watermark */
-.container::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px; /* Rekebisha ukubwa wa logo hapa */
-    height: 300px;
-    background-image: url('background.jpg'); /* WEKA JINA LA PICHA YAKO HAPA */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.1; /* Inafanya logo iwe hafifu (watermark) */
-    z-index: -1; /* Inaipeleka nyuma ya maandishi */
-}
-
-h1 { color: #003366; }
-h3 { color: #C1A26B; margin-bottom: 5px; }
-ul { list-style-type: none; padding: 0; }
-li { margin-bottom: 15px; color: #333; }
-
-.back-btn {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #003366;
-    font-weight: bold;
-}
+ /* CSS kwa ajili ya Watermark ya Background */
+        body {
+            /* 1. Weka rangi ya usuli kama karatasi (hiari) */
+            background-color: #fffaf0;
+        }
+        h1 {
+            color: #113355; /* Rangi ya Bluu iliyokolea kutoka nembo */
+            text-align: center;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
 </style>
 </head>
 <body>
+   
 <div class="container">
     <h1>Persons with Disabilities Law Notes</h1>
     <p>Topic Digested includes: -</p>
