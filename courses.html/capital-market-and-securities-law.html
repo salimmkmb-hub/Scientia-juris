@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <style>
+           /* Mipangilio ya kimsingi ya ukurasa */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif; /* Badilisha na font unayotaka */
+        }
+
+        /* Container ya picha ya background na logo */
+        .background-container {
+            position: relative; /* Inahitajika kwa absolute positioning ya logo */
+            width: 100%;
+            height: 100vh; /* Urefu kamili wa skrini */
+            background-image: url('picha-yako-ya-background.jpg'); /* Weka link ya picha yako hapa */
+            background-size: cover; /* Picha itajaza eneo lote */
+            background-position: center; /* Picha itakaa katikati */
+            overflow: hidden; /* Kuzuia logo isitoke nje */
+        }
+
+        /* Overlay yenye giza ili maandishi yaonekane vizuri */
+        .background-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Rangi nyeusi yenye uwazi (50%) */
+            z-index: 1; /* Inakaa juu ya picha ya background */
+        }
+
+        /* Mipangilio ya logo kama watermark */
+        .background-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Kuiweka katikati kabisa */
+            width: 60%; /* Ukubwa wa logo (unaweza kubadilisha) */
+            max-width: 600px; /* Ukubwa wa juu */
+            opacity: 0.1; /* Uwazi wa logo (10% - inafanya ionekane kama watermark) */
+            z-index: 2; /* Inakaa nyuma ya maandishi lakini juu ya overlay */
+            pointer-events: none; /* Inazuia mtumiaji asiweze kuiklick au kuichagua */
+        }
+
+        /* Maudhui ya mbele (maandishi, buttons, n.k.) */
+        .foreground-content {
+            position: relative;
+            z-index: 3; /* Inakaa juu kabisa ya kila kitu */
+            color: #fff; /* Rangi nyeupe ya maandishi */
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .foreground-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .foreground-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    </style>
+    <title>Business Association Law Notes</title>
+    
+</head>
+<body>
+    <div class="background-container">
+        <img src="logo-yako.png" alt="Scientia-Juris Logo Watermark" class="background-logo">
+
+        <div class="foreground-content">
+            <h1>Haki na Maarifa</h1>
+            <p>Karibu Scientia-Juris, ambapo elimu ya sheria inakutana na sayansi kwa ajili ya maendeleo ya jamii.</p>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Capital Market and Securities Law Notes</h1>
+        <p>Topic Digested includes: -</p>
+        <ul>
+            <h3>Topic One</h3>
+            <li>Introduction...</li>
+            <h3>Topic Two</h3>
+            <li>.....</li>
+            <h3>Topic Three</h3>
+            <li>......</li>
+            <h3>Topic Four</h3>
+            <li>.....</li>
+        </ul>
+        <hr>
+        <a href="index.html" class="back-btn">← Back</a>
+    </div>
+    
+    </p>
+</footer>
+</body>
+</html>
