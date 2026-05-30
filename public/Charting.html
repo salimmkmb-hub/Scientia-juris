@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+ 
+        /* Container kuu ya input */
+.input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f2f5;
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    box-sizing: border-box; /* Inazuia input kutoka nje ya screen */
+    border-top: 1px solid #ccc;
+}
+   /* Kodi hii itafanya kazi kwenye vioo vidogo chini ya pixel 768 (Simu) */
+@media screen and (max-width: 768px) {}
+@media print {
+body { display: none !important; }
+}
+
+/* Input ya maandishi */
+#admin-message {
+    flex: 1; /* Inachukua nafasi yote iliyobaki */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px; /* Muonekano wa kisasa wa WhatsApp */
+    outline: none;
+    font-size: 16px; /* Hii inazuia zoom kwenye simu (iOS/Android) */
+}
+
+/* Button ya kutuma */
+button {
+    padding: 10px 20px;
+    background-color: #075e54;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+        body { margin: 0; font-family: "Times New Roman", serif; background-color: #e5ddd5; }
+       
+        .admin-bubble { background: #dcf8c6; margin-left: auto; text-align: right; } /* Kijani (Admin) */
+.client-bubble { background: #ffffff; margin-right: auto; text-align: left; }  /* Nyeupe (Mteja) */
+.message { padding: 10px; border-radius: 10px; margin: 5px; max-width: 70%; 
+}
+#Charts {
+    display: flex;
+    flex-direction: column; /* Hii inafanya meseji zipangike juu kwa juu */
+    justify-content: flex-end; /* Hii inasukuma meseji kuanzia chini */
+    padding: 10px;
+    height: 80vh; /* Hakikisha container inachukua nafasi kubwa */
+    overflow-y: auto;
+}
+
+.message-bubble {
+    background-color: #dcf8c6; /* Rangi ya bubble ya mtumaji */
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 5px;
+    max-width: 70%;
+    align-self: flex-end; /* Hii inapeleka bubble upande wa kulia */
+    font-family: sans-serif;
+}
+
+    /* Watermark CSS Iliyorekebishwa */
+    .chat-container::before {
+        content: "";
+        position: fixed; /* Hii ni muhimu ili watermark isishuke chini */
+        top: 50%;
+        left: 50%;
+        width: 900px; /* Badilisha ukubwa kulingana na picha yako */
+        height: 900px; /* Badilisha ukubwa kulingana na picha yako */
+        /* Weka link ya picha yako hapa */
+        background-image: url('background.jpg'); /* Hii inapaswa kuwa picha ya watermark yako */
+        background-repeat: no-repeat; /* Hii inazuia picha isijirudie */
+        background-size: contain;
+        transform: translate(-50%, -50%); /* Hii ndiyo siri ya kuikaisha kati */
+        opacity: 0.2; /* Picha itafifia kama watermark */       
+        pointer-events: none; /* Inaruhusu kubofya vitu vilivyo juu */
+        z-index: -1; /* Inahakikisha inakaa nyuma ya ujumbe */
+    }
+        /* Muundo wa Bubble */
+        .message { padding: 10px; margin: 10px; border-radius: 20px; background: rgb(241, 238, 238); max-width: 50%; position: relative; z-index: 1; }
+        .sender { font-weight: bold; color: #075e54; font-size: 0.8em; }
+        /* Hakikisha hii ipo kwenye watermark yako */
+.chat-container::before {
+    /* ... nyinginezo ... */
+    pointer-events: none; /* Hii inafanya watermark ipitishwe na mibofyo */
+    z-index: 0;
+}
+
+/* Ongeza hii kwa ajili ya input box */
+.input-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000; /* Hii inahakikisha input inakaa juu ya kila kitu */
+}
+    </style>
+</head>
+<body>
+    
+<div class="input-container">
+        <input type="file" id="file-input" style="display: none;" accept="image/*, application/pdf/msword">
+        <button onclick="document.getElementById('file-input').click()">📁</button>
+        
+        <input type="text" id="admin-message" placeholder="Write text..." style="width: 100%;">
+        <input type="file" id="image-input" accept="image/*" style="display:none">
+       
+        <button id="send-btn">Send</button>
+       
+        
+        
+    </div>
+</div>
+
+<div class="chat-container" id="Charts"></div>
+
+
+<script type="module">
+     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+       document.getElementById('send-btn').addEventListener('click', async () => {
+    const input = document.getElementById('admin-message');
+    const text = input.value;
+    if (text.trim() !== "") {
+        // Hapa ndipo utaita kazi ya kutuma kwenye Firebase (addDoc)
+        displayMessage(text); // Ongeza ujumbe kwenye chat (hii ni kwa ajili ya demo, badilisha na kutuma kwenye Firebase)
+        console.log("Meseji inayotumwa:", text);
+        input.value = ""; // Futa kisanduku baada ya kutuma
+        
+        
+    }
+    });
+    import { getFirestore, collection, query, where, onSnapshot, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+// Tafuta mstari huu wa import na uongeze addDoc na serverTimestamp ndani yake
+    const firebaseConfig = {
+        apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+        projectId: "scientia-juris",
+        // ... (hakikisha config nyingine zipo)
+    };
+
+   
+ function displayMessage(text) {
+    const chatContainer = document.getElementById('Charts');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message-bubble');
+    messageElement.textContent = text;
+    chatContainer.appendChild(messageElement);
+    messageElement.style.padding = "10px"; // Ongeza style kidogo
+    messageElement.style.borderBottom = "1px solid #ccc";
+    
+    function displayMessage(text) {
+    const chatContainer = document.getElementById('Charts');
+    const messageElement = document.createElement('div');
+   // Mfano wa jinsi ya kuunda element ya meseji
+const messageDiv = document.createElement("div");
+messageDiv.classList.add("message-bubble"); // Hii ndiyo inayoleta rangi na shape
+messageDiv.innerText = "Hey"; // Meseji yako
+document.getElementById("Charts").appendChild(messageDiv);
+
+    // Tunaongeza class tuliyotengeneza kwenye CSS
+    
+   
+    messageElement.textContent = text;
+    chatContainer.appendChild(messageElement);
+   
+    // Hii inahakikisha chat inajisogeza chini kabisa kila meseji mpya inapoingia
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+}
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const mtejaId = urlParams.get('id');
+
+    document.getElementById('file-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+       
+        reader.onload = function(event) {
+            const chatContainer = document.getElementById('Charts');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message-bubble'); // Tumia class yako ile ile
+
+            if (file.type.startsWith('image/')) {
+                // Kama ni picha
+                messageElement.innerHTML = `<img src="${event.target.result}" style="max-width: 200px;">`;
+            } else {
+                // Kama ni document (kama PDF)
+                messageElement.innerHTML = `<a href="${event.target.result}" download="${file.name}">📥 ${file.name}</a>`;
+            }
+           
+            chatContainer.appendChild(messageElement);
+        };
+       
+        reader.readAsDataURL(file);
+    }
+});
+
+    const q = query(
+        collection(db, "Charts"),
+        where("chatId", "==", mtejaId),
+        orderBy("timestamp", "asc")
+    );
+
+    onSnapshot(q, (snapshot) => {
+        const chatList = document.getElementById("Charts");
+        chatList.innerHTML = "";
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            const div = document.createElement("div");
+            div.className = "message";
+            div.innerHTML = `<div class="sender">${data.jina}</div><div>${data.message || data.maelezo}</div>`;
+            chatList.appendChild(div);
+        });
+    });
+ // Rekebisha sehemu hii:
+onSnapshot(q, (snapshot) => {
+    // Futa snapshot.any(doc => { ... })
+    // Tumia forEach badala yake:
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+       
+        // Sasa tengeneza div yako
+        const div = document.createElement("div");
+       
+        // Hapa weka logic ya kuonyesha ujumbe (mfano wa class)
+        div.className = (data.role === "admin") ? "message admin" : "message client";
+       
+        // Hakikisha unatumia variable ya 'data' uliyopata kutoka doc.data()
+        div.innerHTML = `<div>${data.message || data.maelezo || ""}</div>`;
+       
+        // Ongeza div kwenye chatList yako
+        const chatList = document.getElementById("Chats"); // Hakikisha ID hii inafanana na ya kwenye HTML
+        if (chatList) {
+            chatList.appendChild(div);
+        }
+    });
+});
+
+    window.sendMessage = async () => {
+    const messageInput = document.getElementById("admin-message");
+    const text = messageInput.value.forEach('admin-message');
+   
+    // Pata chatId kutoka kwenye URL (kama ulivyofanya kwenye admin room)
+    const urlParams = new URLSearchParams(window.location.search);
+    const mtejaId = urlParams.get('id');
+
+    if (text !== "messageInput" && mtejaId) {
+        try {
+            await addDoc(collection(db, "Charts"), {
+                chatId: mtejaId,
+                jina: "Mteja", // Au jina la mteja uliolihifadhi
+            
+                timestamp: serverTimestamp(), // Inatumia muda wa server
+                role: "client"
+            });
+            messageInput.value = ""; // Futa kisanduku baada ya kutuma
+        } catch (e) {
+            console.error("Kosa la kutuma: ", e);
+        }
+    }
+};
+window.sendMessage = async () => {
+    // 1. Pata element ya input kwa kutumia ID yake sahihi (kama ilivyo kwenye HTML mstari wa 96)
+    const messageInput = document.getElementById("admin-message");
+
+    // 2. Hakikisha input imepatikana kabla ya kuendelea
+    if (!messageInput) {
+        console.error("Input yenye ID 'admin-message' haijapatikana!");
+        return;
+    }
+
+    // 3. Sasa chukua value yake
+    const text = messageInput.value;
+
+    // 4. Hakikisha text si tupu kabla ya kutuma
+    if (text.trim() === "") {
+        alert("Tafadhali andika ujumbe!");
+        return;
+    }
+
+    // Endelea na code zako zingine (kama ku-addDoc kwa Firebase)...
+    console.log("Ujumbe uliopatikana:", text);
+   
+    // Futa input baada ya kutuma
+    messageInput.value = "";
+};
+window.sendMessage = async () => {
+    const messageInput = document.getElementById("admin-message");
+    const text = messageInput.value;
+
+    if (text.trim() === "") return;
+
+    try {
+        await addDoc(collection(db, "Charts"), {
+            chatId: mtejaId,
+            jina: "Mteja",
+            message: text,
+            timestamp: serverTimestamp(),
+            role: "client"
+        });
+       
+        console.log("Ujumbe umetumwa kikamilifu!");
+        messageInput.value = ""; // Safisha input
+    } catch (e) {
+        // Hapa utaona kosa halisi kama linatokea kwenye database
+        console.error("Kosa la Firebase: ", e);
+        alert("Imeshindwa kutuma: " + e.message);
+    }
+};
+</script>
+</body>
+</html>

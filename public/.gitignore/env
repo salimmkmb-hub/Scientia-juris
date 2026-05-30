@@ -1,0 +1,32 @@
+  const firebaseConfig = {
+        apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+        projectId: "scientia-juris",
+        // ... (hakikisha config nyingine zipo)
+    };
+    function displayMessage(text) {
+    const chatContainer = document.getElementById('Charts');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = text;
+    messageElement.style.padding = "10px"; // Ongeza style kidogo
+    messageElement.style.borderBottom = "1px solid #ccc";
+    chatContainer.appendChild(messageElement);
+    function displayMessage(text) {
+    const chatContainer = document.getElementById('Charts');
+    const messageElement = document.createElement('div');
+   // Mfano wa jinsi ya kuunda element ya meseji
+const messageDiv = document.createElement("div");
+messageDiv.classList.add("message-bubble"); // Hii ndiyo inayoleta rangi na shape
+messageDiv.innerText = "Hey"; // Meseji yako
+document.getElementById("Charts").appendChild(messageDiv);
+
+
+ function displayMessage(text) {
+    const chatContainer = document.getElementById('Charts');
+    const messageElement = document.createElement('div');
+   
+    // Hapa ndipo tunatumia class ya CSS uliyoiandika
+    messageElement.classList.add('message-bubble');
+   
+    messageElement.textContent = text;
+   
+    chatContainer.appendChild(messageElement);

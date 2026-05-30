@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Watermark style kwenye Chat */
+        #chat-box {
+            background-image: url('watermark.png'); /* Weka picha yako hapa */
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div id="form-section">
+    <form id="legalForm">
+        <input type="text" id="fullname" placeholder="Jina Kamili" required>
+        <input type="text" id="phone" placeholder="Namba ya Simu (Room ID)" required>
+        <button type="submit">Anza Chat</button>
+    </form>
+</div>
+
+<div id="chat-section" style="display: none;">
+    <div id="chat-box"></div>
+    <input type="text" id="msg" placeholder="Andika meseji...">
+    <button onclick="sendMessage()">Tuma</button>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    let myRoom = "";
+
+    document.getElementById('legalForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        myRoom = document.getElementById('phone').value;
+        const name = document.getElementById('fullname').value;
+
+        // Jiunge na chumba
+        socket.emit('join_room', myRoom);
+
+        // Ficha fomu, onyesha chat
+        document.getElementById('form-section').style.display = 'none';
+        document.getElementById('chat-section').style.display = 'block';
+    });
+
+    function sendMessage() {
+        const msg = document.getElementById('msg').value;
+        socket.emit('send_message', { roomId: myRoom, msg: msg });
+    }
+
+    socket.on('receive_message', (data) => {
+        document.getElementById('chat-box').innerHTML += `<p>${data.msg}</p>`;
+    });
+</script>
+</body>
+</html>

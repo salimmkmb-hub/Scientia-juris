@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - List of customer</title>
+    <style>
+    body { font-family: 'Segoe UI', 'Times New Roman', Times, serif, sans-serif; background-color: #f0f2f5; margin: 0; }
+    h1 { padding: 20px; background-color: #190b97; color: white; margin: 0; }
+   
+    #admin-client-list { display: flex; flex-direction: column; width: 100%; max-width: 400px; background: white; height: 100vh; overflow-y: auto; }
+   
+    .client-card {
+        padding: 15px; border-bottom: 1px solid #f2f2f2;
+        cursor: pointer; transition: background 0.3s;
+    }
+    .client-card:hover { background-color: #f5f5f5; }
+   
+    .client-card h3 { margin: 0; font-size: 16px; color: #333; }
+    .client-card p { margin: 5px 0 0; font-size: 14px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+   
+    .chat-link { display: block; text-decoration: none; color: inherit; }
+
+        body { font-family: sans-serif; padding: 20px; }
+        .client-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
+        .chat-link { display: inline-block; background: teal; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Orodha ya Wateja</h1>
+    <div id="admin-client-list">Page loading...</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Weka configuration yako hapa
+        const firebaseConfig = {
+            apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+            authDomain: "scientia-juris.firebaseapp.com",
+            projectId: "scientia-juris",
+            storageBucket: "scientia-juris.firebasestorage.app",
+            messagingSenderId: "477823870765",
+            appId: "1:477823870765:web:9e7d1f99cc5e1db07655a4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadAdminList() {
+            const listContainer = document.getElementById("admin-client-list");
+            try {
+                // Tunasoma kutoka "Charts" kama ilivyo kwenye database yako
+                const querySnapshot = await getDocs(collection(db, "Charts"));
+                listContainer.innerHTML = "";
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const card = document.createElement("div");
+                    card.className = "client-card";
+                   
+                    card.innerHTML = `
+                        <h3>${data.jina || 'Mteja Asiyejulikana'}</h3>
+                        <p>Simu: ${data.chatId || 'N/A'}</p>
+                        <p>Tatizo: ${data.maelezo || 'N/A'}</p>
+                        <a href="Charting.html?id=${data.chatId}" class="chat-link">Ingia kwenye Chat Room</a>
+                    `;
+                    listContainer.appendChild(card);
+                });
+            } catch (error) {
+                listContainer.innerHTML = "Imeshindikana kupakia wateja: " + error.message;
+            }
+        }
+
+        loadAdminList();
+    </script>
+</body>
+</html>
