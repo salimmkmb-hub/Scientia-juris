@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <h1>Orodha ya Wateja</h1>
+    <h1>List of client</h1>
     <div id="admin-client-list">Page loading...</div>
 
     <script type="module">
@@ -61,7 +61,11 @@
                     card.innerHTML = `
                         <h3>${data.jina || 'Mteja Asiyejulikana'}</h3>
                         <p>Simu: ${data.chatId || 'N/A'}</p>
+                        <p>Miaka: ${data.chatId || 'N/A'}</p>
+                        <p>Makazi: ${data.chatId || 'N/A'}</p>
+                        <p>hadhi: ${data.chatId || 'N/A'}</p>
                         <p>Tatizo: ${data.maelezo || 'N/A'}</p>
+                        <p>Time: ${data.chatId || 'N/A'}</p>
                         <a href="Charting.html?id=${data.chatId}" class="chat-link">Ingia kwenye Chat Room</a>
                     `;
                     listContainer.appendChild(card);
