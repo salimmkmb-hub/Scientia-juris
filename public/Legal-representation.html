@@ -101,6 +101,7 @@ form.addEventListener('submit', async (e) => {
         // Kutuma data kwenye collection ya 'Legal-request'
         await addDoc(collection(db, "Legal-request"), data);
         alert("Maombi yamepokelewa!");
+        form.reset();
        
         // Kuelekea kwenye ukurasa wa charting baada ya kutuma
         window.location.href = "Charting.html";
