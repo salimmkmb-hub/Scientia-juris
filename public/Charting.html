@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Room</title>
+
     <style>
+        
  
         /* Container kuu ya input */
 .input-container {
@@ -124,201 +126,77 @@ button {
 
 <div class="chat-container" id="Charts"></div>
 
-
 <script type="module">
-     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-       document.getElementById('send-btn').addEventListener('click', async () => {
-    const input = document.getElementById('admin-message');
-    const text = input.value;
-    if (text.trim() !== "") {
-        // Hapa ndipo utaita kazi ya kutuma kwenye Firebase (addDoc)
-        displayMessage(text); // Ongeza ujumbe kwenye chat (hii ni kwa ajili ya demo, badilisha na kutuma kwenye Firebase)
-        console.log("Meseji inayotumwa:", text);
-        input.value = ""; // Futa kisanduku baada ya kutuma
-        
-        
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+// Weka configuration yako hapa kutoka Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+  authDomain: "scientia-juris.firebaseapp.com",
+  projectId: "scientia-juris",
+  storageBucket: "scientia-juris.firebasestorage.app",
+  messagingSenderId: "477823870765",
+  appId: "1:477823870765:web:9e7d1f99cc5e1db07655a4",
+  measurementId: "G-KPKNNCCH6W"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const chatRef = ref(db, 'Message'); // Hii ni reference ya "Message" kwenye database yako
+
+// 1. Kutuma Ujumbe
+document.getElementById('send-btn').addEventListener('click', () => {
+    const input = document.getElementById('admin-');
+    if (input.value.trim() !== "") {
+        push(chatRef, {
+            text: input.value,
+            timestamp: Date.now()
+        });
+        input.value = ''; // Safisha input baada ya kutuma
     }
-    });
-    import { getFirestore, collection, query, where, onSnapshot, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-// Tafuta mstari huu wa import na uongeze addDoc na serverTimestamp ndani yake
-    const firebaseConfig = {
-        apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
-        projectId: "scientia-juris",
-        // ... (hakikisha config nyingine zipo)
-    };
+});
 
-   
- function displayMessage(text) {
+// 2. Kupokea Ujumbe (Real-time)
+onChildAdded(chatRef, (data) => ) {
+    const msg = data.val();
     const chatContainer = document.getElementById('Charts');
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message-bubble');
-    messageElement.textContent = text;
-    chatContainer.appendChild(messageElement);
-    messageElement.style.padding = "10px"; // Ongeza style kidogo
-    messageElement.style.borderBottom = "1px solid #ccc";
-    
-    function displayMessage(text) {
-    const chatContainer = document.getElementById('Charts');
-    const messageElement = document.createElement('div');
-   // Mfano wa jinsi ya kuunda element ya meseji
-const messageDiv = document.createElement("div");
-messageDiv.classList.add("message-bubble"); // Hii ndiyo inayoleta rangi na shape
-messageDiv.innerText = "Hey"; // Meseji yako
-document.getElementById("Charts").appendChild(messageDiv);
-
-    // Tunaongeza class tuliyotengeneza kwenye CSS
-    
    
-    messageElement.textContent = text;
-    chatContainer.appendChild(messageElement);
+    const messageElement = document.createElement('div');
+    messageElement.className = 'Message';
+    messageElement.textContent = msg.text;
    
-    // Hii inahakikisha chat inajisogeza chini kabisa kila meseji mpya inapoingia
+    chatContainer.appendChild(messageElement);
+    // Auto-scroll kwenda chini
     chatContainer.scrollTop = chatContainer.scrollHeight;
+
 }
-}
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const mtejaId = urlParams.get('id');
+    // 4. Form handling
+const form = document.getElementById('message');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    document.getElementById('file-input').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-       
-        reader.onload = function(event) {
-            const chatContainer = document.getElementById('Charts');
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message-bubble'); // Tumia class yako ile ile
-
-            if (file.type.startsWith('image/')) {
-                // Kama ni picha
-                messageElement.innerHTML = `<img src="${event.target.result}" style="max-width: 200px;">`;
-            } else {
-                // Kama ni document (kama PDF)
-                messageElement.innerHTML = `<a href="${event.target.result}" download="${file.name}">📥 ${file.name}</a>`;
-            }
-           
-            chatContainer.appendChild(messageElement);
-        };
-       
-        reader.readAsDataURL(file);
-    }
-});
-
-    const q = query(
-        collection(db, "Charts"),
-        where("chatId", "==", mtejaId),
-        orderBy("timestamp", "asc")
-    );
-
-    onSnapshot(q, (snapshot) => {
-        const chatList = document.getElementById("Charts");
-        chatList.innerHTML = "";
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-            const div = document.createElement("div");
-            div.className = "message";
-            div.innerHTML = `<div class="sender">${data.jina}</div><div>${data.message || data.maelezo}</div>`;
-            chatList.appendChild(div);
-        });
-    });
- // Rekebisha sehemu hii:
-onSnapshot(q, (snapshot) => {
-    // Futa snapshot.any(doc => { ... })
-    // Tumia forEach badala yake:
-    snapshot.forEach((doc) => {
-        const data = doc.data();
-       
-        // Sasa tengeneza div yako
-        const div = document.createElement("div");
-       
-        // Hapa weka logic ya kuonyesha ujumbe (mfano wa class)
-        div.className = (data.role === "admin") ? "message admin" : "message client";
-       
-        // Hakikisha unatumia variable ya 'data' uliyopata kutoka doc.data()
-        div.innerHTML = `<div>${data.message || data.maelezo || ""}</div>`;
-       
-        // Ongeza div kwenye chatList yako
-        const chatList = document.getElementById("Chats"); // Hakikisha ID hii inafanana na ya kwenye HTML
-        if (chatList) {
-            chatList.appendChild(div);
-        }
-    });
-});
-
-    window.sendMessage = async () => {
-    const messageInput = document.getElementById("admin-message");
-    const text = messageInput.value.forEach('admin-message');
-   
-    // Pata chatId kutoka kwenye URL (kama ulivyofanya kwenye admin room)
-    const urlParams = new URLSearchParams(window.location.search);
-    const mtejaId = urlParams.get('id');
-
-    if (text !== "messageInput" && mtejaId) {
-        try {
-            await addDoc(collection(db, "Charts"), {
-                chatId: mtejaId,
-                jina: "Mteja", // Au jina la mteja uliolihifadhi
-            
-                timestamp: serverTimestamp(), // Inatumia muda wa server
-                role: "client"
-            });
-            messageInput.value = ""; // Futa kisanduku baada ya kutuma
-        } catch (e) {
-            console.error("Kosa la kutuma: ", e);
-        }
-    }
-};
-window.sendMessage = async () => {
-    // 1. Pata element ya input kwa kutumia ID yake sahihi (kama ilivyo kwenye HTML mstari wa 96)
-    const messageInput = document.getElementById("admin-message");
-
-    // 2. Hakikisha input imepatikana kabla ya kuendelea
-    if (!messageInput) {
-        console.error("Input yenye ID 'admin-message' haijapatikana!");
-        return;
-    }
-
-    // 3. Sasa chukua value yake
-    const text = messageInput.value;
-
-    // 4. Hakikisha text si tupu kabla ya kutuma
-    if (text.trim() === "") {
-        alert("Tafadhali andika ujumbe!");
-        return;
-    }
-
-    // Endelea na code zako zingine (kama ku-addDoc kwa Firebase)...
-    console.log("Ujumbe uliopatikana:", text);
-   
-    // Futa input baada ya kutuma
-    messageInput.value = "";
-};
-window.sendMessage = async () => {
-    const messageInput = document.getElementById("admin-message");
-    const text = messageInput.value;
-
-    if (text.trim() === "") return;
-
+    // Kukusanya data kutoka kwenye form
+    const data = {
+        chatId: document.getElementById("Message").value, // Hii itakuwa ni "chumba" cha mteja
+        timestamp: new Date(),
+        role: "client"
+    };
+      
     try {
-        await addDoc(collection(db, "Charts"), {
-            chatId: mtejaId,
-            jina: "Mteja",
-            message: text,
-            timestamp: serverTimestamp(),
-            role: "client"
-        });
+        // Kutuma data kwenye collection ya 'Legal-request'
+        await addDoc(collection(db, "Message"), data);
+        alert("Maombi yamepokelewa!");
        
-        console.log("Ujumbe umetumwa kikamilifu!");
-        messageInput.value = ""; // Safisha input
-    } catch (e) {
-        // Hapa utaona kosa halisi kama linatokea kwenye database
-        console.error("Kosa la Firebase: ", e);
-        alert("Imeshindwa kutuma: " + e.message);
+        // Kuelekea kwenye ukurasa wa charting baada ya kutuma
+        window.location.href = "Charting.html";
+    } catch (error) {
+        console.error("Kosa: ", error);
+        alert("Samahani, maombi hayajatumika. Jaribu tena.");
     }
-};
+});
+
 </script>
 </body>
 </html>

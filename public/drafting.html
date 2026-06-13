@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Drafting of contract</title>
+    <title>Drafting of Contracts</title>
 </head>
 <body>
-    
-    <div class="form-container" style="padding: 20px; max-width: 500px; margin: auto; font-family: 'Times New Roman', Times, serif;">
-    <h3>Maombi ya uandishi wa mkataba/Request for drating of contract</h3>
+ 
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drafting of Contracts</title>
+</head>
+<body>
+    <div class="form-container" style="padding: 20px; max-width: 500px; margin: auto; font-family:'Times New Roman', Times, serif;">
+    <h3>Maombi ya Uandishi wa Makataba/Request for Drafting of Contracts</h3>
     <p>Tafadhari jaza taarifa zako hapa chini/Please fill the information below:</p>
 
-    <form onsubmit="tumaWhatsApp(event)">
+    <form id="legalForm">
         <strong><label for="fname">Jina Kamili/Full Name:</label></strong><br>
         <input type="text" id="fname" name="fname" placeholder="Andika jina lako/Write your name.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
 
-        <strong><label for="fname">Miaka/Age:</label></strong><br>
+        <strong><label for="miaka">Miaka/Age:</label></strong><br>
         <input type="text" id="miaka" name="miaka" placeholder="Andika miaka yako/Write your age.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
 
-        <strong><label for="fname">Makazi/Resident:</label></strong><br>
+        <strong><label for="makazi">Makazi/Resident:</label></strong><br>
         <input type="text" id="makazi" name="makazi" placeholder="Andika makazi yako/Write your resident.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
 
-        <strong><label for="fname">Hadhi ya ndoa/Mariage status:</label></strong><br>
+        <strong><label for="hadhi">Hadhi ya ndoa/Mariage status:</label></strong><br>
         <input type="text" id="hadhi" name="hadhi" placeholder="Andika hadhi ya ndoa/Write your mariage status.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
 
         <strong><label for="phone">Namba ya Simu/Contact:</label></strong><br>
         <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: 0712XXXXXX" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
 
-        <strong><label for="contract-type">Aina ya Mkataba/Categories of contract:</label></strong><br>
+        <strong><label for="contract-type">Asili ya tatizo/Nature of the legal problem:</label></strong><br>
         <select id="contract-type" name="contract-type" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
-            <option value="pango">Mkataba wa Pango (Lease)</option>
-            <option value="ajira">Mkataba wa Ajira (Employment)</option>
-            <option value="biashara">Mkataba wa Biashara (Business)</option>
-            <option value="mauzo">Mkataba wa Mauzo ya Ardhi (Sale)</option>
+            <option value="Ndoa/Marriage">Msaada wa sheria ya ndoa (Consultation on Marriage)</option>
+            <option value="Ajira/Employment">Msaada wa sheria za Ajira (Consultation on Employment)</option>
+            <option value="Biashara/Business">Msaada wa sheria za Biashara (Consultation on Business)</option>
+            <option value="Mauzo ya ardhi/Land">Msaada wa sheria za Mauzo ya Ardhi (Consultation on Sales)</option>
+            <option value="Mirathi/Probate">Msaada wa sheria za Mirathi (Consultation on Probate)</option>
+            <option value="Jinai/Criminal">Msaada wa sheria za Jinai (Consultation on Criminal)</option>
+            <option value="Rufaa/Appeal">Msaada wa sheria za Rufaa (Consultation on Appeal)</option>
+             <option value="Special">Msaada tofauti na orodha (Consultation not from list)</option>
+
         </select><br>
 
-        <strong><label for="contract-type">Chagua lugha ya mkataa/Language of contract:</label></strong><br>
-        <select id="contract-type" name="contract-type" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
-            <option value="pango">Kiswahili</option>
-             <option value="pango">English</option>
-        </select>   
-        
         <strong><label for="details">Maelezo ya ziada/More information:</label></strong><br>
         <textarea id="details" name="details" rows="4" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"></textarea><br>
 
@@ -50,41 +57,59 @@
         </button>
     </form>
     <br>
-    <p>Thank You for contact us, our customer will respond to your request soon as possible via mobile in your phone via mobile phone please make sure youre mobile phone is online.</p>
-    <a href="index.html" style="color: rgb(111, 0, 255); text-decoration: none;">← Back</a>
-</div>
-    <script>
-function tumaWhatsApp(event) {
-    event.preventDefault(); // Hii inazuia ukurasa usijirefresh
+    <script type="module">
+    // 1. Import vitu unavyohitaji kutoka Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    // 1. Chukua thamani kutoka kwenye fomu
-    let jina = document.getElementById("fname").value;
-    let miaka = document.getElementById("miaka").value;
-    let makazi = document.getElementById("makazi").value;
-    let hadhi = document.getElementById("hadhi").value;
-    let simu = document.getElementById("phone").value;
-    let mkataba = document.getElementById("contract-type").value;
-    let maelezo = document.getElementById("details").value;
+// 2. Firebase configuration yako
+const firebaseConfig = {
+  apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+  authDomain: "scientia-juris.firebaseapp.com",
+  projectId: "scientia-juris",
+  storageBucket: "scientia-juris.firebasestorage.app",
+  messagingSenderId: "477823870765",
+  appId: "1:477823870765:web:9e7d1f99cc5e1db07655a4",
+  measurementId: "G-KPKNNCCH6W"
+};
 
-    // 2. Namba yako ya simu
-    let nambaYako = "255622920518";
+// 3. Initialize Firebase (Hii inatakiwa iwe mara moja tu!)
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app); // Sasa 'db' inajua 'app' ni ipi
 
-    // 3. Tengeneza ujumbe
-    let ujumbe = "HABARI LEGAL KNOWLEDGE,\n\n" +
-                "*Maombi Mapya ya Mkataba*\n" +
-                "--------------------------\n" +
-                "👤 Jina: " + jina + "\n" +
-                "Miaka: " + miaka + "\n" +
-                "Makazi: " + makazi + "\n" +
-                "Hadhi ya ndoa: " + hadhi + "\n" +
-                "📞 Simu: " + simu + "\n" +
-                "📄 Aina: " + mkataba + "\n" +
-                "📝 Maelezo: " + maelezo;
+// 4. Form handling
+const form = document.getElementById('legalForm');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    // 4. Fungua WhatsApp (HAKIKISHA HII IPO NDANI YA MABANO YA FUNCTION)
-    const url = "https://wa.me/" + nambaYako + "?text=" + encodeURIComponent(ujumbe);
-    window.open(url, '_blank').focus();
-}
+    // Kukusanya data kutoka kwenye form
+    const data = {
+        chatId: document.getElementById("phone").value, // Hii itakuwa ni "chumba" cha mteja
+       jina : document.getElementById("fname").value,
+      miaka : document.getElementById("miaka").value,
+       makazi : document.getElementById("makazi").value,
+       hadhi : document.getElementById("hadhi").value,
+        simu : document.getElementById("phone").value,
+        mkataba : document.getElementById("contract-type").value,
+        maelezo : document.getElementById("details").value, 
+        timestamp: new Date(),
+        role: "client"
+    };
+      
+    try {
+        // Kutuma data kwenye collection ya 'Legal-request'
+        await addDoc(collection(db, "Contract-request"), data);
+        alert("Maombi yamepokelewa!");
+       
+        // Kuelekea kwenye ukurasa wa charting baada ya kutuma
+        window.location.href = "Charting.html";
+    } catch (error) {
+        console.error("Kosa: ", error);
+        alert("Samahani, maombi hayajatumika. Jaribu tena.");
+    }
+});
 </script>
+   
 </body>
 </html>
+    <a href="index.html"></a>

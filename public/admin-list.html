@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <title>Admin Dashboard - List of customer</title>
     <style>
+     /* Hakikisha hizi class zipo kwenye CSS yako */
+.main-container {
+    display: flex;         /* Hii inavifanya vikae pembeni */
+    height: 100vh;         /* Inachukua urefu wa skrini nzima */
+    width: 100%;
+}
+
+
+.sidebar {
+    width: 300px;          /* Upana wa list ya wateja */
+    border-right: 1px solid #ddd;
+    overflow-y: auto;      /* Inaruhusu list kuscroll kama ni ndefu */
+}
+
+.chat-area {
+    flex: 1;               /* Hii inafanya chat area ichukue nafasi yote iliyobaki */
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    background-image: url('background.jpg');
+}
+        
     body { font-family: 'Segoe UI', 'Times New Roman', Times, serif, sans-serif; background-color: #f0f2f5; margin: 0; }
     h1 { padding: 20px; background-color: #190b97; color: white; margin: 0; }
    
@@ -20,16 +42,65 @@
    
     .chat-link { display: block; text-decoration: none; color: inherit; }
 
-        body { font-family: sans-serif; padding: 20px; }
+        body { font-family: 'Times New Roman', Times, serif; padding: 20px; }
         .client-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
         .chat-link { display: inline-block; background: teal; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+.main-container {
+    display: flex; /* Muhimu: Hii inalazimisha sidebar na chat-area kukaa mstari mmoja */
+    width: 100%;
+}
+
+.sidebar {
+    width: 300px; /* Upana wa list */
+    height: 100vh;
+    border-right: 1px solid #ccc;
+}
+
+.chat-area {
+    flex: 1; /* Hii inafanya chat ichukue nafasi yote iliyobaki upande wa kulia */
+    padding: 20px;
+}
+.chat-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Inalazimisha yaliyomo yaanzie chini */
+    height: 100vh;
+    padding: 10px;
+}
+
+#messages-box {
+    flex-grow: 1; /* Inajaza nafasi yote iliyo wazi */
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Mfumo wa Bubble */
+.bubble {
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 15px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+.my-message { background-color: #dcf8c6; align-self: flex-end; } /* Kijani (kwa admin) */
+.other-message { background-color: #fff; align-self: flex-start; border: 1px solid #ddd; }
+        
     </style>
 </head>
 <body>
-    <h1>List of client</h1>
-    <div id="admin-client-list">Page loading...</div>
+    <div class="main-container">
+    <div class="sidebar" id="admin-client-list">
+        </div>
+
+    <div class="chat-area" id="Charts">
+        <p>Chagua mteja ili kuanza kuchati...</p>
+    </div>
+</div>
+   
+    
 
     <script type="module">
+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
@@ -50,7 +121,8 @@
             const listContainer = document.getElementById("admin-client-list");
             try {
                 // Tunasoma kutoka "Charts" kama ilivyo kwenye database yako
-                const querySnapshot = await getDocs(collection(db, "Charts"));
+                const querySnapshot = await getDocs(collection(db, "Legal-request"));
+                
                 listContainer.innerHTML = "";
 
                 querySnapshot.forEach((doc) => {
@@ -60,13 +132,15 @@
                    
                     card.innerHTML = `
                         <h3>${data.jina || 'Mteja Asiyejulikana'}</h3>
-                        <p>Simu: ${data.chatId || 'N/A'}</p>
-                        <p>Miaka: ${data.chatId || 'N/A'}</p>
-                        <p>Makazi: ${data.chatId || 'N/A'}</p>
-                        <p>hadhi: ${data.chatId || 'N/A'}</p>
+                        <p>Simu: ${data.simu || 'N/A'}</p>
+                        <p>Miaka: ${data.miaka || 'N/A'}</p>
+                        <p>Makazi: ${data.makazi || 'N/A'}</p>
+                        <p>hadhi: ${data.hadhi || 'N/A'}</p>
+                        <p>Asili ya tatizo: ${data.mkataba || 'N/A'}</p>
                         <p>Tatizo: ${data.maelezo || 'N/A'}</p>
-                        <p>Time: ${data.chatId || 'N/A'}</p>
-                        <a href="Charting.html?id=${data.chatId}" class="chat-link">Ingia kwenye Chat Room</a>
+                        <p>Time: ${data.timestamp ? data.timestamp.toDate().toLocaleString() : 'N/A'}</p>
+                        <button class="chat-btn" data-chatid="${data.chatId}">Ingia Chat</button>
+                      
                     `;
                     listContainer.appendChild(card);
                 });
@@ -76,6 +150,121 @@
         }
 
         loadAdminList();
+        // Ongeza hii kwenye script yako
+document.querySelectorAll('.client-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const clientId = card.getAttribute('data-id'); // ID ya mteja
+        const chatArea = document.getElementById('Charts');
+       
+        // Hapa unaweza kufuta ujumbe wa zamani na kuleta wa mteja mpya
+        chatArea.innerHTML = `<h3>Client ID: ${clientId}</h3>`;
+       
+        // Hapa ndipo utaita Firebase kuleta ujumbe wa mteja huyo
+        // loadMessagesForClient(clientId);
+    });
+});
+// Ongeza hii baada ya loadAdminList() kukamilika
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('chat-btn')) {
+        const chatId = event.target.getAttribute('data-chatid');
+        sendMessage(chatId);
+        const chatArea = document.getElementById('Charts');
+        
+
+        // Onyesha jina la mteja au id kwenye chat area
+        chatArea.innerHTML = `
+            <div class="chat-header">Unachati na: ${chatId}</div>
+            <div id="messages-container"></div>
+            <input type="text" id="msg-input" placeholder="Andika ujumbe...">
+            <button id="send-btn">Tuma/Send</button>
+        `;
+       document.getElementById('send-btn')
+      
+       
+        // Hapa utaita function ya Firebase ya kuchota ujumbe wa chatId hiyo
+        // loadMessages(chatId);
+    }
+    function displayMessage(text, isMine) {
+    const box = document.getElementById('messages-box');
+    const div = document.createElement('div');
+    div.className = `bubble ${isMine ? 'my-message' : 'other-message'}`;
+    div.textContent = text;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight; // Hii inafanya chat iji-scroll kwenda chini kila ujumbe mpya unapokuja
+}
+})
+
+
+async function sendMessage(chatId) {
+    const input = document.getElementById('msg-input');
+    const text = input.value;
+
+    if (text.trim() !== "") {
+        console.log("Hatua 1: Kitufe kimebofywa");
+        // 1. Tengeneza bubble ya ujumbe
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble my-message'; // CSS ya bubble niliyokupa awali
+        bubble.textContent = text;
+
+        // 2. Iongeze kwenye messages-box
+        msgBox.appendChild(bubble);
+
+        // 3. Futa maandishi kwenye input
+        input.value = '';
+
+        // 4. Scroll mpaka chini kabisa
+        msgBox.scrollTop = msgBox.scrollHeight;
+       
+        // Hapa ndipo utaongeza code za Firebase za ku-push ujumbe kwenye database
+        // Kukusanya data kutoka kwenye form
+    const data = {
+        chatId: document.getElementById("msg-input").value, // Hii itakuwa ni "chumba" cha mteja
+        timestamp: new Date(),
+        role: "client"
+    };
+      
+     if (text.trim() !== "") {
+        try {
+            // Hakikisha hapa ni sawa na jina la collection yako kwenye Firebase
+            await addDoc(Collection (db, 'Message'), data);({
+                text: text,
+                sender: 'admin',
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            console.log("Ujumbe umetumwa kikamilifu!");
+            input.value = '';
+        } catch (error) {
+            console.error("Kosa la Firebase:", error); // Hii itakuambia kama kuna tatizo la ruhusa (Permissions)
+        }
+    } else {
+        console.log("Ujumbe ni tupu, hautatumwa.");
+    }
+   
+    console.log("Kujaribu kutuma:", text, "kwa:", chatId); // Hii inapaswa kuonekana kwenye console
+
+   
+}
+
+
+// Function hii iitwe kila unapobofya "Tuma"
+   
+    const msgBox = document.getElementById('messages-box');
+
+
+    
+    try {
+        // Kutuma data kwenye collection ya 'Legal-request'
+        
+        alert("Maombi yamepokelewa!");
+       
+        // Kuelekea kwenye ukurasa wa charting baada ya kutuma
+        window.location.href = "admin-list.html";
+    } catch (error) {
+        console.error("Kosa: ", error);
+        alert("Samahani, maombi hayajatumika. Jaribu tena.");
+    }
+    }
+
     </script>
 </body>
 </html>
