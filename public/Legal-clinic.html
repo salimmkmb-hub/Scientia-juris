@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Maombi</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #007bff; color: white; }
+        .btn { padding: 6px 12px; cursor: pointer; border: none; color: white; border-radius: 4px; }
+        .btn-jibu { background-color: #28a745; }
+        .status-bado { color: red; font-weight: bold; }
+        .status-tayari { color: green; font-weight: bold; }
+        /* Modal ndogo ya kujibia */
+        #replyModal { display: none; position: fixed; top: 30%; left: 35%; background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); width: 30%; }
+        textarea { width: 100%; height: 100px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>Menejimenti ya Maombi (Admin)</h2>
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Jina</th>
+                <th>Email</th>
+                <th>Ujumbe</th>
+                <th>Hali</th>
+                <th>Hatua</th>
+            </tr>
+        </thead>
+        <tbody id="maombi-table-body">
+            </tbody>
+    </table>
+
+    <div id="replyModal">
+        <h3>Jibu Ombi</h3>
+        <p><strong>Kwa:</strong> <span id="modal-email"></span></p>
+        <textarea id="reply-text" placeholder="Andika jibu lako hapa..."></textarea>
+        <br><br>
+        <button class="btn btn-jibu" onclick="tumaJibu()">Tuma Jibu</button>
+        <button class="btn" style="background:#dc3545;" onclick="fungaModal()">Ghairi</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // WEKA CONFIGURATION ZAKO HAPA
+        const firebaseConfig = {
+              apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+            authDomain: "scientia-juris.firebaseapp.com",
+            projectId: "scientia-juris",
+            storageBucket: "scientia-juris.firebasestorage.app",
+            messagingSenderId: "477823870765",
+            appId: "1:477823870765:web:9e7d1f99cc5e1db07655a4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let sasaHiviOmbiId = "";
+        let sasaHiviEmail = "";
+
+        // 1. Kusoma Maombi Realtime kutoka Firestore
+        const q = query(collection(db, "legal-request"), orderBy("timestamp", "desc"));
+        onSnapshot(q, (snapshot) => {
+            const tableBody = document.getElementById("maombi-table-body");
+            tableBody.innerHTML = ""; // Kusafisha table isijirudie
+
+            snapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                const id = docSnap.id;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${data.jina}</td>
+                    <td>${data.simu}</td>
+                    <td>${data.miaka}</td>
+                    <td>${data.makazi}</td>
+                    <td>${data.hadhi}</td>
+                    <td>${data.mkataba}</td>
+                    <td>${data.email}</td>
+                    <td>${data.ujumbe}</td>
+                    <td class="${data.status === 'bado' ? 'status-bado' : 'status-tayari'}">${data.status.toUpperCase()}</td>
+                    <td>
+                        ${data.status === 'bado' ? `<button class="btn btn-jibu" onclick="funguaModal('${id}', '${data.email}')">Jibu</button>` : 'Ushajibu'}
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        });
+
+        // 2. Kufungua na Kufunga Modal
+        window.funguaModal = function(id, email) {
+            sasaHiviOmbiId = id;
+            sasaHiviEmail = email;
+            document.getElementById("modal-email").innerText = email;
+            document.getElementById("replyModal").style.display = "block";
+        }
+
+        window.fungaModal = function() {
+            document.getElementById("replyModal").style.display = "none";
+            document.getElementById("reply-text").value = "";
+        }
+
+        // 3. Kubadili Status Kwenye Firebase (Kuweka 'imejibiwa')
+        window.tumaJibu = async function() {
+            const jibu = document.getElementById("reply-text").value;
+            if(!jibu) return alert("Tafadhali andika jibu kwanza!");
+
+            try {
+                // Hapa tunaupdate hali ya ombi kwenye Firestore
+                const docRef = doc(db, "legal-request", sasaHiviOmbiId);
+                await updateDoc(docRef, {
+                    status: "imejibiwa"
+                });
+
+                alert("Ombi limebadilishwa kuwa IMEJIBIWA kwenye mfumo!");
+               
+                // TUZO LA ZIADA: Hapa ndio utaweka sehemu ya kutuma barua pepe (Angalia maelezo chini)
+               
+                fungaModal();
+            } catch (error) {
+                console.error("Error: ", error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -56,45 +56,27 @@
     border-right: 1px solid #ccc;
 }
 
-.chat-area {
-    flex: 1; /* Hii inafanya chat ichukue nafasi yote iliyobaki upande wa kulia */
-    padding: 20px;
-}
-.chat-area {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Inalazimisha yaliyomo yaanzie chini */
-    height: 100vh;
-    padding: 10px;
-}
-
-#messages-box {
-    flex-grow: 1; /* Inajaza nafasi yote iliyo wazi */
-    overflow-y: auto;
-    padding: 10px;
-}
-
-/* Mfumo wa Bubble */
-.bubble {
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 15px;
-    max-width: 70%;
-    word-wrap: break-word;
-}
-.my-message { background-color: #dcf8c6; align-self: flex-end; } /* Kijani (kwa admin) */
-.other-message { background-color: #fff; align-self: flex-start; border: 1px solid #ddd; }
-        
-    </style>
+</style>
 </head>
 <body>
     <div class="main-container">
-    <div class="sidebar" id="admin-client-list">
-        </div>
+       <div class="sidebar" id="contract-client">
+       </div>
 
-    <div class="chat-area" id="Charts">
-        <p>Chagua mteja ili kuanza kuchati...</p>
-    </div>
+       <div class="sidebar" id="will-client">
+       </div>
+
+       <div class="sidebar" id="review-client">
+       </div>
+
+       <div class="sidebar" id="consultation-client">
+       </div>
+
+       <div class="sidebar" id="representation-client">
+       </div>
+
+       <div class="sidebar" id="clinic-client">
+       </div>
 </div>
    
     
@@ -163,6 +145,7 @@ document.querySelectorAll('.client-card').forEach(card => {
         // loadMessagesForClient(clientId);
     });
 });
+
 // Ongeza hii baada ya loadAdminList() kukamilika
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('chat-btn')) {
