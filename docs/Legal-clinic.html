@@ -66,7 +66,7 @@
         let sasaHiviEmail = "";
 
         // 1. Kusoma Maombi Realtime kutoka Firestore
-        const q = query(collection(db, "legal-request"), orderBy("timestamp", "desc"));
+        const q = query(collection(db, "Legal-request"), orderBy("timestamp", "desc"));
         onSnapshot(q, (snapshot) => {
             const tableBody = document.getElementById("maombi-table-body");
             tableBody.innerHTML = ""; // Kusafisha table isijirudie

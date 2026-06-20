@@ -36,6 +36,9 @@
         <strong><label for="phone">Namba ya Simu/Contact:</label></strong><br>
         <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: 0712XXXXXX" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
 
+        <strong><label for="phone">Barua pepe/Email-address:</label></strong><br>
+        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: Scientia@gmail.com" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
         <strong><label for="contract-type">Asili ya tatizo/Nature of the legal problem:</label></strong><br>
         <select id="contract-type" name="contract-type" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
             <option value="Ndoa/Marriage">Msaada wa sheria ya ndoa (Consultation on Marriage)</option>
@@ -98,7 +101,7 @@ form.addEventListener('submit', async (e) => {
       
     try {
         // Kutuma data kwenye collection ya 'Legal-request'
-        await addDoc(collection(db, "Contract-request"), data);
+        await addDoc(collection(db, "Legal-request"), data);
         alert("Maombi yamepokelewa!");
        form.reset();
         // Kuelekea kwenye ukurasa wa charting baada ya kutuma
