@@ -1,125 +1,248 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Representation</title>
-</head>
-<body>
- 
-   <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal representation</title>
-</head>
-<body>
-    <div class="form-container" style="padding: 20px; max-width: 500px; margin: auto; font-family:'Times New Roman', Times, serif;">
-    <h3>Maombi ya Uwakilishi/Request for legal representation</h3>
-    <p>Tafadhari jaza taarifa zako hapa chini/Please fill the information below:</p>
-
-    <form id="legalForm">
-        <strong><label for="fname">Jina Kamili/Full Name:</label></strong><br>
-        <input type="text" id="fname" name="fname" placeholder="Andika jina lako/Write your name.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="miaka">Miaka/Age:</label></strong><br>
-        <input type="text" id="miaka" name="miaka" placeholder="Andika miaka yako/Write your age.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="makazi">Makazi/Resident:</label></strong><br>
-        <input type="text" id="makazi" name="makazi" placeholder="Andika makazi yako/Write your resident.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="hadhi">Hadhi ya ndoa/Mariage status:</label></strong><br>
-        <input type="text" id="hadhi" name="hadhi" placeholder="Andika hadhi ya ndoa/Write your mariage status.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="phone">Namba ya Simu/Contact:</label></strong><br>
-        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: 0712XXXXXX" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="contact">Barua-pepe/Email:</label></strong><br>
-        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: Scientia@gmail.com" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="contract-type">Aina ya Shauri/Nature of the legal problem:</label></strong><br>
-        <select id="contract-type" name="contract-type" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
-            <option value="Ndoa/Marriage">Msaada wa sheria ya ndoa (Consultation on Marriage)</option>
-            <option value="Ajira/Employment">Msaada wa sheria za Ajira (Consultation on Employment)</option>
-            <option value="Biashara/Business">Msaada wa sheria za Biashara (Consultation on Business)</option>
-            <option value="Mauzo ya ardhi/Land">Msaada wa sheria za Mauzo ya Ardhi (Consultation on Sales)</option>
-            <option value="Mirathi/Probate">Msaada wa sheria za Mirathi (Consultation on Probate)</option>
-            <option value="Jinai/Criminal">Msaada wa sheria za Jinai (Consultation on Criminal)</option>
-            <option value="Rufaa/Appeal">Msaada wa sheria za Rufaa (Consultation on Appeal)</option>
-             <option value="Special">Msaada tofauti na orodha (Consultation not from list)</option>
-
-        </select><br>
-
-        <strong><label for="court">Jina la Mahakama/Name of the Court:</label></strong><br>
-        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: Mahakama ya Mwanzo Bagamoyo" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="location">Mahali Mahakama ilipo/Location of the Court:</label></strong><br>
-        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: at Dodoma" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-        <strong><label for="details">Maelezo ya ziada/More information:</label></strong><br>
-        <textarea id="details" name="details" rows="4" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"></textarea><br>
-
-        <button type="submit" style="background-color: teal; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px;">
-            Tuma Maombi/Send
-        </button>
-    </form>
-    <br>
-    <script type="module">
-    // 1. Import vitu unavyohitaji kutoka Firebase SDK
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-// 2. Firebase configuration yako
-const firebaseConfig = {
-  apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
-  authDomain: "scientia-juris.firebaseapp.com",
-  projectId: "scientia-juris",
-  storageBucket: "scientia-juris.firebasestorage.app",
-  messagingSenderId: "477823870765",
-  appId: "1:477823870765:web:9e7d1f99cc5e1db07655a4",
-  measurementId: "G-KPKNNCCH6W"
-};
-
-// 3. Initialize Firebase (Hii inatakiwa iwe mara moja tu!)
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app); // Sasa 'db' inajua 'app' ni ipi
-
-// 4. Form handling
-const form = document.getElementById('legalForm');
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Kukusanya data kutoka kwenye form
-    const data = {
-        chatId: document.getElementById("phone").value, // Hii itakuwa ni "chumba" cha mteja
-       jina : document.getElementById("fname").value,
-      miaka : document.getElementById("miaka").value,
-       makazi : document.getElementById("makazi").value,
-       hadhi : document.getElementById("hadhi").value,
-        simu : document.getElementById("phone").value,
-        mkataba : document.getElementById("contract-type").value,
-        maelezo : document.getElementById("details").value, 
-        timestamp: new Date(),
-        role: "client"
-    };
-      
-    try {
-        // Kutuma data kwenye collection ya 'Legal-request'
-        await addDoc(collection(db, "Legal-request"), data);
-        alert("Maombi yamepokelewa!");
-        form.reset();
-       
-        // Kuelekea kwenye ukurasa wa charting baada ya kutuma
-        window.location.href = "Charting.html";
-    } catch (error) {
-        console.error("Kosa: ", error);
-        alert("Samahani, maombi hayajatumika. Jaribu tena.");
-    }
-});
-</script>
+    <title>Scientia Juris - Huduma Zetu</title>
    
+    <style>
+        /* --- MFUMO WA CSS ULIO IMARA NA WA KISASA --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Times New Roman', Times, serif, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* 1. Muundo wa Picha ya Juu yenye Watermark */
+        .picha-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background-color: #1ea099; /* Rangi mbadala kama picha isipopatikana */
+            overflow: hidden;
+        }
+
+        .picha-kuu {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: brightness(0.75); /* Inafanya picha iwe giza kidogo ili maandishi yaonekane */
+        }
+
+        .watermark-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+        }
+
+        .watermark-text {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 2. Sehemu ya Maudhui na Kadi */
+        .huduma-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .huduma-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .sub-title {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        /* Gridi Imara isiyovunjika */
+        .kadi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Muundo wa Kadi Moja */
+        .kadi-huduma {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2ecea;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .kadi-huduma:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(30, 160, 153, 0.15);
+            border-color: #1ea099;
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(30, 160, 153, 0.1);
+            color: #1ea099;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .kadi-huduma h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .kadi-huduma p {
+            color: #666666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Vifungo vilivyonyooka vizuri */
+        .btn-omba {
+            background-color: #1ea099;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-omba:hover {
+            background-color: #157a75;
+        }
+
+        /* Marekebisho ya Skrini ya Simu */
+        @media (max-width: 768px) {
+            .watermark-text {
+                font-size: 2rem;
+            }
+            .huduma-section h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="picha-container">
+        <img src="kilimanjaro.jpg" alt="Sura ya Ukurasa" class="picha-kuu">
+        <div class="watermark-overlay">
+            <div class="watermark-text">SCIENTIA JURIS<br> LEGAL REPRESENTATION SERVICE</div>
+        </div>
+    </div>
+
+    <div class="huduma-section">
+        <h2>Our Service/ Huduma Zetu</h2>
+        <p class="sub-title">Bonyeza kitufe kilicho chini ya huduma husika ili kutuma maombi yako.</p>
+       
+        <div class="kadi-grid">
+           
+            <div class="kadi-huduma">
+                <div>
+                    <div class="icon-box">✓</div>
+                    <h3>Court Representation/ Uwakilishi Mahakamani</h3>
+                    <p>Uandaaji wa mikataba ya kibiashara, hati za usajili, na nyaraka zote rasmi za kisheria kwa kiwango cha juu.</p>
+                </div>
+                <a href="Legal-repesent.html/Rpresentation-on-court.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
+            </div>
+
+            <div class="kadi-huduma">
+                <div>
+                    <div class="icon-box">✓</div>
+                    <h3>Purchase Representation/ Uwakilishi wa Ununuzi</h3>
+                    <p>Uhakiki wa kina wa nyaraka zako pamoja na kuratibu taratibu zote za usajili kulingana na sheria.</p>
+                </div>
+                <a href="Legal-repesent.html/Represent-on-sell.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
+            </div>
+
+            <div class="kadi-huduma">
+                <div>
+                    <div class="icon-box">✓</div>
+                    <h3>Sell Representation/ Uwakilishi wa Uuzaji</h3>
+                    <p>Kupitia upya mikataba na nyaraka kabla ya kusaini ili kulinda maslahi yako na kuepuka changamoto za kisheria.</p>
+                </div>
+                <a href="Legal-repesent.html/Represent-on-purchase.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
+            </div>
+
+            <div class="kadi-huduma">
+                <div>
+                    <div class="icon-box">✓</div>
+                    <h3>Unavailable</h3>
+                    <p>Ushauri wa ana kwa ana au mtandaoni kutoka kwa wataalamu waliobobea katika masuala mbalimbali ya kisheria.</p>
+                </div>
+                <a href=""button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
+            </div>
+
+            <div class="kadi-huduma">
+                <div>
+                    <div class="icon-box">✓</div>
+                    <h3>Unavailable</h3>
+                    <p>Uwakilishi thabiti mbele ya mahakama, mabaraza, na vyombo vyote vya usuluhishi nchini Tanzania.</p>
+                </div>
+                <a href=""button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
+            </div>
+
+            <div class="kadi-huduma">
+                <div>
+                    <div class="icon-box">✓</div>
+                    <h3>Unavailable</h3>
+                    <p>Huduma maalum na ushauri wa kisheria unaolenga kusaidia jamii na kuongeza uelewa wa haki za msingi.</p>
+                </div>
+                <a href=""button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function tumaOmbi(jinaLaHuduma) {
+           
+        }
+    </script>
+
 </body>
 </html>

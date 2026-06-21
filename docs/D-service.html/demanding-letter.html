@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientia Juris - Maelezo ya Huduma</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+<div class="form-container" style="padding: 20px; max-width: 500px; margin: auto; font-family:'Times New Roman', Times, serif;">
+    <h3>Maombi ya Uandishi wa Barua ya Madai/Request for Drafting of Demanding letter</h3>
+    <p>Tafadhari jaza taarifa zako hapa chini/Please fill the information below:</p>
+
+    <form id="legalForm">
+        <strong><label for="fname">Jina Kamili/Full Name:</label></strong><br>
+        <input type="text" id="fname" name="fname" placeholder="Andika jina lako/Write your name.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="miaka">Miaka/Age:</label></strong><br>
+        <input type="text" id="miaka" name="miaka" placeholder="Andika miaka yako/Write your age.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="makazi">Makazi/Resident:</label></strong><br>
+        <input type="text" id="makazi" name="makazi" placeholder="Andika makazi yako/Write your resident.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="hadhi">Hadhi ya ndoa/Mariage status:</label></strong><br>
+        <input type="text" id="hadhi" name="hadhi" placeholder="Andika hadhi ya ndoa/Write your mariage status.." style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="phone">Namba ya Simu/Contact:</label></strong><br>
+        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: 0712XXXXXX" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="phone">Barua pepe/Email-address:</label></strong><br>
+        <input type="tel" id="phone" name="phone" placeholder="Mfano/eg: Scientia@gmail.com" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+        <strong><label for="contract-type">Asili ya tatizo/Nature of the legal problem:</label></strong><br>
+        <select id="contract-type" name="contract-type" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
+            <option value="Ndoa/Marriage">Msaada wa sheria ya ndoa (Consultation on Marriage)</option>
+            <option value="Ajira/Employment">Msaada wa sheria za Ajira (Consultation on Employment)</option>
+            <option value="Biashara/Business">Msaada wa sheria za Biashara (Consultation on Business)</option>
+            <option value="Mauzo ya ardhi/Land">Msaada wa sheria za Mauzo ya Ardhi (Consultation on Sales)</option>
+            <option value="Mirathi/Probate">Msaada wa sheria za Mirathi (Consultation on Probate)</option>
+            <option value="Jinai/Criminal">Msaada wa sheria za Jinai (Consultation on Criminal)</option>
+            <option value="Rufaa/Appeal">Msaada wa sheria za Rufaa (Consultation on Appeal)</option>
+             <option value="Special">Msaada tofauti na orodha (Consultation not from list)</option>
+
+        </select><br>
+
+        <strong><label for="details">Maelezo ya ziada/More information:</label></strong><br>
+        <textarea id="details" name="details" rows="4" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;"></textarea><br>
+
+        <button type="submit" style="background-color: teal; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px;">
+            Tuma Maombi/Send
+        </button>
+    </form>
+    <br>
+
+    <script type="module" src="form.js">
+    // Import the Firebase functions you need from the CDNs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// Your web app's Firebase configuration (Copy this from your Firebase Console)
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Get the form element
+const form = document.getElementById('serviceForm');
+
+// Listen for the form submission
+form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent page from reloading automatically
+
+    // Get values from the input fields
+    const fullName = document.getElementById('fullName').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const serviceType = document.getElementById('serviceType').value;
+    const details = document.getElementById('details').value;
+
+    try {
+        // Add a new document to the "serviceRequests" collection in Firestore
+        const docRef = await addDoc(collection(db, "serviceRequests"), {
+            clientName: fullName,
+            phone: phoneNumber,
+            service: serviceType,
+            description: details,
+            timestamp: new Date() // Saves the exact time it was sent
+        });
+
+        alert("Taarifa zako zimetumwa kikamilifu! Tutakuwasiliana hivi karibuni.");
+        form.reset(); // Clear the form fields
+       
+        // Optional: Redirect back to home page after submission
+        window.location.href = "index.html";
+
+    } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("Kuna tatizo limetokea wakati wa kutuma taarifa. Tafadhali jaribu tena.");
+    }
+});
+</script>
+</body>
+</html>

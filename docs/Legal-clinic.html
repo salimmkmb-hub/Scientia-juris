@@ -3,131 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Maombi</title>
+    <title>Scientia Juris - Omba Huduma</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif, sans-serif; margin: 20px; background-color: #f4f4f9; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #007bff; color: white; }
-        .btn { padding: 6px 12px; cursor: pointer; border: none; color: white; border-radius: 4px; }
-        .btn-jibu { background-color: #28a745; }
-        .status-bado { color: red; font-weight: bold; }
-        .status-tayari { color: green; font-weight: bold; }
-        /* Modal ndogo ya kujibia */
-        #replyModal { display: none; position: fixed; top: 30%; left: 35%; background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); width: 30%; }
-        textarea { width: 100%; height: 100px; margin-top: 10px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .fomu-container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 500px;
+            border-top: 5px solid #1ea099; /* Rangi yako kuu ya kisheria */
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+
+        p.maelezo {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .Kikundi-cha-fomu {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+            background-color: #fafafa;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #1ea099;
+            background-color: #fff;
+        }
+
+        /* Box la huduma inayochaguliwa kiotomatiki */
+        .huduma-iliyoteuliwa {
+            background-color: #e8f6f5;
+            color: #157a75;
+            font-weight: bold;
+            border: 1px dashed #1ea099;
+        }
+
+        .btn-tuma {
+            background-color: #1ea099;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn-tuma:hover {
+            background-color: #157a75;
+        }
+
+        .btn-rudi {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #7f8c8d;
+            text-decoration: none;
+            font-size: 14px;
+        }
+       
+        .btn-rudi:hover {
+            color: #333;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Menejimenti ya Maombi (Admin)</h2>
-   
-    <table>
-        <thead>
-            <tr>
-                <th>Jina</th>
-                <th>Email</th>
-                <th>Ujumbe</th>
-                <th>Hali</th>
-                <th>Hatua</th>
-            </tr>
-        </thead>
-        <tbody id="maombi-table-body">
-            </tbody>
-    </table>
+    <div class="fomu-container">
+        <h2>Wasilisha Taarifa Zako</h2>
+        <p class="maelezo">Tafadhali jaza fomu hii ili tuweze kuanza kushughulikia ombi lako.</p>
 
-    <div id="replyModal">
-        <h3>Jibu Ombi</h3>
-        <p><strong>Kwa:</strong> <span id="modal-email"></span></p>
-        <textarea id="reply-text" placeholder="Andika jibu lako hapa..."></textarea>
-        <br><br>
-        <button class="btn btn-jibu" onclick="tumaJibu()">Tuma Jibu</button>
-        <button class="btn" style="background:#dc3545;" onclick="fungaModal()">Ghairi</button>
+        <form id="legalForm" onsubmit="kamilishaTuma(event)">
+           
+            <div class="Kikundi-cha-fomu">
+                <label>Huduma Uliyochagua</label>
+                <input type="text" id="hudumaInput" class="huduma-iliyoteuliwa" readonly>
+            </div>
+
+            <div class="Kikundi-cha-fomu">
+                <label for="jina">Jina Lako Kamili</label>
+                <input type="text" id="jina" placeholder="Mfano: John Doe" required>
+            </div>
+
+            <div class="Kikundi-cha-fomu">
+                <label for="simu">Namba ya Simu</label>
+                <input type="tel" id="simu" placeholder="Mfano: 0712345678" required>
+            </div>
+
+            <div class="Kikundi-cha-fomu">
+                <label for="pepe">Barua Pepe (Email)</label>
+                <input type="email" id="pepe" placeholder="Mfano: john@example.com" required>
+            </div>
+
+            <div class="Kikundi-cha-fomu">
+                <label for="maelezo">Maelezo ya Ziada (Hiari)</label>
+                <textarea id="maelezo" rows="4" placeholder="Andika maelezo mafupi kuhusu hitaji lako..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-tuma">Tuma Maombi</button>
+            <a href="javascript:history.back()" class="btn-rudi">← Rudi Kwenye Huduma</a>
+        </form>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, query, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        // WEKA CONFIGURATION ZAKO HAPA
-        const firebaseConfig = {
-              apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
-            authDomain: "scientia-juris.firebaseapp.com",
-            projectId: "scientia-juris",
-            storageBucket: "scientia-juris.firebasestorage.app",
-            messagingSenderId: "477823870765",
-            appId: "1:477823870765:web:9e7d1f99cc5e1db07655a4"
+    <script>
+        // Code ya kuchukua jina la huduma kutoka kwenye URL na kuliweka kwenye fomu
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const jinaLaHuduma = urlParams.get('huduma');
+            if (jinaLaHuduma) {
+                document.getElementById('hudumaInput').value = jinaLaHuduma;
+            } else {
+                document.getElementById('hudumaInput').value = "Huduma ya Kisheria";
+            }
         };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        let sasaHiviOmbiId = "";
-        let sasaHiviEmail = "";
-
-        // 1. Kusoma Maombi Realtime kutoka Firestore
-        const q = query(collection(db, "Legal-request"), orderBy("timestamp", "desc"));
-        onSnapshot(q, (snapshot) => {
-            const tableBody = document.getElementById("maombi-table-body");
-            tableBody.innerHTML = ""; // Kusafisha table isijirudie
-
-            snapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                const id = docSnap.id;
-
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td>${data.jina}</td>
-                    <td>${data.simu}</td>
-                    <td>${data.miaka}</td>
-                    <td>${data.makazi}</td>
-                    <td>${data.hadhi}</td>
-                    <td>${data.mkataba}</td>
-                    <td>${data.email}</td>
-                    <td>${data.ujumbe}</td>
-                    <td class="${data.status === 'bado' ? 'status-bado' : 'status-tayari'}">${data.status.toUpperCase()}</td>
-                    <td>
-                        ${data.status === 'bado' ? `<button class="btn btn-jibu" onclick="funguaModal('${id}', '${data.email}')">Jibu</button>` : 'Ushajibu'}
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-        });
-
-        // 2. Kufungua na Kufunga Modal
-        window.funguaModal = function(id, email) {
-            sasaHiviOmbiId = id;
-            sasaHiviEmail = email;
-            document.getElementById("modal-email").innerText = email;
-            document.getElementById("replyModal").style.display = "block";
-        }
-
-        window.fungaModal = function() {
-            document.getElementById("replyModal").style.display = "none";
-            document.getElementById("reply-text").value = "";
-        }
-
-        // 3. Kubadili Status Kwenye Firebase (Kuweka 'imejibiwa')
-        window.tumaJibu = async function() {
-            const jibu = document.getElementById("reply-text").value;
-            if(!jibu) return alert("Tafadhali andika jibu kwanza!");
-
-            try {
-                // Hapa tunaupdate hali ya ombi kwenye Firestore
-                const docRef = doc(db, "legal-request", sasaHiviOmbiId);
-                await updateDoc(docRef, {
-                    status: "imejibiwa"
-                });
-
-                alert("Ombi limebadilishwa kuwa IMEJIBIWA kwenye mfumo!");
-               
-                // TUZO LA ZIADA: Hapa ndio utaweka sehemu ya kutuma barua pepe (Angalia maelezo chini)
-               
-                fungaModal();
-            } catch (error) {
-                console.error("Error: ", error);
-            }
+        function kamilishaTuma(event) {
+            event.preventDefault();
+            const jina = document.getElementById('jina').value;
+            const huduma = document.getElementById('hudumaInput').value;
+           
+            alert('Asante ' + jina + '!\nMaombi yako ya huduma ya "' + huduma + '" yamepokelewa rasmi.');
+            // Hapa mbeleni unaweza kuweka code za kutuma hizi data kwenda Firebase au Email
         }
     </script>
+
 </body>
 </html>

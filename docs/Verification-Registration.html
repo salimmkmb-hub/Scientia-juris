@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scientia Juris - Huduma Zetu</title>
+    
    
     <style>
+        @media screen and (max-width: 768px){ 
+    @media print {}
+  body { display: none !important; }
+   }
+        
         /* --- MFUMO WA CSS ULIO IMARA NA WA KISASA --- */
         * {
             box-sizing: border-box;
@@ -165,7 +171,7 @@
     <div class="picha-container">
         <img src="kilimanjaro.jpg" alt="Sura ya Ukurasa" class="picha-kuu">
         <div class="watermark-overlay">
-            <div class="watermark-text">SCIENTIA JURIS<br> DRAFTING SERVICE</div>
+            <div class="watermark-text">SCIENTIA JURIS<br> VERIFICATION AND REGISTRATION SERVICE</div>
         </div>
     </div>
 
@@ -178,59 +184,60 @@
             <div class="kadi-huduma">
                 <div>
                     <div class="icon-box">✓</div>
-                    <h3>Drafting of Contract/ Kuandaa Mkataba</h3>
+                    <h3>Verification of Title/ Uhakiki wa Umiliki</h3>
                     <p>Uandaaji wa mikataba ya kibiashara, hati za usajili, na nyaraka zote rasmi za kisheria kwa kiwango cha juu.</p>
                 </div>
-                <a href="D-service.html/drafting.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                <a href="Verification-and-Registration.html/Verification-title.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
                 </a>
             </div>
 
             <div class="kadi-huduma">
                 <div>
                     <div class="icon-box">✓</div>
-                    <h3>Drafting of Will/ Kuandaa Wosia</h3>
+                    <h3>Verification of Documents/ Uhakiki wa Nyaraka</h3>
                     <p>Uhakiki wa kina wa nyaraka zako pamoja na kuratibu taratibu zote za usajili kulingana na sheria.</p>
                 </div>
-                <a href="D-service.html/Drafting-of-will.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                <a href="Verification-and-Registration.html/Verification-of-doc.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
                     </a>
             </div>
 
             <div class="kadi-huduma">
                 <div>
                     <div class="icon-box">✓</div>
-                    <h3>Drafting of Plaint/ Kuandaa Hati ya Mashtaka</h3>
+                    <h3>Registration of Title/ Kusajili Umiliki</h3>
                     <p>Kupitia upya mikataba na nyaraka kabla ya kusaini ili kulinda maslahi yako na kuepuka changamoto za kisheria.</p>
                 </div>
-                <a href="D-service.html/drafting-of-plaint.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button></a>
+                <a href="Verification-and-Registration.html/Reg-title.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
             </div>
 
             <div class="kadi-huduma">
                 <div>
                     <div class="icon-box">✓</div>
-                    <h3>Drafting of Demand letter/ Kuandaa Barua ya madai</h3>
+                    <h3>Registration of Properties/ Kusajili Mali</h3>
                     <p>Ushauri wa ana kwa ana au mtandaoni kutoka kwa wataalamu waliobobea katika masuala mbalimbali ya kisheria.</p>
                 </div>
-                <a href="D-service.html/demanding-letter.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
-                    </a>
-            </div>
-
-             <div class="kadi-huduma">
-                <div>
-                    <div class="icon-box">✓</div>
-                    <h3>Drating of constitution of Company/ Kuandaa Katiba ya Kampuni</h3>
-                    <p>Huduma maalum na ushauri wa kisheria unaolenga kusaidia jamii na kuongeza uelewa wa haki za msingi.</p>
-                </div>
-                <a href="D-service.html/Constitution.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                <a href="Verification-and-Registration.html/Reg-properties.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
                     </a>
             </div>
 
             <div class="kadi-huduma">
                 <div>
                     <div class="icon-box">✓</div>
-                    <h3>Unavailable</h3>
+                    <h3>Registration of Business & Organization/ Kusajili Biashara au Kampuni</h3>
                     <p>Uwakilishi thabiti mbele ya mahakama, mabaraza, na vyombo vyote vya usuluhishi nchini Tanzania.</p>
                 </div>
-                <a href="D-service.html/demanding-letter.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                <a href="Verification-and-Registration.html/Reg-organization.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
+                    </a>
+            </div>
+
+            <div class="kadi-huduma">
+                <div>
+                    <div class="icon-box">✓</div>
+                    <h3>Transfer of ownership/ Kubadili Umiliki</h3>
+                    <p>Huduma maalum na ushauri wa kisheria unaolenga kusaidia jamii na kuongeza uelewa wa haki za msingi.</p>
+                </div>
+                <a href="Verification-and-Registration.html/Trans-owner.html"button class="btn-omba" onclick="tumaOmbi">Omba Huduma</button>
                     </a>
             </div>
 
@@ -239,7 +246,8 @@
 
     <script>
         function tumaOmbi(jinaLaHuduma) {
-            
+            alert('Umechagua kuomba huduma ya: ' + jinaLaHuduma);
+            window.location.href='Verification-and-Registration.html/Registration-of-immovable-ass.html' + encodeURIComponent(jinaLaHuduma);
         }
     </script>
 

@@ -1,94 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard - List of customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Scientia Juris</title>
     <style>
-     /* Hakikisha hizi class zipo kwenye CSS yako */
-.main-container {
-    display: flex;         /* Hii inavifanya vikae pembeni */
-    height: 100vh;         /* Inachukua urefu wa skrini nzima */
-    width: 100%;
-}
-
-
-.sidebar {
-    width: 300px;          /* Upana wa list ya wateja */
-    border-right: 1px solid #ddd;
-    overflow-y: auto;      /* Inaruhusu list kuscroll kama ni ndefu */
-}
-
-.chat-area {
-    flex: 1;               /* Hii inafanya chat area ichukue nafasi yote iliyobaki */
-    display: flex;
-    flex-direction: column;
-    background-color: #f9f9f9;
-    background-image: url('background.jpg');
-}
-        
-    body { font-family: 'Segoe UI', 'Times New Roman', Times, serif, sans-serif; background-color: #f0f2f5; margin: 0; }
-    h1 { padding: 20px; background-color: #190b97; color: white; margin: 0; }
-   
-    #admin-client-list { display: flex; flex-direction: column; width: 100%; max-width: 400px; background: white; height: 100vh; overflow-y: auto; }
-   
-    .client-card {
-        padding: 15px; border-bottom: 1px solid #f2f2f2;
-        cursor: pointer; transition: background 0.3s;
-    }
-    .client-card:hover { background-color: #f5f5f5; }
-   
-    .client-card h3 { margin: 0; font-size: 16px; color: #333; }
-    .client-card p { margin: 5px 0 0; font-size: 14px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-   
-    .chat-link { display: block; text-decoration: none; color: inherit; }
-
-        body { font-family: 'Times New Roman', Times, serif; padding: 20px; }
-        .client-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
-        .chat-link { display: inline-block; background: teal; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; margin-top: 10px; }
-.main-container {
-    display: flex; /* Muhimu: Hii inalazimisha sidebar na chat-area kukaa mstari mmoja */
-    width: 100%;
-}
-
-.sidebar {
-    width: 300px; /* Upana wa list */
-    height: 100vh;
-    border-right: 1px solid #ccc;
-}
-
-</style>
+        body { font-family: 'Times New Roman', 'Times New Roman', Times, serif; margin: 20px; background-color: #f4f6f9; color: #333; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; table-layout: fixed;}
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background-color: #007bff; color: white; font-weight: 600; }
+        tr:hover { background-color: #f8f9fa; }
+        .btn { padding: 8px 16px; cursor: pointer; border: none; color: white; border-radius: 4px; font-weight: bold; transition: 0.3s; }
+        .btn-jibu { background-color: #28a745; }
+        .btn-jibu:hover { background-color: #218838; }
+        .status-bado { background-color: #f8d7da; color: #721c24; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .status-tayari { background-color: #d4edda; color: #155724; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+       
+        /* Modal ya Kujibia */
+        #replyModal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; box-shadow: 0px 10px 25px rgba(0,0,0,0.2); width: 400px; z-index: 1000; }
+        #modalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
+        textarea { width: 100%; height: 120px; margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; resize: none; box-sizing: border-box; }
+        .modal-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; }
+    </style>
 </head>
 <body>
-    <div class="main-container">
-       <div class="sidebar" id="contract-client">
-       </div>
 
-       <div class="sidebar" id="will-client">
-       </div>
-
-       <div class="sidebar" id="review-client">
-       </div>
-
-       <div class="sidebar" id="consultation-client">
-       </div>
-
-       <div class="sidebar" id="representation-client">
-       </div>
-
-       <div class="sidebar" id="clinic-client">
-       </div>
-</div>
+    <h2>Legal Service Request List (Admin Panel)</h2>
    
-    
+    <table>
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email-address</th>
+                <th>Nature of legal-problem</th>
+                <th>Types of service</th>
+                <th>Resident</th>
+                <th>Marriage status</th>
+                <th>Request status</th>
+                <th>Complete</th>
+            </tr>
+        </thead>
+        <tbody id="maombi-table-body">
+            </tbody>
+    </table>
+
+    <div id="modalOverlay" onclick="fungaModal()"></div>
+    <div id="replyModal">
+        <h3>Jibu Ombi</h3>
+        <p><strong>Kwa:</strong> <span id="modal-email"></span></p>
+        <textarea id="reply-text" placeholder="Andika barua pepe ya jibu hapa..."></textarea>
+        <div class="modal-buttons">
+            <button class="btn" style="background:#dc3545;" onclick="fungaModal()">Ghairi</button>
+            <button class="btn btn-jibu" onclick="tumaJibu()">Tuma Jibu (Email)</button>
+        </div>
+    </div>
 
     <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-        // Weka configuration yako hapa
+        // WEKA CONFIGURATION ZAKO HAPA
         const firebaseConfig = {
-            apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+             apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
             authDomain: "scientia-juris.firebaseapp.com",
             projectId: "scientia-juris",
             storageBucket: "scientia-juris.firebasestorage.app",
@@ -99,155 +75,90 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        async function loadAdminList() {
-            const listContainer = document.getElementById("admin-client-list");
-            try {
-                // Tunasoma kutoka "Charts" kama ilivyo kwenye database yako
-                const querySnapshot = await getDocs(collection(db, "Legal-request"));
-                
-                listContainer.innerHTML = "";
+        let sasaHiviOmbiId = "";
+        let sasaHiviEmail = "";
+        let sasaHiviJina = "";
 
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const card = document.createElement("div");
-                    card.className = "client-card";
-                   
-                    card.innerHTML = `
-                        <h3>${data.jina || 'Mteja Asiyejulikana'}</h3>
-                        <p>Simu: ${data.simu || 'N/A'}</p>
-                        <p>Miaka: ${data.miaka || 'N/A'}</p>
-                        <p>Makazi: ${data.makazi || 'N/A'}</p>
-                        <p>hadhi: ${data.hadhi || 'N/A'}</p>
-                        <p>Asili ya tatizo: ${data.mkataba || 'N/A'}</p>
-                        <p>Tatizo: ${data.maelezo || 'N/A'}</p>
-                        <p>Time: ${data.timestamp ? data.timestamp.toDate().toLocaleString() : 'N/A'}</p>
-                        <button class="chat-btn" data-chatid="${data.chatId}">Ingia Chat</button>
-                      
-                    `;
-                    listContainer.appendChild(card);
+        // 1. Kusoma Maombi Realtime kutoka Firestore
+        const q = query(collection(db, "Contract-request"), orderBy("timestamp", "desc"));
+        onSnapshot(q, (snapshot) => {
+            const tableBody = document.getElementById("maombi-table-body");
+            tableBody.innerHTML = "";
+
+            snapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                const id = docSnap.id;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><b>${data.jina}</b></td>
+                    <td>${data.miaka}</td>
+                    <td>${data.simu}</td>
+                    <td>${data.email-address}</td>
+                    <td>${data.mkataba}</td>
+                    <td>${data.service}</td>
+                    <td>${data.makazi}</td>
+                    <td>${data.hadhi}</td>
+                    <td>${data.ujumbe}</td>
+                    <td>
+                        <span class="${data.status === 'bado' ? 'status-bado' : 'status-tayari'}">
+                            ${data.Request-status === 'bado' ? 'BADO' : 'IMEJIBIWA'}
+                        </span>
+                    </td>
+                    <td>
+                        ${data.status === 'bado' ? `<button class="btn btn-jibu" onclick="funguaModal('${id}', '${data.email}', '${data.jina}')">Jibu</button>` : '✔️ Ushajibu'}
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        });
+
+        // 2. Kufungua na Kufunga Modal
+        window.funguaModal = function(id, email, jina) {
+            sasaHiviOmbiId = id;
+            sasaHiviEmail = email;
+            sasaHiviJina = jina;
+            document.getElementById("modal-email").innerText = email;
+            document.getElementById("replyModal").style.display = "block";
+            document.getElementById("modalOverlay").style.display = "block";
+        }
+
+        window.fungaModal = function() {
+            document.getElementById("replyModal").style.display = "none";
+            document.getElementById("modalOverlay").style.display = "none";
+            document.getElementById("reply-text").value = "";
+        }
+
+        // 3. Kubadili Status na Kutengeneza Document ya Email
+        window.tumaJibu = async function() {
+            const jibuUjumbe = document.getElementById("reply-text").value;
+            if(!jibuUjumbe) return alert("Tafadhali andika jibu kwanza!");
+
+            try {
+                // Hatua A: Badili hali ya ombi kuwa "imejibiwa"
+                const docRef = doc(db, "Contract-request", sasaHiviOmbiId);
+                await updateDoc(docRef, {
+                    status: "imejibiwa"
                 });
+
+                // Hatua B: Rekodi barua pepe kwenye collection ya 'mail' (Hapa Trigger Email Extension itasoma na kutuma)
+                await addDoc(collection(db, "mail"), {
+                    to: sasaHiviEmail,
+                    message: {
+                        subject: "Jibu la Ombi Lako - Scientia Juris",
+                        text: `Habari ${sasaHiviJina},\n\nAsante kwa kuwasiliana nasi. Hili ndilo jibu la ombi/swali lako:\n\n"${jibuUjumbe}"\n\nWako,\nAdmin - Scientia Juris`,
+                        // Unaweza kuweka html pia kama unataka iwe ya kuvutia zaidi
+                        html: `<p>Habari <b>${sasaHiviJina}</b>,</p><p>Asante kwa kuwasiliana nasi. Hili ndilo jibu la ombi/swali lako:</p><blockquote style="border-left:5px solid #007bff; padding-left:10px; font-style:italic;">${jibuUjumbe}</blockquote><p>Wako,<br><b>Admin - Scientia Juris</b></p>`
+                    }
+                });
+
+                alert("Jibu limeshakuwa logiwa! Extension ikishakuwa active, email itatumwa sasa hivi.");
+                fungaModal();
             } catch (error) {
-                listContainer.innerHTML = "Imeshindikana kupakia wateja: " + error.message;
+                console.error("Kuna shida imetokea: ", error);
+                alert("Imeshindikana kutuma jibu. Angalia console.");
             }
         }
-
-        loadAdminList();
-        // Ongeza hii kwenye script yako
-document.querySelectorAll('.client-card').forEach(card => {
-    card.addEventListener('click', () => {
-        const clientId = card.getAttribute('data-id'); // ID ya mteja
-        const chatArea = document.getElementById('Charts');
-       
-        // Hapa unaweza kufuta ujumbe wa zamani na kuleta wa mteja mpya
-        chatArea.innerHTML = `<h3>Client ID: ${clientId}</h3>`;
-       
-        // Hapa ndipo utaita Firebase kuleta ujumbe wa mteja huyo
-        // loadMessagesForClient(clientId);
-    });
-});
-
-// Ongeza hii baada ya loadAdminList() kukamilika
-document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('chat-btn')) {
-        const chatId = event.target.getAttribute('data-chatid');
-        sendMessage(chatId);
-        const chatArea = document.getElementById('Charts');
-        
-
-        // Onyesha jina la mteja au id kwenye chat area
-        chatArea.innerHTML = `
-            <div class="chat-header">Unachati na: ${chatId}</div>
-            <div id="messages-container"></div>
-            <input type="text" id="msg-input" placeholder="Andika ujumbe...">
-            <button id="send-btn">Tuma/Send</button>
-        `;
-       document.getElementById('send-btn')
-      
-       
-        // Hapa utaita function ya Firebase ya kuchota ujumbe wa chatId hiyo
-        // loadMessages(chatId);
-    }
-    function displayMessage(text, isMine) {
-    const box = document.getElementById('messages-box');
-    const div = document.createElement('div');
-    div.className = `bubble ${isMine ? 'my-message' : 'other-message'}`;
-    div.textContent = text;
-    box.appendChild(div);
-    box.scrollTop = box.scrollHeight; // Hii inafanya chat iji-scroll kwenda chini kila ujumbe mpya unapokuja
-}
-})
-
-
-async function sendMessage(chatId) {
-    const input = document.getElementById('msg-input');
-    const text = input.value;
-
-    if (text.trim() !== "") {
-        console.log("Hatua 1: Kitufe kimebofywa");
-        // 1. Tengeneza bubble ya ujumbe
-        const bubble = document.createElement('div');
-        bubble.className = 'bubble my-message'; // CSS ya bubble niliyokupa awali
-        bubble.textContent = text;
-
-        // 2. Iongeze kwenye messages-box
-        msgBox.appendChild(bubble);
-
-        // 3. Futa maandishi kwenye input
-        input.value = '';
-
-        // 4. Scroll mpaka chini kabisa
-        msgBox.scrollTop = msgBox.scrollHeight;
-       
-        // Hapa ndipo utaongeza code za Firebase za ku-push ujumbe kwenye database
-        // Kukusanya data kutoka kwenye form
-    const data = {
-        chatId: document.getElementById("msg-input").value, // Hii itakuwa ni "chumba" cha mteja
-        timestamp: new Date(),
-        role: "client"
-    };
-      
-     if (text.trim() !== "") {
-        try {
-            // Hakikisha hapa ni sawa na jina la collection yako kwenye Firebase
-            await addDoc(Collection (db, 'Message'), data);({
-                text: text,
-                sender: 'admin',
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            console.log("Ujumbe umetumwa kikamilifu!");
-            input.value = '';
-        } catch (error) {
-            console.error("Kosa la Firebase:", error); // Hii itakuambia kama kuna tatizo la ruhusa (Permissions)
-        }
-    } else {
-        console.log("Ujumbe ni tupu, hautatumwa.");
-    }
-   
-    console.log("Kujaribu kutuma:", text, "kwa:", chatId); // Hii inapaswa kuonekana kwenye console
-
-   
-}
-
-
-// Function hii iitwe kila unapobofya "Tuma"
-   
-    const msgBox = document.getElementById('messages-box');
-
-
-    
-    try {
-        // Kutuma data kwenye collection ya 'Legal-request'
-        
-        alert("Maombi yamepokelewa!");
-       
-        // Kuelekea kwenye ukurasa wa charting baada ya kutuma
-        window.location.href = "admin-list.html";
-    } catch (error) {
-        console.error("Kosa: ", error);
-        alert("Samahani, maombi hayajatumika. Jaribu tena.");
-    }
-    }
-
     </script>
 </body>
 </html>
