@@ -854,19 +854,23 @@ document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("termsModal");
     const btn = document.getElementById("closeBtn");
 
-    // Angalia kama mtumiaji ameshakubali zamani
-    if (localStorage.getItem("termsAccepted") === "true") {
-        modal.style.display = "none";
+    // 1. Angalia kama mtumiaji ameshakubali zamani (Tunatumia 'termsAgreed')
+    if (localStorage.getItem("termsAgreed") === "true") {
+        if (modal) modal.style.display = "none";
     } else {
-        // Hakikisha bango linaonekana ikiwa hajakubali
-        modal.style.display = "block";
+        if (modal) modal.style.display = "block";
     }
 
-    // Kitufe cha Agree & Continue
+    // 2. Mtumiaji akibonyeza kitufe cha Agree & Continue
     if (btn) {
         btn.onclick = function() {
-            modal.style.display = "none";
-            console.log("Button clicked, modal hidden.");
+            // Hifadhi kwenye localStorage
+            localStorage.setItem("termsAgreed", "true");
+           
+            // Funga bango
+            if (modal) modal.style.display = "none";
+           
+            console.log("Terms accepted and saved to localStorage.");
         };
     }
 });

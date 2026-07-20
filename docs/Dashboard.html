@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard ya Wateja - Firebase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-slate-950 border-r border-slate-800 p-6 flex flex-col justify-between hidden md:flex">
+        <div>
+            <div class="flex items-center gap-3 mb-10">
+                <span class="material-symbols-outlined text-indigo-500 text-3xl">query_stats</span>
+                <span class="font-bold text-xl tracking-tight text-white">WatejaHub</span>
+            </div>
+            
+            <nav class="space-y-2">
+           <button onclick="switchView('dashboard')" class="w-full flex items-center gap-3 px-4 py-3 bg-indigo-600 text-white rounded-xl font-medium transition cursor-pointer">
+           <span class="material-symbols-outlined">dashboard</span> Dashboard
+           </button>
+           <button onclick="switchView('wateja')" class="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900 hover:text-slate-200 rounded-xl transition cursor-pointer">
+           <span class="material-symbols-outlined">forum</span> Ujumbe
+           </button>
+           <button onclick="switchView('wateja')" class="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900 hover:text-slate-200 rounded-xl transition cursor-pointer">
+           <span class="material-symbols-outlined">person</span> Wateja wote
+           </button>
+          </nav>
+         </div>
+         <div class="border-t border-slate-800 pt-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">A</div>
+            <div>
+                <p class="text-sm font-semibold text-white">Admin Panel</p>
+                <p class="text-xs text-slate-500">Online</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 border-b border-slate-800 px-8 flex items-center justify-between bg-slate-950/50 backdrop-blur-md">
+            <h1 class="text-xl font-bold text-white">Usimamizi wa Wateja</h1>
+        </header>
+
+        <div id="dashboard-view" class="flex-1 flex flex-col overflow-hidden main-h-[calc(100vh-64px)]">
+            <!-- LIST YA WATEJA (LEFT PANEL) -->
+            <div class="w-full md:w-96 border-r border-slate-800 flex flex-col bg-slate-950/20 h-full min-h-[calc(100vh-64px)]">
+                <div class="p-4 border-b border-slate-800 flex justify-between items-center">
+                    <span class="font-semibold text-slate-300">Ujumbe Mpya</span>
+                </div>
+                <!-- Hapa ndipo kadi za wateja kutoka Firebase zitapoingia -->
+                <div id="customer-list" class="flex-1 overflow-y-auto p-4 space-y-2">
+                    <p class="text-xs text-slate-500 text-center py-4">Inapakia wateja...</p>
+                </div>
+            </div>
+
+           <!-- SEHEMU YA MAWASILIANO NA TAARIFA (RIGHT PANEL) -->
+<div id="chat-panel" class="flex-1 flex flex-col bg-slate-900/40 min-h-[calc(100vh-64px)]">
+   
+    <!-- Pale mteja hajachaguliwa (Empty State - Limesahihishwa) -->
+    <div id="empty-state" class="flex-1 flex flex-col items-center justify-center text-center p-8 hidden">
+        <span class="material-symbols-outlined text-slate-700 text-6xl mb-4 block">forum</span>
+        <h2 class="text-lg font-medium text-slate-400">Chagua mteja ili kusoma taarifa zake</h2>
+        <p class="text-sm text-slate-600 max-w-xs mt-1 mx-auto">Bofya mteja yeyote upande wa kushoto ili kuona ujumbe na kumjibu.</p>
+    </div>
+
+    <!-- Pale mteja anapoonekana (Active State) -->
+    <div id="active-state" class="flex-1 flex flex-col hidden h-full">
+        <!-- Profile Header -->
+        <div class="p-6 border-b border-slate-800 bg-slate-950/30 flex justify-between items-center shrink-0">
+            <div class="flex items-center gap-4">
+                <div id="cust-avatar" class="w-12 h-12 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold text-lg"></div>
+                <div class="text-left">
+                    <h2 id="cust-name" class="text-lg font-bold text-white">---</h2>
+                    <p id="cust-email" class="text-xs text-slate-400">---</p>
+                </div>
+            </div>
+            <span id="cust-badge" class="bg-indigo-500/10 text-indigo-400 text-xs px-3 py-1 rounded-full font-medium">---</span>
+        </div>
+
+        <!-- Chat History -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-950/10 text-left">
+            <div class="flex gap-3 max-w-lg">
+                <div class="p-4 bg-slate-800 border border-slate-700/50 rounded-2xl rounded-tl-none">
+                    <p id="cust-message" class="text-sm text-slate-200 leading-relaxed">---</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sehemu ya Kujibu -->
+        <div class="p-4 border-t border-slate-800 bg-slate-950/40 shrink-0">
+            <form onsubmit="sendMessage(event)" class="flex gap-2 items-center">
+                <input type="text" id="reply-input" placeholder="Andika majibu hapa..." class="flex-1 bg-slate-900 border border-slate-800 focus:border-indigo-500 focus:outline-none rounded-xl px-4 py-3 text-sm text-white transition">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-3 rounded-xl font-medium text-sm flex items-center gap-2 transition cursor-pointer">
+                    Tuma <span class="material-symbols-outlined text-sm">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
+    </main>
+
+    <!-- FIREBASE SDKs (Modular Version) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+        // 1. WEKA CONFIG YAKO HAPA KUTOKA FIREBASE
+       const firebaseConfig = {
+  apiKey: "AIzaSyBp0aLe1gbiI0kSf5eGukKo6f2_4Y3uNCc",
+  authDomain: "scientia-juris.firebaseapp.com",
+  projectId: "scientia-juris",
+  storageBucket: "scientia-juris.firebasestorage.app",
+  messagingSenderId: "477823870765",
+  appId: "1:477823870765:web:9e7d1f99cc5e1db07655a4",
+  measurementId: "G-KPKNNCCH6W"
+};
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Variables za kushika mteja aliyechaguliwa kwa sasa
+        let currentSelectedEmail = null;
+
+        // 2. VUTA DATA KUTOKA FIRESTORE (REAL-TIME)
+        const q = query(collection(db, "messages"), orderBy("timestamp", "desc"));
+       
+        onSnapshot(q, (snapshot) => {
+            const customerList = document.getElementById('customer-list');
+            customerList.innerHTML = ""; // Futa loading text
+
+            if(snapshot.empty) {
+                customerList.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">Hakuna ujumbe mpya.</p>`;
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                const firstLetters = data.name ? data.name.split(' ').map(n => n[0]).join('') : 'W';
+               
+                // Tengeneza kadi ya mteja HTML
+                const card = document.createElement('div');
+                card.className = "p-4 rounded-xl border border-slate-800 hover:border-indigo-500/50 bg-slate-900/50 hover:bg-slate-900 cursor-pointer transition flex gap-3 items-start";
+                card.innerHTML = `
+                    <div class="w-10 h-10 rounded-full bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold shrink-0">${firstLetters}</div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-semibold text-white truncate">${data.name}</h3>
+                        <p class="text-xs text-slate-400 truncate">${data.message}</p>
+                    </div>
+                `;
+               
+                // Bofya kadi ionyeshe upande wa kulia
+                card.onclick = () => {
+                    document.getElementById('empty-state').classList.add('hidden');
+                    document.getElementById('active-state').classList.remove('hidden');
+                   
+                    document.getElementById('cust-name').innerText = data.name;
+                    document.getElementById('cust-email').innerText = data.email;
+                    document.getElementById('cust-message').innerText = data.message;
+                    document.getElementById('cust-avatar').innerText = firstLetters;
+                   
+                    currentSelectedEmail = data.email; // Tunatunza email ili tujue tunamjibu nani
+                };
+
+                customerList.appendChild(card);
+            });
+        });
+
+        // 3. KUTUMA MAJIBU KWENDA DATABASE (FIRESTORE)
+        window.sendMessage = async function(e) {
+            e.preventDefault();
+            const input = document.getElementById('reply-input');
+            if(input.value.trim() === "" || !currentSelectedEmail) return;
+
+            try {
+                // Hapa tunahifadhi jibu kwenye collection mpya ya "replies"
+                await addDoc(collection(db, "replies"), {
+                    toCustomer: currentSelectedEmail,
+                    replyMessage: input.value,
+                    timestamp: serverTimestamp()
+                });
+
+                alert("Jibu limehifadhiwa kwenye Firebase!");
+                input.value = "";
+            } catch (error) {
+                console.error("Error sending reply: ", error);
+            }
+        }
+
+        function switchView(viewName) {
+    if(viewName === 'dashboard') {
+        document.getElementById('dashboard-view').classList.remove('hidden');
+        document.getElementById('wateja-view').classList.add('hidden');
+    } else if(viewName === 'wateja') {
+        document.getElementById('dashboard-view').classList.add('hidden');
+        document.getElementById('wateja-view').classList.remove('hidden');
+        // Hapa unaweza kuweka na function ya kuvuta wateja wote kutoka Firebase ikihitajika
+    }
+}
+    </script>
+</body>
+</html>
