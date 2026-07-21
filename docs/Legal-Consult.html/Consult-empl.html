@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wasiliana Nasi - Form ya Kisasa</title>
+    <title>Wasiliana Nasi</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Google Fonts & Icons -->
@@ -70,7 +70,7 @@
 
             <!-- Button ya Kutuma -->
             <button type="submit" id="submit-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl py-3.5 text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 cursor-pointer">
-                <span>Tuma Ujumbe Sasa</span>
+                <span>Tuma Ujumbe</span>
                 <span class="material-symbols-outlined text-sm">send</span>
             </button>
 
@@ -102,79 +102,87 @@
     
             const app = initializeApp(firebaseConfig);
             const db = getFirestore(app);
-
             // 2. WEKA PUBLIC KEY YAKO YA EMAILJS HAPA
-             emailjs.init("PwQa29hKMWTuibIIh");
-
-            const name = document.getElementById('user-name').value;
-            const email = document.getElementById('user-email').value;
-            const message = document.getElementById('user-message').value;
-            const btn = document.getElementById('submit-btn');
-            const statusText = document.getElementById('status-text');
+            emailjs.init("PwQa29hKMWTuibIIh");
 
     
              window.handleSubmit = async function(e) {
-             e.preventDefault(); // Kuzuia page isirefresh
+    e.preventDefault(); // 1. LAZIMA: Inazuia page kurefresh!
 
-                        // 1. Kamata maelezo yaliyojazwa kwenye fomu ya HTML
-        const name = document.getElementById('user-name').value;
-        const email = document.getElementById('user-email').value;
-        const message = document.getElementById('user-message').value;
+    const btn = document.getElementById('submit-btn');
+    const statusBox = document.getElementById('status-box');
+    const statusIcon = document.getElementById('status-icon');
+    const statusText = document.getElementById('status-text');
 
-        // Kamata vitu vya muonekano (UI Elements)
-        const btn = document.getElementById('submit-btn');
-        const statusBox = document.getElementById('status-box');
-        const statusIcon = document.getElementById('status-icon');
-        const statusText = document.getElementById('status-text');
+    // Chukua data kutoka kwenye Form Inputs
+    const formElement = e.target; // fomu yenyewe
+    const name = document.getElementById('user-name') ? document.getElementById('user-name').value : '';
+    const email = document.getElementById('user-email') ? document.getElementById('user-email').value : '';
+    const message = document.getElementById('user-message') ? document.getElementById('user-message').value : '';
 
-        // Badilisha muonekano wa button kuonyesha mfumo unashughulikia maombi
-        btn.disabled = true;
-        btn.innerHTML = '<span>Inatuma...</span>';
+    // Badilisha muonekano wa button
+    btn.disabled = true;
+    btn.innerHTML = '<span>Inatuma...</span>';
 
-        try {
-            // 2. HIFADHI TAARIFA FIREBASE
-            await addDoc(collection(db, "Legal-Consultation"), {
-                name: name,
-                email: email,
-                message: message,
-                timestamp: serverTimestamp()
-            });
+    try {
+        // 2. HIFADHI TAARIFA FIREBASE
+        await addDoc(collection(db, "Legal-Consultation"), {
+            name: name,
+            email: email,
+            message: message,
+            timestamp: serverTimestamp()
+        });
 
-            // 3. TUMA EMAIL KUPITIA EMAILJS
-            // 'e.target' inamaanisha fomu yenyewe inayotuma maombi
-            
-            // Tuma email kwa kutumia muundo huu wa Object ambao hautafeli akaunti
-              await emailjs.sendForm(
-               'service_6mdpboh',
-               'template_6qr0qnt',
-                '#contact-form',
-             { publicKey: 'PwQa29hKMWTuibIIh' }
-              );
+        const templateParams = {
+            to_email: "salimmkmb@gmail.com",
+            from_name: name,
+            from_email: email,
+            message: message
+        };
 
-            // MAOMBI YAKIKUBALIWA: Weka rangi ya kijani na alama ya tiki (check_circle)
-            statusBox.className = "w-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 p-3 rounded-lg flex items-center gap-2";
-            statusIcon.innerText = "check_circle";
-            statusText.innerText = "Feedback submitted successfully!";
+        // 3. TUMA EMAIL KUPITIA EMAILJS
+        await emailjs.send(
+            'service_6mdpboh',
+            'template_6qr0qnt',
+            templateParams, 
+            'PwQa29hKMWTuibIIh'
+        );
 
-            // Safisha fomu (iwe wazi) na uonyeshe lile sanduku la kijani
-            document.getElementById('contact-form').reset();
-            statusBox.classList.remove('hidden');
+        // MAOMBI YAKIKUBALIWA
+        statusBox.className = "w-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 p-3 rounded-lg flex items-center gap-2";
+        statusIcon.innerText = "check_circle";
+        statusText.innerText = "Feedback submitted successfully!";
+       
+        // Safisha fomu
+        formElement.reset();
+        
 
-        } catch (error) {
-            // MAOMBI YAKIFELI: Onyesha sanduku jekundu la error na kosa lililotokea
-            console.error("Shida imetokea: ", error);
-           
-            statusBox.className = "w-full bg-rose-500/10 border border-rose-500/30 text-rose-400 p-3 rounded-lg flex items-center gap-2";
-            statusIcon.innerText = "error";
-            statusText.innerText = "Imeshindwa kutuma: " + (error.text || "Jaribu tena.");
-            statusBox.classList.remove('hidden');
-           
-        } finally {
-            // ILIYOPO: Rudisha button katika hali yake ya kawaida kila mara baada ya mchakato kuisha
-            btn.disabled = false;
-            btn.innerHTML = `<span>Tuma Ujumbe Sasa</span> <span class="material-symbols-outlined">send</span>`;
-        }
-    }; // Bano linalofunga window.handleSubmit
+    } catch (error) {
+        // MAOMBI YAKIFELI
+        console.error("Shida imetokea: ", error);
+        statusBox.className = "w-full bg-rose-500/10 border border-rose-500/30 text-rose-400 p-3 rounded-lg flex items-center gap-2";
+        statusIcon.innerText = "error";
+        statusText.innerText = "Kuna shida imetokea: " + error.message;
+        statusBox.classList.remove('hidden');
+    } finally {
+        // Rudisha button kuwa ya kawaida
+        btn.disabled = false;
+        btn.innerHTML = '<span>Tuma Ujumbe</span>';
+    }
+};
+
+        // Listener ya kuficha status-box pale mteja anapoanza kuandika tena
+     ['user-name', 'user-email', 'user-message'].forEach(id => {
+    const inputElement = document.getElementById(id);
+    if (inputElement) {
+        inputElement.addEventListener('input', () => {
+            const statusBox = document.getElementById('status-box');
+            if (statusBox) {
+                statusBox.classList.add('hidden'); // Inajificha tena Mteja akianza kuandika
+            }
+        });
+    }
+});
 
     </script>
 </body>

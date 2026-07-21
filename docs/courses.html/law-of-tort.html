@@ -1,44 +1,86 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-    <meta charset="UTF-8">
-    <style>
-         /* CSS kwa ajili ya Watermark ya Background */
-        body {
-            /* 1. Weka rangi ya usuli kama karatasi (hiari) */
-            background-color: #fffaf0;
-        }
-        h1 {
-            color: #113355; /* Rangi ya Bluu iliyokolea kutoka nembo */
-            text-align: center;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-    </style>
-    <title>Tort Law Notes</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientia Juris</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Georgia", "Times New Roman", Garamond, serif;
+      font-size: 19px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background-color: #ffffff;
+    }
+
+    /* Top Navigation Header */
+    header {
+      background-color: #002b49; /* Bluu ya juu */
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 6px solid #008ca8; /* Mstari wa Cyan/Teal */
+    }
+
+    /* Muundo wa Nembo (Logo) */
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 45px; /* Unaweza kubadilisha urefu wa nembo hapa */
+      width: auto;  /* Inahifadhi umbo la nembo lisiharibike */
+    }
+
+    /* Ikoni za Kulia (Search & Menu) */
+    .header-icons {
+      display: flex;
+      gap: 20px;
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    p {
+      margin-bottom: 24px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Tort Law Notes</h1>
-        <p>Topic Digested includes: -</p>
-        <ul>
-            <h3>Topic One</h3>
-            <li>Introduction...</li>
-            <h3>Topic Two</h3>
-            <li>.....</li>
-            <h3>Topic Three</h3>
-            <li>......</li>
-            <h3>Topic Four</h3>
-            <li>.....</li>
-        </ul>
-        <hr>
-        <a href="index.html" class="back-btn">← Back</a>
+
+  <!-- Header yenye Nembo ya Scientia Juris -->
+  <header>
+    <div class="logo-container">
+      <!-- Badilisha "logo.png" kuweka jina au njia (path) ya picha yako ya nembo -->
+      <img src="background.jpg" alt="Scientia Juris Logo">
     </div>
-    
+
+    <div class="header-icons">
+      <span>🔍</span>
+      <span>☰</span>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="container">
+    <p>
+      Karibu kwenye mfumo wa Scientia Juris...
     </p>
-</footer>
+  </div>
+
 </body>
 </html>
