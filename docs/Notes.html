@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Notes - Scientia Juris</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome CDN kwa ajili ya Symbol/Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* --- RESET & BASIC STYLES --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #1e293b;
+  padding: 50px 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-heading {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #0b3c4d;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.sub-heading {
+  text-align: center;
+  color: #64748b;
+  font-size: 1rem;
+  margin-bottom: 45px;
+}
+
+/* --- GRID SYSTEM --- */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* --- LAW CARD STYLING --- */
+.law-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mstari wa Juu wa Rangi (Accent Line) */
+.law-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transition: height 0.3s ease;
+}
+
+.border-teal::before { background: #0d9488; }
+.border-navy::before { background: #0b3c4d; }
+.border-red::before { background: #e11d48; }
+.border-amber::before { background: #d97706; }
+.border-green::before { background: #16a34a; }
+
+/* Hover Effects */
+.law-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(11, 60, 77, 0.12);
+  border-color: transparent;
+}
+
+.law-card:hover::before {
+  height: 6px;
+}
+
+/* --- CARD HEADER (ICON & BADGE) --- */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.icon-teal { background: #ccfbf1; color: #0f766e; }
+.icon-navy { background: #e0f2fe; color: #0369a1; }
+.icon-red { background: #ffe4e6; color: #be123c; }
+.icon-amber { background: #fef3c7; color: #b45309; }
+.icon-green { background: #dcfce7; color: #15803d; }
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-teal { background: #f0fdf4; color: #0f766e; }
+.badge-navy { background: #f0f9ff; color: #0369a1; }
+.badge-red { background: #fff1f2; color: #be123c; }
+.badge-amber { background: #fffbeb; color: #b45309; }
+.badge-green { background: #f0fdf4; color: #15803d; }
+
+/* --- CARD BODY --- */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.card-desc {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+/* --- READ MORE BUTTON --- */
+.read-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #0d9488; /* Rangi nzuri ya Teal/Green */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.read-btn:hover {
+  background-color: #0b3c4d;
+  gap: 12px;
+}
+  </style>
+</head>
+<body>
+
+  <section class="courses-section">
+    <div class="container">
+      <h2 class="main-heading">LEGAL NOTES</h2>
+      <p class="sub-heading">Select a topic below to read its notes and resources</p>
+
+      <div class="courses-grid">
+
+        <!-- 1. Introduction to Law -->
+        <div class="law-card border-teal">
+          <div class="card-header">
+            <div class="icon-box icon-teal"><i class="fa-solid fa-book-open"></i></div>
+            <span class="badge badge-teal">General</span>
+          </div>
+          <h3 class="card-title">Introduction to Law</h3>
+          <p class="card-desc">Provides a broad and critical understanding of the legal system, sources of law, and basic principles.</p>
+          <a href="courses.html/Introduction-to-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 2. Tanzania Constitution & Legal System -->
+        <div class="law-card border-navy">
+          <div class="card-header">
+            <div class="icon-box icon-navy"><i class="fa-solid fa-building-columns"></i></div>
+            <span class="badge badge-navy">Constitutional</span>
+          </div>
+          <h3 class="card-title">Tanzania Constitution & Legal System</h3>
+          <p class="card-desc">Origin of Tanzania Constitution, Bill of Rights, operation, executive powers, and legal challenges.</p>
+          <a href="courses.html/tanzania-constitution-right.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 3. Criminal Law -->
+        <div class="law-card border-red">
+          <div class="card-header">
+            <div class="icon-box icon-red"><i class="fa-solid fa-handcuffs"></i></div>
+            <span class="badge badge-red">Criminal</span>
+          </div>
+          <h3 class="card-title">Criminal Law</h3>
+          <p class="card-desc">Mens rea, Actus reus, murder, manslaughter, grievous harm, conspiracy, self-defense, and penal codes.</p>
+          <a href="courses.html/Criminal-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 4. Investment Law -->
+        <div class="law-card border-amber">
+          <div class="card-header">
+            <div class="icon-box icon-amber"><i class="fa-solid fa-chart-line"></i></div>
+            <span class="badge badge-amber">Commercial</span>
+          </div>
+          <h3 class="card-title">Investment Law</h3>
+          <p class="card-desc">Understand Investment, ways of investment, legal instruments, and authorities for registration in Tanzania.</p>
+          <a href="courses.html/Investment-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 5. Land Law -->
+        <div class="law-card border-green">
+          <div class="card-header">
+            <div class="icon-box icon-green"><i class="fa-solid fa-mountain-sun"></i></div>
+            <span class="badge badge-green">Property</span>
+          </div>
+          <h3 class="card-title">Land Law</h3>
+          <p class="card-desc">Meaning of land, mode of occupation of land, lease, sale, ways of transfer, land title, and tenure.</p>
+          <a href="courses.html/Land-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 6. Environmental Law -->
+        <div class="law-card border-green">
+          <div class="card-header">
+            <div class="icon-box icon-green"><i class="fa-solid fa-leaf"></i></div>
+            <span class="badge badge-green">Environment</span>
+          </div>
+          <h3 class="card-title">Environmental Law</h3>
+          <p class="card-desc">Environmental protection in Africa, legal mechanisms governing environmental sector, and enforcement.</p>
+          <a href="courses.html/Environmental-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 7. Family Law -->
+        <div class="law-card border-teal">
+          <div class="card-header">
+            <div class="icon-box icon-teal"><i class="fa-solid fa-people-roof"></i></div>
+            <span class="badge badge-teal">Civil</span>
+          </div>
+          <h3 class="card-title">Family Law</h3>
+          <p class="card-desc">Marriage, divorce, child custody, maintenance rights, division of matrimonial property, and adoption.</p>
+          <a href="courses.html/Family-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 8. Banking and Financial Institution Law -->
+        <div class="law-card border-navy">
+          <div class="card-header">
+            <div class="icon-box icon-navy"><i class="fa-solid fa-building-bank"></i></div>
+            <span class="badge badge-navy">Finance</span>
+          </div>
+          <h3 class="card-title">Banking & Financial Institution Law</h3>
+          <p class="card-desc">Regulations governing banks, central bank duties, credit facilities, anti-money laundering, and compliance.</p>
+          <a href="courses.html/Banking-and-Financial-Institution-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 9. Administrative Law -->
+        <div class="law-card border-navy">
+          <div class="card-header">
+            <div class="icon-box icon-navy"><i class="fa-solid fa-scale-balanced"></i></div>
+            <span class="badge badge-navy">Public</span>
+          </div>
+          <h3 class="card-title">Administrative Law</h3>
+          <p class="card-desc">Powers of administrative bodies, judicial review, natural justice principles, and administrative remedies.</p>
+          <a href="courses.html/Administrative-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 10. Law of Tort -->
+        <div class="law-card border-red">
+          <div class="card-header">
+            <div class="icon-box icon-red"><i class="fa-solid fa-user-shield"></i></div>
+            <span class="badge badge-red">Civil Claims</span>
+          </div>
+          <h3 class="card-title">Law of Tort</h3>
+          <p class="card-desc">Negligence, defamation, trespass, nuisance, vicarious liability, damages, and civil remedies.</p>
+          <a href="courses.html/Law-of-Tort.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 11. Law of Evidence -->
+        <div class="law-card border-teal">
+          <div class="card-header">
+            <div class="icon-box icon-teal"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+            <span class="badge badge-teal">Procedure</span>
+          </div>
+          <h3 class="card-title">Law of Evidence</h3>
+          <p class="card-desc">Meaning of evidence, tendering and admission, burden of proof, witnesses, and electronic evidence admissibility.</p>
+          <a href="courses.html/Law-of-Evidence.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 12. Insurance Law -->
+        <div class="law-card border-amber">
+          <div class="card-header">
+            <div class="icon-box icon-amber"><i class="fa-solid fa-shield-halved"></i></div>
+            <span class="badge badge-amber">Commercial</span>
+          </div>
+          <h3 class="card-title">Insurance Law</h3>
+          <p class="card-desc">Insurance contracts, principle of utmost good faith, insurable interest, indemnity, subrogation, and claims.</p>
+          <a href="courses.html/Insurance-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 13. Law of Force Displacement -->
+        <div class="law-card border-red">
+          <div class="card-header">
+            <div class="icon-box icon-red"><i class="fa-solid fa-person-walking-luggage"></i></div>
+            <span class="badge badge-red">Humanitarian</span>
+          </div>
+          <h3 class="card-title">Law of Forced Displacement</h3>
+          <p class="card-desc">Refugee protection laws, internally displaced persons (IDPs), international conventions, and human rights frameworks.</p>
+          <a href="courses.html/Law-of-Forced-Displacement.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 14. Business Association Law -->
+        <div class="law-card border-amber">
+          <div class="card-header">
+            <div class="icon-box icon-amber"><i class="fa-solid fa-briefcase"></i></div>
+            <span class="badge badge-amber">Corporate</span>
+          </div>
+          <h3 class="card-title">Business Association Law</h3>
+          <p class="card-desc">Partnerships, companies formation, corporate personality, duties of directors, rights of shareholders, and dissolution.</p>
+          <a href="courses.html/Business-Association-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 15. Civil Procedure Law -->
+        <div class="law-card border-teal">
+          <div class="card-header">
+            <div class="icon-box icon-teal"><i class="fa-solid fa-gavel"></i></div>
+            <span class="badge badge-teal">Procedure</span>
+          </div>
+          <h3 class="card-title">Civil Procedure Law</h3>
+          <p class="card-desc">Pleadings, jurisdiction, institution of suits, summons, trial procedure, judgment, execution, and appeals.</p>
+          <a href="courses.html/Civil-Procedure-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 16. Jurisprudence of Law -->
+        <div class="law-card border-navy">
+          <div class="card-header">
+            <div class="icon-box icon-navy"><i class="fa-solid fa-brain"></i></div>
+            <span class="badge badge-navy">Philosophy</span>
+          </div>
+          <h3 class="card-title">Jurisprudence of Law</h3>
+          <p class="card-desc">Meaning, types & schools of thought, natural law theory, legal positivism, realism, and legal philosophy.</p>
+          <a href="courses.html/Jurisprudence-of-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 17. Labour Law -->
+        <div class="law-card border-amber">
+          <div class="card-header">
+            <div class="icon-box icon-amber"><i class="fa-solid fa-user-gear"></i></div>
+            <span class="badge badge-amber">Employment</span>
+          </div>
+          <h3 class="card-title">Labour Law</h3>
+          <p class="card-desc">Employment standards, rights and duties of workers, trade unions, dispute settlement, and termination of employment.</p>
+          <a href="courses.html/Labour-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 18. Tax Law -->
+        <div class="law-card border-navy">
+          <div class="card-header">
+            <div class="icon-box icon-navy"><i class="fa-solid fa-receipt"></i></div>
+            <span class="badge badge-navy">Finance</span>
+          </div>
+          <h3 class="card-title">Tax Law</h3>
+          <p class="card-desc">Principles of taxation, income tax, VAT, tax administration, assessments, exemptions, and dispute resolution.</p>
+          <a href="courses.html/Tax-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 19. Human Rights Law -->
+        <div class="law-card border-red">
+          <div class="card-header">
+            <div class="icon-box icon-red"><i class="fa-solid fa-hands-holding-child"></i></div>
+            <span class="badge badge-red">Rights</span>
+          </div>
+          <h3 class="card-title">Human Rights Law</h3>
+          <p class="card-desc">Fundamental rights and freedoms, international conventions, regional frameworks, and enforcement organs.</p>
+          <a href="courses.html/Human-Rights-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 20. Intellectual Property Law -->
+        <div class="law-card border-amber">
+          <div class="card-header">
+            <div class="icon-box icon-amber"><i class="fa-solid fa-lightbulb"></i></div>
+            <span class="badge badge-amber">IP & Tech</span>
+          </div>
+          <h3 class="card-title">Intellectual Property Law</h3>
+          <p class="card-desc">Copyrights, patents, trademarks, industrial designs, geographical indications, and protection of innovation.</p>
+          <a href="courses.html/Intellectual-Property-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 21. Mining & Natural Resources Law -->
+        <div class="law-card border-green">
+          <div class="card-header">
+            <div class="icon-box icon-green"><i class="fa-solid fa-gem"></i></div>
+            <span class="badge badge-green">Resources</span>
+          </div>
+          <h3 class="card-title">Mining & Natural Resources Law</h3>
+          <p class="card-desc">Ownership of minerals, mining licenses, local content regulations, environmental impact, and state participation.</p>
+          <a href="courses.html/Mining-&-Natural-Resources-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 22. Capital Market & Securities Law -->
+        <div class="law-card border-navy">
+          <div class="card-header">
+            <div class="icon-box icon-navy"><i class="fa-solid fa-chart-pie"></i></div>
+            <span class="badge badge-navy">Markets</span>
+          </div>
+          <h3 class="card-title">Capital Market & Securities Law</h3>
+          <p class="card-desc">Stock exchange operations, public offers, bonds, market intermediaries, insider trading, and regulatory oversight.</p>
+          <a href="courses.html/Capital-Market-&-Securities-Law.html" class="read-btn">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,40 +1,140 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-    <meta charset="UTF-8">
-    <style>
-   /* CSS kwa ajili ya Watermark ya Background */
-body {
-            /* 1. Weka rangi ya usuli kama karatasi (hiari) */
-            background-color: #fffaf0;
-}
-h1 {
-            color: #113355; /* Rangi ya Bluu iliyokolea kutoka nembo */
-            text-align: center;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-    </style>
-    <title>Criminal Law Notes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kivinjari Mfano</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
     
+  /* Mpangilio wa Jumla */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: #f9f9f9;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 15px 20px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  padding: 8px 12px;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
+}
+
+/* Dropdown Menu Style */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+.dropdown-content a {
+  color: #444;
+  padding: 12px 16px;
+  display: block;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-content a:hover {
+  background-color: #f5f5f5;
+  border-bottom: none;
+}
+
+/* Kuonyesha dropdown mtu akielekeza cursor (Hover) */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+.btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Kuweka muonekano mzuri kwenye vioo vidogo (Simu / Tablets) */
+@media (max-width: 768px) {
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: #f9f9f9;
+    padding-left: 15px;
+  }
+}
+
+    body {
+      /* Mwandiko wa aina ya Serif (Georgia/Garamond) kama kwenye picha */
+      font-family: "Georgia", "Times New Roman", Garamond, serif;
+      font-size: 19px;          /* Ukubwa wa maandishi */
+      line-height: 1.6;          /* Nafasi kati ya mistari */
+      color: #1a1a1a;            /* Rangi ya mwandiko (nyeusi iliyolainishwa) */
+      background-color: #ffffff;
+      padding-bottom: 50px;
+    }
+    /* Container ya Maandishi */
+    .container {
+      max-width: 800px;         /* Huweka maandishi katikati na kutoshea vizuri */
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    p {
+      margin-bottom: 24px;       /* Nafasi kati ya aya na aya (paragraph spacing) */
+      letter-spacing: 0.2px;    /* Nafasi ndogo kati ya herufi */
+    }
+</style>
 </head>
 <body>
-<div class="container">
-        <h1>Criminal Law Notes</h1>
-        <p>Karibu kwenye ukurasa wa Sheria ya Makosa ya Jinai (Criminal Law).</p>
-        <p>Hapa utajifunza kuhusu: sheria mpya</p>
-        <ul>
-            <li>Murder and Manslaughter</li>
-            <li>Theft and Robbery</li>
-            <li>General Defences</li>
-        </ul>
-        <hr>
-        <a href="index.html" class="back-btn">← Back</a>
-    </div>
-    
-    </p>
-</footer>
+
+  <p>Welcome to our Criminal Law course!
+    This course is designed to provide you with a comprehensive understanding of criminal law principles, procedures, and case studies. Whether you're a law student, legal professional, or simply interested in the field of criminal justice, this course will equip you with the knowledge and skills necessary to navigate the complexities of criminal law.
+    Throughout the course, you will explore various topics, including the elements of criminal offenses, defenses, the criminal justice system, and the role of law enforcement. You will also analyze landmark cases and engage in practical exercises to enhance your critical thinking and problem-solving abilities.
+    By the end of this course, you will have a solid foundation in criminal law and be prepared to apply your knowledge in real-world scenarios. Join us on this educational journey and gain valuable insights into the fascinating world of criminal law. 
+  </p>
+
+
 </body>
 </html>
