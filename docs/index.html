@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scientia-Juris - Home</title>
-  <link rel="stylesheet" href="style.css">
   <!-- FontAwesome kwa ajili ya icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
   <style>
 
     /* --- HEADER & NAVIGATION --- */
 .main-header {
   background-color: #0b3c4d; /* Rangi ya dark teal ya navbar yako */
-  padding: 15px 0; /* Ongeza urefu kidogo wa kwenda juu na chini */
+  padding: 20px 0; /* Ongeza urefu kidogo wa kwenda juu na chini */
   width: 100%;
   position: relative;
   z-index: 100;
@@ -22,7 +22,7 @@
 .nav-container {
   max-width: 1200px; /* Hii inazuia vitu kwenda mwisho kabisa wa kioo */
   margin: 0 auto;    /* Inaiweka yote katikati ya kioo */
-  padding: 0 40px;   /* Inatoa nafasi kutoka kingo za kushoto na kulia */
+  padding: 1 40px;   /* Inatoa nafasi kutoka kingo za kushoto na kulia */
   display: flex;
   align-items: center;
   justify-content: space-between; /* Inatenganisha Logo kushoto na Links kulia vizuri */
@@ -756,8 +756,8 @@ body {
   width: 100%;
   height: 220px;
   overflow: hidden;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
+  object-position: top;
 }
 
 .card-image img {
