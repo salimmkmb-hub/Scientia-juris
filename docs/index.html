@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="./style.css">
   <style>
 
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
     /* --- HEADER & NAVIGATION --- */
 .main-header {
   background-color: #0b3c4d; /* Rangi ya dark teal ya navbar yako */
@@ -22,7 +27,7 @@
 .nav-container {
   max-width: 1200px; /* Hii inazuia vitu kwenda mwisho kabisa wa kioo */
   margin: 0 auto;    /* Inaiweka yote katikati ya kioo */
-  padding: 1 40px;   /* Inatoa nafasi kutoka kingo za kushoto na kulia */
+  padding: 0 15px;   /* Inatoa nafasi kutoka kingo za kushoto na kulia */
   display: flex;
   align-items: center;
   justify-content: space-between; /* Inatenganisha Logo kushoto na Links kulia vizuri */
@@ -394,12 +399,12 @@ body {
 }
 
 .nav-container {
-  max-width: 1300px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 10px;
   height: 70px;
 }
 
