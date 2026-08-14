@@ -1,148 +1,117 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kivinjari Mfano</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    
-  /* Mpangilio wa Jumla */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Times New Roman', Times, serif;
-}
+<!--
+  FAILI: criminal-law.html
+  Maelezo ya Sheria ya Jinai (Criminal Law in Tanzania)
+  Limetengenezwa maalum kuingia kwenye mfumo wa Single Page Application wa Scientia Juris.
+-->
 
-body {
-  background-color: #f9f9f9;
-}
+<main>
+    <!-- HEADER YA KOZI -->
+    <div class="meta-info">
+        <span class="badge">CRIMINAL LAW</span>
+        <span>Sheria ya Makosa ya Jinai - Tanzania Mainland</span>
+    </div>
 
-/* Navigation Bar */
-.navbar {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 15px 20px;
-}
+    <h1 class="document-title">General Principles of Criminal Liability & Defences</h1>
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+    <!-- TOPIC 1 -->
+    <h2 id="crim-t1" class="section-title">Topic 1: Elements of Crime (Actus Reus & Mens Rea)</h2>
+    <p>
+        For criminal liability to attach under common law principles and the Tanzanian Penal Code, two fundamental elements must concur: the physical act or omission (**Actus Reus**) and the mental element or guilty mind (**Mens Rea**).
+    </p>
 
-.nav-links li {
-  position: relative;
-}
+    <!-- STATUTE / MAXIM BOX -->
+    <div class="statute-box">
+        📌 <strong>Legal Maxim:</strong><br>
+        <em>"Actus non facit reum nisi mens sit rea"</em> — The act itself does not make a person guilty unless the mind is also guilty.
+    </div>
 
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
-  padding: 8px 12px;
-  display: inline-block;
-  transition: color 0.3s ease;
-}
+    <h3>1. Actus Reus (The Physical Element)</h3>
+    <p>
+        Refers to the unlawful act, omission, or state of affairs prohibited by law. It includes the conduct, surrounding circumstances, and the consequence of that conduct.
+    </p>
 
-.nav-links a:hover {
-  color: #0056b3;
-  border-bottom: 2px solid #0056b3;
-}
+    <h3>2. Mens Rea (The Mental Element)</h3>
+    <p>
+        Refers to the state of mind required for the commission of an offense, such as intention, recklessness, knowledge, or criminal negligence.
+    </p>
 
-/* Dropdown Menu Style */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #ffffff;
-  min-width: 250px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  border-radius: 4px;
-}
+    <!-- PRECEDENT CASE -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: R v. Mohan [1976] QB 1</strong><br>
+        Mahakama ilieleza maana ya "Intention" (dhamira/dhamira ya wazi) kama nia au lengo kuu la mtuhumiwa kufikia matokeo yaliyopigwa marufuku na sheria, bila kujali iwapo alitaka matokeo hayo yatokee kwa sababu gani.
+    </div>
 
-.dropdown-content a {
-  color: #444;
-  padding: 12px 16px;
-  display: block;
-  font-size: 14px;
-  border-bottom: 1px solid #f0f0f0;
-}
+    <!-- TOPIC 2 -->
+    <h2 id="crim-t2" class="section-title">Topic 2: General Defences in Criminal Law</h2>
+    <p>
+        The Penal Code, Cap. 16 provides statutory general defences under Chapter IV that negate criminal liability or reduce the severity of the offense.
+    </p>
 
-.dropdown-content a:hover {
-  background-color: #f5f5f5;
-  border-bottom: none;
-}
+    <h3>1. Insanity (Akili Isiyo Trazimamu) - Section 12 & 13</h3>
+    <p>
+        A person is not criminally responsible for an act or omission if at the time of doing the act, they were suffering from a disease affecting the mind which rendered them incapable of understanding what they were doing or knowing that it was wrong (M'Naghten Rules).
+    </p>
 
-/* Kuonyesha dropdown mtu akielekeza cursor (Hover) */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+    <div class="statute-box">
+        📌 <strong>Penal Code, Cap. 16 [R.E. 2019] - Section 12</strong><br>
+        "A person is not criminally responsible for an act or omission if at the time of doing the act or making the omission he be through any disease affecting his mind incapable of understanding what he is doing, or of knowing that he ought not to do the act or make the omission."
+    </div>
 
+    <h3>2. Intoxication (Ulevi) - Section 14</h3>
+    <p>
+        As a general rule, voluntary intoxication is not a defence. However, involuntary intoxication (where drugs/alcohol were administered without the person's consent or knowledge) or intoxication resulting in temporary insanity can form a valid defence.
+    </p>
 
+    <h3>3. Self-Defence & Defence of Property - Section 18 & 18A</h3>
+    <p>
+        A person is justified in using reasonable and proportionate force to defend themselves, another person, or property against imminent unlawful attack.
+    </p>
 
-.btn {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 15px;
-}
+    <!-- PRECEDENT CASE -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: Palmer v. R [1971] AC 814</strong><br>
+        Mahakama ilifafanua kuwa mtu anayejibizana na shambulio la ghafla hawezi kupima kipimo cha nguvu anachotumia kwa ulaini, bali nguvu inayotumika lazima iwe ya kiasi cha msingi kulingana na hatari iliyopo (Proportionate Force).
+    </div>
 
-/* Kuweka muonekano mzuri kwenye vioo vidogo (Simu / Tablets) */
-@media (max-width: 768px) {
+    <!-- TOPIC 3 -->
+    <h2 id="crim-t3" class="section-title">Topic 3: Parties to Offences & Inchoate Crimes</h2>
+    <p>
+        Criminal liability extends beyond the principal offender who actually commits the actus reus.
+    </p>
 
-  .dropdown-content {
-    position: static;
-    box-shadow: none;
-    background-color: #f9f9f9;
-    padding-left: 15px;
-  }
-}
+    <h3>1. Parties to Offences (Section 22)</h3>
+    <ul>
+        <li><strong>Principal Offender:</strong> The person who actually executes the crime.</li>
+        <li><strong>Aiders and Abettors:</strong> Persons who enable, aid, abet, counsel, or procure the commission of the offence.</li>
+    </ul>
 
-    body {
-      /* Mwandiko wa aina ya Serif (Georgia/Garamond) kama kwenye picha */
-      font-family: "Georgia", "Times New Roman", Garamond, serif;
-      font-size: 19px;          /* Ukubwa wa maandishi */
-      line-height: 1.6;          /* Nafasi kati ya mistari */
-      color: #1a1a1a;            /* Rangi ya mwandiko (nyeusi iliyolainishwa) */
-      background-color: #ffffff;
-      padding-bottom: 50px;
-    }
-    /* Container ya Maandishi */
-    .container {
-      max-width: 800px;         /* Huweka maandishi katikati na kutoshea vizuri */
-      margin: 30px auto;
-      padding: 0 20px;
-    }
+    <h3>2. Inchoate Crimes (Makosa Yasiyokamilika)</h3>
+    <p>
+        Crimes that are committed in preparation for or seeking to accomplish another crime:
+    </p>
+    <ul>
+        <li><strong>Attempt (Subira/Kujaribu) - Section 380:</strong> An act done with intent to commit an offence, forming part of a series of acts which would constitute its actual commission if not interrupted.</li>
+        <li><strong>Conspiracy (Njama) - Section 384:</strong> An agreement between two or more persons to commit an unlawful act.</li>
+    </ul>
 
-    p {
-      margin-bottom: 24px;       /* Nafasi kati ya aya na aya (paragraph spacing) */
-      letter-spacing: 0.2px;    /* Nafasi ndogo kati ya herufi */
-    }
-</style>
-</head>
-<body>
+    <!-- TOPIC 4 -->
+    <h2 id="crim-t4" class="section-title">Topic 4: Specific Offences (Homicide & Property Crimes)</h2>
+   
+    <h3>1. Murder vs Manslaughter</h3>
+    <ul>
+        <li><strong>Murder (Mauaji ya Kukusudia) - Section 196:</strong> Unlawful killing of a human being with <em>malice aforethought</em> (Section 200). Penalty: Death Sentence (Section 197).</li>
+        <li><strong>Manslaughter (Mauaji Bila Kukusudia) - Section 195:</strong> Unlawful killing committed without malice aforethought (e.g., under sudden provocation - Section 201).</li>
+    </ul>
 
-  <p><strong>Welcome to our Criminal Law course!</strong><br>
-    This course is designed to provide you with a comprehensive understanding of criminal law principles, procedures, and case studies. 
-    Whether you're a law student, legal professional, or simply interested in the field of criminal justice, 
-    this course will equip you with the knowledge and skills necessary to navigate the complexities of criminal law.
-    Throughout the course, you will explore various topics, including the elements of criminal offenses, defenses, the criminal justice system, and the role of law enforcement. 
-    You will also analyze landmark cases and engage in practical exercises to enhance your critical thinking and problem-solving abilities.
-    By the end of this course, you will have a solid foundation in criminal law and be prepared to apply your knowledge in real-world scenarios. 
-    Join us on this educational journey and gain valuable insights into the fascinating world of criminal law.<br> 
+    <div class="statute-box">
+        📌 <strong>Penal Code, Cap. 16 - Section 200 (Malice Aforethought)</strong><br>
+        Malice aforethought shall be deemed to be established by evidence proving an intention to cause death or grievous harm, or knowledge that the act will probably cause death.
+    </div>
 
+    <h3>2. Theft & Robbery</h3>
+    <ul>
+        <li><strong>Theft (Wizi) - Section 258:</strong> Fraudulently and without claim of right taking and carrying away anything capable of being stolen with intent to permanently deprive the owner.</li>
+        <li><strong>Robbery (Unyang'anyi wa Kutumia Nguvu) - Section 285:</strong> Theft accompanied by actual force or threat of violence to any person or property to obtain or retain the stolen property.</li>
+    </ul>
 
-    <strong>Introduction to Criminal Law</strong><br>
-    
-  </p>
-
-
-</body>
-</html>
+</main>

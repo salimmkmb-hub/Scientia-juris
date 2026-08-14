@@ -1,70 +1,88 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scientia Juris</title>
-  <style>
-    /* Reset na Mpangilio Mkuu */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<!--
+  FAILI: insurance-law.html
+  Maelezo ya Sheria ya Bima (Insurance Law in Tanzania)
+  Limetengenezwa maalum kuingia kwenye mfumo wa Single Page Application wa Scientia Juris.
+-->
 
-    body {
-      /* Mwandiko wa aina ya Serif (Georgia/Garamond) kama kwenye picha */
-      font-family: "Georgia", "Times New Roman", Garamond, serif;
-      font-size: 19px;          /* Ukubwa wa maandishi */
-      line-height: 1.6;          /* Nafasi kati ya mistari */
-      color: #1a1a1a;            /* Rangi ya mwandiko (nyeusi iliyolainishwa) */
-      background-color: #ffffff;
-      padding-bottom: 50px;
-    }
+<main>
+    <!-- HEADER YA KOZI -->
+    <div class="meta-info">
+        <span class="badge">INSURANCE LAW</span>
+        <span>Sheria ya Bima - Tanzania Mainland</span>
+    </div>
 
-    /* Top Navigation / Header */
-    header {
-      background-color: #002b49; /* Rangi ya bluu nzito ya juu (Dark Navy Blue) */
-      color: #ffffff;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      /* Mstari wa rangi ya Teal/Cyan chini ya bar ya juu */
-      border-bottom: 6px solid #008ca8;
-    }
+    <h1 class="document-title">Principles & Regulatory Framework of Insurance Law</h1>
 
-    /* Container ya Maandishi */
-    .container {
-      max-width: 800px;         /* Huweka maandishi katikati na kutoshea vizuri */
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    p {
-      margin-bottom: 24px;       /* Nafasi kati ya aya na aya (paragraph spacing) */
-      letter-spacing: 0.2px;    /* Nafasi ndogo kati ya herufi */
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Top Bar -->
-  <header>
-    <div style="font-weight: bold; font-size: 18px;">SCIENTIA JURIS</div>
-    <div>🔍  ☰</div>
-  </header>
-
-  <!-- Content / Maandishi -->
-  <div class="container">
+    <!-- TOPIC 1 -->
+    <h2 id="ins-t1" class="section-title">Topic 1: Fundamental Principles of Insurance</h2>
     <p>
-      Following a meeting of the Four Bars (England and Wales, Ireland, Northern Ireland, and Scotland) in Dublin last week and in advance of the forthcoming Four Jurisdictions Conference in Belfast in June, the leadership of the Four Bars have issued the following joint statement on the cab rank rule.
+        Insurance law is grounded in specific fundamental principles that distinguish an insurance contract from ordinary commercial contracts or wagering agreements.
     </p>
 
+    <h3>1. Principle of Utmost Good Faith (Uberrimae Fidei)</h3>
     <p>
-      The cab rank rule is a bedrock obligation for the independent referral Bar. The rule means that barristers cannot discriminate between clients, and that they must take on any case provided that it is within their competence and they are available and appropriately remunerated.
+        Both the insurer and the insured must disclose all material facts fully and accurately before entering into the insurance contract. Non-disclosure or misrepresentation of a material fact renders the contract voidable at the option of the aggrieved party.
     </p>
-  </div>
 
-</body>
-</html>
+    <h3>2. Insurable Interest</h3>
+    <p>
+        The insured must have a legal relationship with the subject matter of insurance, where they stand to benefit from its safety or suffer a pecuniary (financial) loss from its damage or destruction.
+    </p>
+
+    <!-- KIFUNGU CHA SHERIA (STATUTE BOX) -->
+    <div class="statute-box">
+        📌 <strong>Insurance Act, Cap. 394 [R.E. 2019] - Section 128</strong><br>
+        "No policy of insurance shall be issued on the life of any person or on any other event wherein the person for whose use or benefit, or on whose account the policy is issued, has no insurable interest."
+    </div>
+
+    <h3>3. Principle of Indemnity, Subrogation & Contribution</h3>
+    <ul>
+        <li><strong>Indemnity:</strong> Restoring the insured to the exact financial position they occupied immediately prior to the loss (applies to property insurance, not life insurance).</li>
+        <li><strong>Subrogation:</strong> The right of the insurer, after indemnifying the insured, to step into the shoes of the insured and pursue legal remedies against liable third parties.</li>
+        <li><strong>Contribution:</strong> Applicable in double insurance where an insured holds multiple policies on the same risk; insurers share the loss proportionally.</li>
+    </ul>
+
+    <!-- PRECEDENT CASE (CASE BOX) -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: Lucena v. Craufurd (1806) 2 Bos & Pul 269</strong><br>
+        Kesi ya msingi inayoeleza maana ya <em>Insurable Interest</em>, ikithibitisha kuwa mtu lazima awe na haki ya kisheria au maslahi ya kifedha yanayoshikika juu ya kitu au maisha anayoyakatia bima.
+    </div>
+
+    <!-- TOPIC 2 -->
+    <h2 id="ins-t2" class="section-title">Topic 2: Regulatory Authority & Licensing (TIRA)</h2>
+    <p>
+        The primary supervisory and regulatory body for the insurance industry in Tanzania is the <strong>Tanzania Insurance Regulatory Authority (TIRA)</strong>, headed by the Commissioner of Insurance.
+    </p>
+
+    <div class="statute-box">
+        📌 <strong>Insurance Act, Cap. 394 - Section 5</strong><br>
+        "The Authority shall be responsible for coordinating, policy formulations, regulation, supervision and development of the insurance industry in Tanzania."
+    </div>
+
+    <p>
+        Under Cap. 394, no person or corporate body is permitted to conduct insurance business, insurance brokerage, or agency services in Tanzania without obtaining a valid license from the Commissioner of Insurance.
+    </p>
+
+    <!-- TOPIC 3 -->
+    <h2 id="ins-t3" class="section-title">Topic 3: Mandatory Insurance Classes</h2>
+    <p>
+        The Insurance Act creates statutory obligations for individuals and businesses to maintain specified classes of insurance to protect the public and property.
+    </p>
+
+    <p><strong>Examples of Mandatory Insurance under Tanzanian Law:</strong></p>
+    <ul>
+        <li><strong>Motor Vehicle Insurance (Third-Party Risk):</strong> Mandatory under Section 132 for all motor vehicles operating on public roads.</li>
+        <li><strong>Commercial Building Insurance:</strong> Statutory requirement to insure commercial buildings against fire and allied perils.</li>
+        <li><strong>Imported Goods Insurance:</strong> Requirement for foreign trade goods imported into Tanzania to be insured through local insurance companies.</li>
+    </ul>
+
+    <!-- TOPIC 4 -->
+    <h2 id="ins-t4" class="section-title">Topic 4: Claims Management & Dispute Resolution</h2>
+    <p>
+        When a loss occurs, the insured is required to give prompt notice of claim and submit proof of loss in accordance with the policy conditions.
+    </p>
+    <p>
+        In case of claims disputes between an insured person and an insurer, parties may utilize internal dispute mechanisms, refer to the <strong>Insurance Ombudsman</strong>, or institute civil proceedings in a competent court.
+    </p>
+
+</main>

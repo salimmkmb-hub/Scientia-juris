@@ -1,645 +1,88 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scientia-Juris - Home</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- FontAwesome kwa ajili ya icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* --- RESET & BASIC STYLES --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Georgia, 'Times New Roman', Times, serif, sans-serif;
-}
-
-body {
-  background-color: #f8f9fa;
-  color: #1a2530;
-  line-height: 1.6;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* --- NAVIGATION BAR --- */
-.navbar {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-icon {
-  width: 45px;
-  height: 45px;
-  border: 2px solid #0056b3;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0056b3;
-  font-size: 1.2rem;
-}
-
-.logo-text {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #1a2530;
-  letter-spacing: 0.5px;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #0056b3;
-}
-
-.nav-icons {
-  display: flex;
-  gap: 15px;
-  margin-left: 10px;
-  font-size: 1.1rem;
-}
-
-.menu-toggle, .hamburger {
-  display: none;
-}
-
-/* --- HERO SECTION --- */
-.hero-section {
-  padding: 40px 0;
-}
-
-.hero-card {
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  overflow: hidden;
-}
-
-/* --- GUIDES SECTION --- */
-.guides-section {
-  padding: 60px 0;
-  background-color: #ffffff;
-  border-top: 1px solid #eee;
-}
-
-.text-center {
-  text-align: center;
-  max-width: 700px;
-}
-
-.guides-section h2 {
-  font-size: 2.2rem;
-  font-weight: 400;
-  margin-bottom: 15px;
-}
-
-.guides-section h3 {
-  font-size: 1.2rem;
-  color: #0056b3;
-  margin-bottom: 10px;
-}
-
-.guides-section p {
-  color: #666;
-}
-
-/* ===================================================
-   RESPONSIVE LAYOUT (MEDIA QUERIES FOR MOBILE & TABLET)
-   =================================================== */
-
-@media (max-width: 992px) {
-  /* Mabadiliko ya Hero Card kwenye Kioo cha Saizi ya Kati */
-  .hero-card {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Mabadiliko ya Navigation Menu kuwa Hamburger kwenye Simu */
-  .hamburger {
-    display: block;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #0056b3;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    gap: 15px;
-    border-bottom: 2px solid #0056b3;
-    display: none;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  }
-
-  /* Onyesha Menu Pindi Hamburger Inapobonyezwa */
-  .menu-toggle:checked ~ .nav-links {
-    display: flex;
-  }
-
-  .nav-icons {
-    margin-left: 0;
-    margin-top: 10px;
-  }
-
-  .hero-content h2 {
-    font-size: 1.6rem;
-  }
-}
-
-/* --- HERO SLIDESHOW CONTAINER --- */
-.hero-section {
-  padding: 30px 0;
-}
-
-.hero-slider {
-  position: relative;
-  overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  background-color: #ffffff;
-}
-
-/* Kila Slide */
-.slide {
-  display: none;
-  animation: fadeEffect 0.8s ease-in-out;
-}
-
-.slide.active {
-  display: block;
-}
-
-/* Animation ya kubadilika kwa muonekano */
-@keyframes fadeEffect {
-  from { opacity: 0.4; }
-  to { opacity: 1; }
-}
-
-.hero-card {
-  display: flex;
-  align-items: center;
-}
-
-.hero-image {
-  flex: 1;
-  max-width: 50%;
-  height: 380px;
-}
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.hero-content {
-  flex: 1;
-  padding: 40px;
-}
-
-.hero-content h2 {
-  font-size: 2rem;
-  font-weight: 400;
-  margin-bottom: 15px;
-  color: #111;
-}
-
-.hero-content p {
-  color: #555;
-  margin-bottom: 25px;
-  font-size: 0.95rem;
-}
-
-.btn-outline {
-  display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid #111;
-  color: #111;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.btn-outline:hover {
-  background-color: #111;
-  color: #fff;
-}
-
-/* --- MISHALE YA PREV / NEXT --- */
-.prev-btn, .next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: #333;
-  transition: background-color 0.3s ease;
-  z-index: 10;
-}
-
-.prev-btn:hover, .next-btn:hover {
-  background-color: #0056b3;
-  color: #fff;
-}
-
-.prev-btn { left: 15px; }
-.next-btn { right: 15px; }
-
-/* --- DOTS (VIJINUOTA CHINI) --- */
-.dots-container {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  background-color: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.dot.active, .dot:hover {
-  background-color: #0056b3;
-}
-
-/* --- RESPONSIVE FOR MOBILE --- */
-@media (max-width: 992px) {
-  .hero-card {
-    flex-direction: column;
-  }
-
-  .hero-image {
-    max-width: 100%;
-    width: 100%;
-    height: 250px;
-  }
-
-  .hero-content {
-    padding: 25px;
-    padding-bottom: 45px; /* Nafasi ya dots */
-  }
-
-  .hero-content h2 {
-    font-size: 1.5rem;
-  }
-}
-
-/* --- STICKY HEADER --- */
-.main-header {
-  background-color: #0b3c4d; /* Rangi ya dark blue/teal kama ya kwenye video */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
-}
-
-.nav-container {
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  height: 70px;
-}
-
-
-
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-}
-
-.logo-text {
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-
-
-/* --- DROPDOWN MENU --- */
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 220px;
-  background-color: #ffffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  display: none; /* Inakuwa hidden mpaka mtu aweke cursor */
-  flex-direction: column;
-  border-top: 3px solid #0b3c4d;
-}
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-.nav-links:hover {
-    text-decoration: underline;
-}
-/* Badilisha rangi ya maandishi ya link zote zilizopo ndani ya header/bar */
-.header a,
-.nav-bar a,
-.service-buttons a {
-    color: #ffffff !important; /* Inafanya rangi ya maandishi kuwa nyeupe */
-    text-decoration: none;      /* Inaondoa mstari wa chini kama upo */
-}
-
-/* --- 3. FICHA ORODHA MWANZONE (DISPLAY: NONE) --- */
-.dropdown-menu {
-    display: none;               /* Inaficha orodha mwanzoni */
-    position: absolute;
-    top: 100%;                   /* Inakaa chini kabisa ya neno kuu */
-    left: 0;
-    background-color: #ffffff;   /* Rangi ya background ya orodha */
-    min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-    z-index: 1000;
-    border-radius: 4px;
-}
-
-/* --- 4. ONYESHA ORODHA WAKATI MTU ANAPOGUSA (HOVER) --- */
-.dropdown:hover .dropdown-menu {
-    display: block;              /* Inashusha na kuonyesha orodha */
-}
-
-/* --- 5. MUONEKANO WA MANENO YALIYO NDANI YA ORODHA --- */
-.dropdown-menu a {
-    color: #333333 !important;   /* Rangi ya maandishi ya ndani ya orodha */
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 0.9rem;
-}
-
-/* Mstari na rangi kwa maneno ya ndani ya orodha yakiguswa */
-.dropdown-menu a:hover {
-    background-color: #f1f1f1;
-    text-decoration: underline;  /* Mstari chini ya item iliyoguswa ndani ya dropdown */
-}
-  </style>
-</head>
-<body>
-
-   <!-- HEADER SECTION -->
-
-  <!-- HEADER / NAVIGATION -->
-  <header class="main-header">
-    <div class="container nav-container">
-      <div class="logo">
-        <div class="logo-icon">
-          <i class="fa-solid fa-scale-balanced"></i>
-        </div>
-        <span class="logo-text">SCIENTIA-JURIS</span>
-      </div>
-
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="hamburger">
-        <i class="fa-solid fa-bars"></i>
-      </label>
-
-      <nav class="nav-links">
-        <!-- ITEM 1: DROPDOWN -->
-      <div class="nav-item dropdown">
-          <a href="#" class="nav-link">About us<i class=""></i></a>
-          <div class="dropdown-menu">
-            <a href="about.html" class="nav-link">About us</a>
-            <a href="about-the-bar.html" class="nav-link">About the Bar</a>
-            <a href="our-governance.html" class="nav-link">Our Governance</a>
-            <a href="the-bar-council-team.html" class="nav-link">The Bar Council Team</a>
-            <a href="the-bar-foundation.html" class="nav-link">The Bar Foundation</a>
-          </div>
-       
-      </div>
-
-      <!-- ITEM 2 -->
-      <div class="nav-item dropdown">
-        <a href="#" class="nav-link">Our Services<i class=""></i></a>
-        <div class="dropdown-menu">
-            <a href="Drafting.html" class="nav-link">Drafting Service</a>
-            <a href="Review-service-main.html" class="nav-link">Review Documents Service</a>
-            <a href="Verification-and-registration.html" class="nav-link">Verification and Registration</a>
-            <a href="Legal-representation.html" class="nav-link">Legal Representation</a>
-            <a href="Legal-consultation.html" class="nav-link">Legal Consultation</a>
-          </div>
-      </div>
-
-      <!-- ITEM 3 -->
-      <div class="nav-item">
-        <a href="Notes.html" class="nav-link">Legal Notes</a>
-      </div>
-
-          <!-- ITEM 5 -->
-      <div class="nav-item">
-        <a href="#" class="nav-link">Library</a>
-      </div>
-
-      <!-- ITEM 4 -->
-      <div class="nav-item">
-        <a href="#" class="nav-link">Tanzania Laws</a>
-      </div>
-
-  
-
-      <!-- ITEM 5 -->
-      <div class="nav-item">
-        <a href="#" class="nav-link">Privacy Policy</a>
-      </div>
-
-      <!-- ITEM 6 -->
-      <div class="nav-item">
-        <a href="#" class="nav-link">Terms & Conditions</a>
-      </div>
-        
-        <div class="nav-icons">
-          <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-          <a href="#"><i class="fa-solid fa-user"></i></a>
-          <a href="#" title="Accessibility"><i class="fa-solid fa-universal-access"></i></a>
-          
-        </div>
-      </nav>
-    </div>
-  </header>
-
- <!-- HERO SLIDESHOW SECTION -->
-<section class="hero-section">
-  <div class="container hero-slider">
-   
-    <!-- SLIDE 1 -->
-    <div class="slide active">
-      <div class="hero-card">
-        <div class="hero-image">
-          <img src="Kangungu..jpg" alt="Toolkit for chambers">
-        </div>
-        <div class="hero-content">
-          <h2>New toolkit for chambers</h2>
-          <p>Supporting chambers to tackle bullying and harassment. A comprehensive toolkit covering new measures, recommendations and reporting rules, including policy templates.</p>
-          <a href="#" class="btn-outline">Read more <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
+<!--
+  FAILI: labour-law.html
+  Maelezo ya Sheria ya Kazi (Labour Law in Tanzania)
+  Limetengenezwa maalum kuingia kwenye mfumo wa Single Page Application wa Scientia Juris.
+-->
+
+<main>
+    <!-- HEADER YA KOZI -->
+    <div class="meta-info">
+        <span class="badge">LABOUR LAW</span>
+        <span>Sheria za Kazi na Mahusiano Kazini - Tanzania Mainland</span>
     </div>
 
-    <!-- SLIDE 2 -->
-    <div class="slide">
-      <div class="hero-card">
-        <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&auto=format&fit=crop" alt="Serious misconduct">
-        </div>
-        <div class="hero-content">
-          <h2>Changes to rules on reporting serious misconduct</h2>
-          <p>The Bar Standards Board has announced updates regarding the reporting requirements for barristers and chambers to ensure fair standards.</p>
-          <a href="#" class="btn-outline">Find out more <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
+    <h1 class="document-title">Employment Standards & Labour Relations Framework</h1>
+
+    <!-- TOPIC 1 -->
+    <h2 id="lab-t1" class="section-title">Topic 1: Fundamental Principles & Rights at Work</h2>
+    <p>
+        Labour Law in Tanzania sets out the minimum statutory rights and protections for employees. The legal framework strictly prohibits forced labour, child labour, discrimination in employment, and interference with the freedom of association.
+    </p>
+
+    <!-- KIFUNGU CHA SHERIA (STATUTE BOX) -->
+    <div class="statute-box">
+        📌 <strong>Employment and Labour Relations Act, Cap. 366 [R.E. 2019] - Section 7(1)</strong><br>
+        "Every employer shall ensure that he promotes equal opportunity in employment and strives to eliminate discrimination in any employment policy or practice."
     </div>
 
-    <!-- SLIDE 3 -->
-    <div class="slide">
-      <div class="hero-card">
-        <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?q=80&w=800&auto=format&fit=crop" alt="Prisoner delays">
-        </div>
-        <div class="hero-content">
-          <h2>Reporting prisoner delays</h2>
-          <p>Help us gather information about trial delays affecting custody cases across different court regions in the country.</p>
-          <a href="#" class="btn-outline">Make a report <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
+    <p>
+        Discrimination is prohibited on grounds including race, gender, nationality, political opinion, religion, disability, HIV/AIDS status, or marital status.
+    </p>
+
+    <!-- TOPIC 2 -->
+    <h2 id="lab-t2" class="section-title">Topic 2: Contracts of Employment & Minimum Standards</h2>
+    <p>
+        A contract of employment can be formed orally or in writing. However, for contracts of specified duration or specific tasks, statutory conditions apply.
+    </p>
+
+    <h3>1. Types of Employment Contracts (Section 14)</h3>
+    <ul>
+        <li>Contract for an unspecified period of time (Permanent contract).</li>
+        <li>Contract for a specified period for professionals or managerial cadre.</li>
+        <li>Contract for a specific task.</li>
+    </ul>
+
+    <h3>2. Basic Basic Working Conditions (Part III)</h3>
+    <p>
+        Sheria inainainisha viwango vya chini vya mazingira ya kazi:
+    </p>
+    <ul>
+        <li><strong>Hours of Work (Section 19):</strong> Maximum 45 ordinary hours in any week (9 hours per day for a 5-day week or 8 hours per day for a 6-day week).</li>
+        <li><strong>Annual Leave (Section 31):</strong> Minimum of 28 consecutive days on full remuneration in any leave cycle.</li>
+        <li><strong>Maternity & Paternity Leave (Sections 33 & 34):</strong> 84 days paid maternity leave (or 100 days for multiple births) and 3 days paid paternity leave.</li>
+    </ul>
+
+    <!-- TOPIC 3 -->
+    <h2 id="lab-t3" class="section-title">Topic 3: Termination of Employment & Unfair Dismissal</h2>
+    <p>
+        For a termination of employment to be lawful under Tanzanian law, it must meet two essential conditions: **Substantive Fairness** (valid reason) and **Procedural Fairness** (fair procedure).
+    </p>
+
+    <div class="statute-box">
+        📌 <strong>Employment and Labour Relations Act, Cap. 366 - Section 37(1)</strong><br>
+        "It shall be unlawful for an employer to terminate the employment of an employee unfairly."
     </div>
 
-    <!-- CONTROLS (Mishale & Dots) -->
-    <button class="prev-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-    <button class="next-btn" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    <p><strong>Valid Reasons for Termination (Section 37(2)):</strong></p>
+    <ul>
+        <li>Relating to the employee's conduct (Misconduct).</li>
+        <li>Relating to the employee's capacity or performance (Incapacity).</li>
+        <li>Based on operational requirements of the employer (Retrenchment/Redundancy).</li>
+    </ul>
 
-    <div class="dots-container">
-      <span class="dot active" onclick="currentSlide(0)"></span>
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
+    <!-- PRECEDENT CASE (CASE BOX) -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: Air Tanzania Corporation v. Peter Mawalla (2001) TLR 110</strong><br>
+        Mahakama ilisisitiza kuwa hata kama mwajiri ana sababu ya msingi ya kumfuta kazi mfanyakazi, kukosa kufuata taratibu za kisheria za usikilizaji wa haki (Right to be heard / Natural Justice) kunaifanya utenguzi huo kuwa batili na usio wa haki (Unfair Dismissal).
     </div>
 
-  </div>
-</section>
+    <!-- TOPIC 4 -->
+    <h2 id="lab-t4" class="section-title">Topic 4: Dispute Resolution Mechanisms</h2>
+    <p>
+        Disputes arising in employment are resolved through statutory bodies established under the Labour Institutions Act, Cap. 300.
+    </p>
+    <p>
+        The primary forum for mediation and arbitration is the <strong>Commission for Mediation and Arbitration (CMA)</strong>. If a party is dissatisfied with an arbitration award, an application for revision can be lodged in the <strong>Labour Division of the High Court of Tanzania</strong>.
+    </p>
 
-<!-- BREADCRUMB TRAIL (Inaonekana kwenye kurasa kama About Us) -->
-<div class="breadcrumb-container">
-
-
-  <!-- GUIDES AND TEMPLATES SECTION -->
-  <section class="guides-section">
-    <div class="container text-center">
-      <h2>Guides and templates</h2>
-      <h3>Visit our Ethics and practice hub</h3>
-      <p>Find a wide range of guides, resources, and templates on ethics and practice management for barristers and chambers.</p>
-    </div>
-  </section>
-   <!-- WEKA HII CHINI KABISA KABLA YA </body> -->
-  <script>
-    let slideIndex = 0;
-
-    function autoShowSlides() {
-      let slides = document.querySelectorAll('.slide');
-      let dots = document.querySelectorAll('.dot');
-
-      if (slides.length === 0) return;
-
-      // 1. Ficha slide zote na dots
-      slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
-
-      // 2. Ongeza index
-      slideIndex++;
-      if (slideIndex > slides.length) {
-        slideIndex = 1;
-      }
-
-      // 3. Onyesha slide na dot ya sasa
-      slides[slideIndex - 1].classList.add('active');
-      if (dots[slideIndex - 1]) {
-        dots[slideIndex - 1].classList.add('active');
-      }
-
-      // 4. Badilisha kiotomatiki kila sekunde 4
-      setTimeout(autoShowSlides, 7000);
-    }
-
-    // Mishale (Prev / Next) na Dots click events
-    function moveSlide(n) {
-      let slides = document.querySelectorAll('.slide');
-      slideIndex += n - 1;
-      if (slideIndex < 0) slideIndex = slides.length - 1;
-      autoShowSlides();
-    }
-
-    function currentSlide(n) {
-      slideIndex = n;
-      autoShowSlides();
-    }
-
-    // Anzisha slideshow ukurasa unapofunguka
-    document.addEventListener("DOMContentLoaded", autoShowSlides);
-</script>
-</body>
-</html>
+</main>

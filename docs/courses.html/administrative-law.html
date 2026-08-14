@@ -1,44 +1,98 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-    <meta charset="UTF-8">
-    <title>Administrative Law Notes</title>
-    <style>
-         /* CSS kwa ajili ya Watermark ya Background */
-        body {
-            /* 1. Weka rangi ya usuli kama karatasi (hiari) */
-            background-color: #fffaf0;
-        }
-        h1 {
-            color: #113355; /* Rangi ya Bluu iliyokolea kutoka nembo */
-            text-align: center;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-    </style>
-    
-</head>
-<body>
-    <div class="container">
-        <h1>Administrative Law Notes</h1>
-        <p>Topic Digested includes: -</p>
-        <ul>
-            <h3>Topic One</h3>
-            <li>Introduction...</li>
-            <h3>Topic Two</h3>
-            <li>.....</li>
-            <h3>Topic Three</h3>
-            <li>......</li>
-            <h3>Topic Four</h3>
-            <li>.....</li>
-        </ul>
-        <hr>
-        <a href="index.html" class="back-btn">← Back</a>
+<!--
+  FAILI: administrative-law.html
+  Maelezo ya Sheria ya Utawala (Administrative Law in Tanzania)
+  Limetengenezwa maalum kuingia kwenye mfumo wa Single Page Application wa Scientia Juris.
+-->
+
+<main>
+    <!-- HEADER YA KOZI -->
+    <div class="meta-info">
+        <span class="badge">ADMINISTRATIVE LAW</span>
+        <span>Sheria ya Utawala na Udhibiti wa Madaraka - Tanzania Mainland</span>
     </div>
-    
+
+    <h1 class="document-title">Principles of Administrative Law, Judicial Review & Natural Justice</h1>
+
+    <!-- TOPIC 1 -->
+    <h2 id="admin-t1" class="section-title">Topic 1: Nature, Scope & Constitutional Foundations</h2>
+    <p>
+        Administrative Law regulates the operation, powers, and duties of administrative agencies, public authorities, and government officials. Its primary purpose is to ensure that public authorities exercise their statutory powers lawfully, reasonably, and fairly without abusing their authority.
     </p>
-</footer>
-</body>
-</html>
+
+    <div class="statute-box">
+        📌 <strong>Constitutional Basis - Article 13(6)(a) of the 1977 Constitution of Tanzania</strong><br>
+        "When the rights and duties of any person are being determined by any court or any other agency, that person shall be entitled to a fair hearing and to the right of appeal or other legal remedy against decisions of courts or other agencies."
+    </div>
+
+    <h3>Doctrine of Ultra Vires</h3>
+    <p>
+        The central doctrine of Administrative Law is the principle of <strong>Ultra Vires</strong> (acting beyond one's legal power). Any decision or action taken by an administrative body that exceeds the boundaries of power conferred by statute is void and legally unenforceable.
+    </p>
+    <ul>
+        <li><strong>Substantive Ultra Vires:</strong> Acting completely outside the scope of statutory authority.</li>
+        <li><strong>Procedural Ultra Vires:</strong> Failing to follow mandatory statutory procedures when making a decision.</li>
+    </ul>
+
+    <!-- TOPIC 2 -->
+    <h2 id="admin-t2" class="section-title">Topic 2: Delegated Legislation (Sheria Ndogo)</h2>
+    <p>
+        <strong>Delegated Legislation</strong> (also known as subordinate or secondary legislation) refers to rules, regulations, bylaws, orders, or proclamations made by administrative bodies under authority delegated to them by Parliament through a parent Act.
+    </p>
+
+    <p><strong>Mechanisms for Controlling Delegated Legislation:</strong></p>
+    <ul>
+        <li><strong>Parliamentary Control:</strong> Requirement to lay statutory instruments before Parliament for scrutiny or approval.</li>
+        <li><strong>Judicial Control:</strong> The High Court can declare delegated legislation <em>ultra vires</em> or unconstitutional if it exceeds delegated authority or violates fundamental rights.</li>
+        <li><strong>Public Consultation / Gazette Publication:</strong> Mandatory publication in the official Government Gazette before enforcement.</li>
+    </ul>
+
+    <!-- TOPIC 3 -->
+    <h2 id="admin-t3" class="section-title">Topic 3: Principles of Natural Justice (Haki ya Kusikilizwa & Kutokuwa na Upendeleo)</h2>
+    <p>
+        Natural Justice comprises the procedural safeguards that administrative bodies and quasi-judicial tribunals must observe when making decisions affecting individual rights.
+    </p>
+
+    <h3>1. Audi Alteram Partem (Hear the Other Side)</h3>
+    <p>
+        No person should be condemned or penalized without being given a fair opportunity to present their case. This includes adequate notice of charges and a reasonable opportunity to respond.
+    </p>
+
+    <h3>2. Nemo Judex in Causa Sua (Rule Against Bias)</h3>
+    <p>
+        No person should act as a judge in a cause in which they have a personal, pecuniary, or official interest. Decisions must be made free from actual bias or reasonable apprehension of bias.
+    </p>
+
+    <!-- PRECEDENT CASE -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: Ridge v. Baldwin [1964] AC 40</strong><br>
+        Kesi hii mashuhuri ilithibitisha kuwa misingi ya <em>Natural Justice</em> (Haki ya Kusikilizwa) lazima ifuatwe na vyombo vyote vya utawala wakati wa kumfuta kazi au kumwadhibu mtumishi wa umma, hata kama chombo hicho kinafanya maamuzi ya kiutawala na si ya mahakama.
+    </div>
+
+    <!-- TOPIC 4 -->
+    <h2 id="admin-t4" class="section-title">Topic 4: Judicial Review & Prerogative Orders</h2>
+    <p>
+        <strong>Judicial Review</strong> is the process by which the High Court exercises its supervisory jurisdiction over lower courts, tribunals, and administrative bodies to ensure their decisions are lawful, rational, and procedurally fair.
+    </p>
+
+    <div class="statute-box">
+        📌 <strong>Statutory Authority: Law Reform (Fatal Accidents and Miscellaneous Provisions) Act, Cap. 360 - Section 17 & 18</strong><br>
+        The High Court of Tanzania derives its statutory jurisdiction to issue orders of Mandamus, Prohibition, and Certiorari through applications for Judicial Review under Cap. 360.
+    </div>
+
+    <h3>Prerogative Writs / Orders:</h3>
+    <ul>
+        <li><strong>Certiorari:</strong> An order issued by the High Court to quash or invalidate an illegal, improper, or <em>ultra vires</em> decision already made by an administrative tribunal or body.</li>
+        <li><strong>Prohibition:</strong> An order preventing or restraining an administrative body from proceeding with an illegal action or making an unauthorized decision.</li>
+        <li><strong>Mandamus:</strong> An order compelling a public authority or official to perform a mandatory statutory duty that they have neglected or refused to perform.</li>
+    </ul>
+
+    <!-- PRECEDENT CASE -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: Council of Civil Service Unions v. Minister for the Civil Service [1985] AC 374 (GCHQ Case)</strong><br>
+        Kesi iliyoweka misingi mitatu kuu ya kuomba <em>Judicial Review</em>:
+        <br>1. <strong>Illegality:</strong> Chombo kutoelewa au kukiuka sheria inayokipa madaraka.
+        <br>2. <strong>Irrationality / Wednesbury Unreasonableness:</strong> Maamuzi yasiyo na mantiki kabisa kiasi kwamba hakuna mtu mwenye akili timamu anayeweza kuyachukua.
+        <br>3. <strong>Procedural Impropriety:</strong> Kukosa kufuata taratibu za kisheria au misingi ya Natural Justice.
+    </div>
+
+</main>

@@ -1,44 +1,79 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-    <meta charset="UTF-8">
-    <style>
-         /* CSS kwa ajili ya Watermark ya Background */
-        body {
-            /* 1. Weka rangi ya usuli kama karatasi (hiari) */
-            background-color: #fffaf0;
-        }
-        h1 {
-            color: #113355; /* Rangi ya Bluu iliyokolea kutoka nembo */
-            text-align: center;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-    </style>
-    <title>Land Law Notes</title>
-    
-</head>
-<body>
-    <div class="container">
-        <h1>Land Law Notes</h1>
-        <p>Topic Digested includes: -</p>
-        <ul>
-            <h3>Topic One</h3>
-            <li>Introduction...</li>
-            <h3>Topic Two</h3>
-            <li>.....</li>
-            <h3>Topic Three</h3>
-            <li>......</li>
-            <h3>Topic Four</h3>
-            <li>.....</li>
-        </ul>
-        <hr>
-        <a href="index.html" class="back-btn">← Back</a>
+<!--
+  FAILI: land-law.html
+  Maelezo ya Sheria ya Ardhi (Land Law in Tanzania)
+  Limetengenezwa maalum kuingia kwenye mfumo wa Single Page Application wa Scientia Juris.
+-->
+
+<main>
+    <!-- HEADER YA KOZI -->
+    <div class="meta-info">
+        <span class="badge">LAND LAW</span>
+        <span>Mfumo wa Sheria za Ardhi - Tanzania Mainland</span>
     </div>
-    
+
+    <h1 class="document-title">Land Tenure Systems & Property Rights</h1>
+
+    <!-- TOPIC 1 -->
+    <h2 id="land-t1" class="section-title">Topic 1: Land Tenure System in Tanzania</h2>
+    <p>
+        In Tanzania, all land is public land vested in the President as trustee for and on behalf of all citizens. Individual ownership of land as absolute private property (freehold) does not exist. Instead, individuals enjoy occupancy rights, which grant them the right to use and occupy the land under specified conditions.
     </p>
-</footer>
-</body>
-</html>
+
+    <!-- KIFUNGU CHA SHERIA (STATUTE BOX) -->
+    <div class="statute-box">
+        📌 <strong>Land Act, Cap. 113 [R.E. 2019] - Section 4(1)</strong><br>
+        "All land in Tanzania is public land vested in the President as trustee for and on behalf of all the citizens of Tanzania."
+    </div>
+
+    <p>
+        Under Section 4(4) of the Land Act, Cap. 113, public land in Tanzania is categorized into three major category streams:
+    </p>
+    <ul>
+        <li><strong>General Land:</strong> Public land which is not reserved land or village land, including unoccupied or unused land.</li>
+        <li><strong>Village Land:</strong> Land declared to be village land under the Village Land Act, Cap. 114, managed by Village Councils.</li>
+        <li><strong>Reserved Land:</strong> Land set aside for special purposes such as national parks, forest reserves, wildlife conservation, and roads (governed by sectoral legislation).</li>
+    </ul>
+
+    <!-- TOPIC 2 -->
+    <h2 id="land-t2" class="section-title">Topic 2: Customary vs Granted Rights of Occupancy</h2>
+    <p>
+        The legal framework governing land occupancy recognizes two main types of rights of occupancy:
+    </p>
+
+    <h3>1. Granted Right of Occupancy (GRO)</h3>
+    <p>
+        This is a right created and granted by the President (through the Commissioner for Lands) under the Land Act, Cap. 113 over General Land or Reserved Land. It is issued for a specific duration (up to 99 years) and is evidenced by a Certificate of Title.
+    </p>
+
+    <h3>2. Customary Right of Occupancy (CRO)</h3>
+    <p>
+        This is a right over Village Land granted by the Village Council under the Village Land Act, Cap. 114, or derived from customary law. It can be held indefinitely (indefinite duration) and carries equal legal status and effect as a Granted Right.
+    </p>
+
+    <!-- KIFUNGU CHA SHERIA (STATUTE BOX) -->
+    <div class="statute-box">
+         <strong>Village Land Act, Cap. 114 - Section 18(1)</strong><br>
+        "A customary right of occupancy is in every respect of equal status and effect to a granted right of occupancy..."
+    </div>
+
+    <!-- PRECEDENT CASE (CASE BOX) -->
+    <div class="case-box">
+         <strong>Precedent Case: Attorney General v. Lohay Akonaay & Joseph Lohay (1995) TLR 80 (CA)</strong><br>
+        Mahakama ya Rufani ilisisitiza kuwa haki za ardhi za kimila (customary land rights) ni haki kamili za kimiliki zinzolindwa na Katiba ya Jamhuri ya Muungano wa Tanzania under Article 24 (Right to Property), na haziwezi kufutwa bila fidia stahiki (fair and prompt compensation).
+    </div>
+
+    <!-- TOPIC 3 -->
+    <h2 id="land-t3" class="section-title">Topic 3: Land Disposition & Mortgages</h2>
+    <p>
+        A disposition includes any sale, lease, mortgage, transfer, or gift of land. Under Tanzanian law, any disposition of a Granted Right of Occupancy requires compliance with regulatory procedures and notification or consent requirements where applicable.
+    </p>
+    <p>
+        A <strong>Mortgage</strong> is a creation of a security interest over a right of occupancy to secure the payment of a debt or performance of an obligation.
+    </p>
+
+    <div class="statute-box">
+        📌 <strong>Land Act, Cap. 113 - Section 112(1)</strong><br>
+        "An occupier of land under a granted right of occupancy may, by an instrument in the prescribed form, mortgage his interest in the land or a part thereof to secure the payment of an existing or a future debt..."
+    </div>
+
+</main>

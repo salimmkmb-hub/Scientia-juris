@@ -1,44 +1,280 @@
-
+<!DOCTYPE html>
 <html lang="sw">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statutes - Vitabu vya Sheria | Library of Laws</title>
+    <!-- FontAwesome kwa ajili ya icons za kisasa -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
     <style>
-         /* CSS kwa ajili ya Watermark ya Background */
-        body {
-            /* 1. Weka rangi ya usuli kama karatasi (hiari) */
-            background-color: #fffaf0;
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-gold: #d97706;
+            --accent-blue: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
-        h1 {
-            color: #113355; /* Rangi ya Bluu iliyokolea kutoka nembo */
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent-gold);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .header-container {
             text-align: center;
         }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
+
+        /* GRID LAYOUT YA KISASA */
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.8rem;
+            max-width: 1300px;
+            margin: 0 auto;
         }
+
+        /* CARD YA KITABU (3D BOOK COVER STYLE) */
+        .book-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 5px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 1.5rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 260px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+            border-left-color: #fbbf24;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(217, 119, 6, 0.2);
+        }
+
+        .book-spine-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .book-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .book-icon {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+        }
+
+        .book-tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .book-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            /* Inalimit majina marefu yasiharibu shape */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .book-author {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* BUTTON YA SOMA / READ */
+        .btn-read {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-read:hover {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            border-color: var(--accent-blue);
+        }
+
+        /* VARIATIONS OF COLOR ACCENTS FOR DIFFERENT LAW TYPES */
+        .tag-contract { border-left-color: #3b82f6; }
+        .tag-criminal { border-left-color: #ef4444; }
+        .tag-constitution { border-left-color: #10b981; }
     </style>
-<ul> <title>Tanzania Constitution & Legal System Notes</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Tanzania Constitution & Legal System Notes</h1>
-        <h2>Topic Digest includes: -</h2>
-    </ul>
-            <h3>Topic one</h3>
-            <li>Introduction...</li>
-            <h3>Topic two</h3>
-            <li>....</li>
-            <h3>Topic three</h3>
-            <li>....</li>
-            <h3>Topic four</h3>
-            <li>....</li>
-            <h3>Topic five</h3>
-        
-        <hr>
-        <a href="index.html" class="back-btn">← Back</a>
+
+    <div class="header-container">
+        <h1 class="header-title">Library of Laws (E-Books)</h1>
     </div>
-    
-    </p>
-</footer>
+
+    <div class="library-grid">
+
+        <!-- BOOK 1 -->
+        <div class="book-card">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-gavel book-icon"></i>
+                    <span class="book-tag">Judiciary</span>
+                </div>
+                <div class="book-title">A Bench-Book for Judges in Tanzania</div>
+                <div class="book-author">High Court Practice Guide</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+        <!-- BOOK 2 -->
+        <div class="book-card">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-scale-balanced book-icon"></i>
+                    <span class="book-tag">Magistrate</span>
+                </div>
+                <div class="book-title">A Handbook for Magistrates in Primary Courts</div>
+                <div class="book-author">Tanzania Legal Series</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+        <!-- BOOK 3 -->
+        <div class="book-card tag-contract">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-file-contract book-icon"></i>
+                    <span class="book-tag">Civil Law</span>
+                </div>
+                <div class="book-title">Law of Contract</div>
+                <div class="book-author">General Principles & Cases</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+        <!-- BOOK 4 -->
+        <div class="book-card">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-book-bookmark book-icon"></i>
+                    <span class="book-tag">Dictionary</span>
+                </div>
+                <div class="book-title">Black's Law Dictionary (4th Ed)</div>
+                <div class="book-author">Legal Terminology</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+        <!-- BOOK 5 -->
+        <div class="book-card tag-constitution">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-landmark book-icon"></i>
+                    <span class="book-tag">History</span>
+                </div>
+                <div class="book-title">Historia ya Muungano wa Tanganyika na Zanzibar</div>
+                <div class="book-author">Katiba na Siasa</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+        <!-- BOOK 6 -->
+        <div class="book-card tag-criminal">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-fingerprint book-icon"></i>
+                    <span class="book-tag">Forensics</span>
+                </div>
+                <div class="book-title">Criminal Scene Investigation</div>
+                <div class="book-author">Evidence & Procedures</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+        <!-- BOOK 7 -->
+        <div class="book-card">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-pen-nib book-icon"></i>
+                    <span class="book-tag">Drafting</span>
+                </div>
+                <div class="book-title">Plain English for Lawyers</div>
+                <div class="book-author">Richard C. Wydick</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+        <!-- BOOK 8 -->
+        <div class="book-card">
+            <div class="book-spine-effect"></div>
+            <div>
+                <div class="book-header">
+                    <i class="fa-solid fa-balance-scale book-icon"></i>
+                    <span class="book-tag">Equity</span>
+                </div>
+                <div class="book-title">Principles of Natural Justice</div>
+                <div class="book-author">Administrative Rights</div>
+            </div>
+            <a href="#" class="btn-read"><i class="fa-solid fa-book-open"></i> Read Book</a>
+        </div>
+
+    </div>
+
 </body>
 </html>

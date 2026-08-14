@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientia Juris - Digital Legal Library</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           SCIENTIA JURIS - FULL INTERNAL STYLES (MATCHING IMAGE 2)
+           ========================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 1. TOP HEADER (NAVBAR) */
+        .top-navbar {
+            background-color: #1e293b;
+            color: #ffffff;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .brand-logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .brand-logo span {
+            color: #e2e8f0;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* 2. MAIN LAYOUT (SIDEBAR + CONTENT) */
+        .app-container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* SIDEBAR STYLES */
+        .sidebar {
+            width: 320px;
+            background-color: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-left: 0.5rem;
+        }
+
+        /* SEARCH BOX */
+        .search-box {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 0.8rem 0.6rem 2.2rem;
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #334155;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: #cbd5e1;
+            background-color: #ffffff;
+        }
+
+        /* COURSE ACCORDION MENU */
+        .course-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        details.course-item {
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        details.course-item summary {
+            padding: 0.65rem 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 6px;
+        }
+
+        details.course-item summary:hover {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        details.course-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.course-item summary::after {
+            content: "\f105";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            transition: transform 0.2s;
+        }
+
+        details.course-item[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        .topic-list {
+            list-style: none;
+            padding: 0.2rem 0 0.4rem 1rem;
+        }
+
+        .topic-list li a {
+            display: block;
+            padding: 0.45rem 0.8rem;
+            font-size: 0.82rem;
+            color: #64748b;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .topic-list li a:hover {
+            color: #0f172a;
+            background-color: #f1f5f9;
+        }
+
+        .topic-list li a.active {
+            color: #2563eb;
+            font-weight: 600;
+            background-color: #eff6ff;
+        }
+
+        /* 3. MAIN CONTENT AREA */
+        .main-content {
+            flex: 1;
+            padding: 2.5rem 3rem;
+            max-width: 960px;
+        }
+
+        .welcome-card {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .welcome-card h1 {
+            font-size: 1.8rem;
+            color: #0f172a;
+            margin-bottom: 0.8rem;
+        }
+
+        .welcome-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* STYLES FOR DYNAMIC CONTENT (FROM HTML FILES) */
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .meta-info span:nth-child(2) {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .document-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 2rem 0 1rem 0;
+        }
+
+        p {
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            margin: 0 0 1.2rem 1.5rem;
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .statute-box {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #0369a1;
+            line-height: 1.6;
+        }
+
+        .case-box {
+            background-color: #fefce8;
+            border-left: 4px solid #eab308;
+            padding: 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #713f12;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            padding: 1.2rem;
+            text-align: center;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            margin-top: auto;
+        }
+
+        /* LOADING & ERROR STATES */
+        .loader-container {
+            text-align: center;
+            padding: 4rem 0;
+            color: #64748b;
+        }
+
+        .loader-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+
+        .highlight-topic {
+            animation: highlightAnim 2s ease-in-out;
+        }
+
+        @keyframes highlightAnim {
+            0% { background-color: #fef08a; }
+            100% { background-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP HEADER / NAVBAR -->
+    <header class="top-navbar">
+        <div class="brand-logo">
+            SCIENTIA<span>JURIS</span>
+        </div>
+        <div class="nav-links">
+            <a href="#"><i class="fa-solid fa-book-bookmark"></i> Maktaba</a>
+        </div>
+    </header>
+
+    <!-- MAIN APP WRAPPER -->
+    <div class="app-container">
+
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <div class="sidebar-title">LEGAL COURSE & (TOPICS)</div>
+
+            <!-- SEARCH BOX -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Tafuta kozi au mada..." onkeyup="filterTopics()">
+            </div>
+
+            <!-- COURSE LIST -->
+            <nav class="course-list" id="courseList">
+
+                <!-- 1. ADMINISTRATIVE LAW -->
+                <details class="course-item">
+                    <summary>Administrative Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('administrative-law.html', 'admin-t1', this)">Topic 1: Nature & Ultra Vires Doctrine</a></li>
+                        <li><a onclick="loadTopic('administrative-law.html', 'admin-t2', this)">Topic 2: Delegated Legislation</a></li>
+                        <li><a onclick="loadTopic('administrative-law.html', 'admin-t3', this)">Topic 3: Principles of Natural Justice</a></li>
+                        <li><a onclick="loadTopic('administrative-law.html', 'admin-t4', this)">Topic 4: Judicial Review & Remedies</a></li>
+                    </ul>
+                </details>
+
+                <!-- 2. BUSINESS ASSOCIATION LAW -->
+                <details class="course-item">
+                    <summary>Business Association Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('business-association-law.html', 'ba-t1', this)">Topic 1: Types & Corporate Personality</a></li>
+                        <li><a onclick="loadTopic('business-association-law.html', 'ba-t2', this)">Topic 2: Formation & Documents</a></li>
+                        <li><a onclick="loadTopic('business-association-law.html', 'ba-t3', this)">Topic 3: Governance & Directors' Duties</a></li>
+                        <li><a onclick="loadTopic('business-association-law.html', 'ba-t4', this)">Topic 4: Winding Up & Dissolution</a></li>
+                    </ul>
+                </details>
+
+                <!-- 3. BANKING & FINANCIAL INSTITUTIONS LAW -->
+                <details class="course-item">
+                    <summary>Banking & Financial Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('banking-and-financial-institution-law.html', 'bank-t1', this)">Topic 1: Regulatory Framework & BOT</a></li>
+                        <li><a onclick="loadTopic('banking-and-financial-institution-law.html', 'bank-t2', this)">Topic 2: Licensing & Capital Adequacy</a></li>
+                        <li><a onclick="loadTopic('banking-and-financial-institution-law.html', 'bank-t3', this)">Topic 3: Banker-Customer Relationship</a></li>
+                        <li><a onclick="loadTopic('banking-and-financial-institution-law.html', 'bank-t4', this)">Topic 4: AML Compliance & Financial Crimes</a></li>
+                    </ul>
+                </details>
+
+                <!-- 4. PERSONS WITH DISABILITIES LAW -->
+                <details class="course-item">
+                    <summary>Persons with Disability Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('persons-with-disabilities-law.html', 'pwd-t1', this)">Topic 1: Constitutional Foundations</a></li>
+                        <li><a onclick="loadTopic('persons-with-disabilities-law.html', 'pwd-t2', this)">Topic 2: Principles & Fundamental Rights</a></li>
+                        <li><a onclick="loadTopic('persons-with-disabilities-law.html', 'pwd-t3', this)">Topic 3: Education & Quotas</a></li>
+                        <li><a onclick="loadTopic('persons-with-disabilities-law.html', 'pwd-t4', this)">Topic 4: Accessibility & Governance</a></li>
+                    </ul>
+                </details>
+
+                <!-- 5. PRIVATE INTERNATIONAL LAW -->
+                <details class="course-item">
+                    <summary>Private International Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('private-international-law.html', 'pil-t1', this)">Topic 1: Nature, Scope & Jurisdiction</a></li>
+                        <li><a onclick="loadTopic('private-international-law.html', 'pil-t2', this)">Topic 2: Domicile & Choice of Law Rules</a></li>
+                        <li><a onclick="loadTopic('private-international-law.html', 'pil-t3', this)">Topic 3: Foreign Judgments & Awards</a></li>
+                    </ul>
+                </details>
+
+                <!-- 6. ENVIRONMENTAL LAW -->
+                <details class="course-item">
+                    <summary>Environmental Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-t1', this)">Topic 1: Rights & Core Principles</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-t2', this)">Topic 2: NEMC & EIA Process</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-t3', this)">Topic 3: Locus Standi & Litigation</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-t4', this)">Topic 4: Compliance & Offences</a></li>
+                    </ul>
+                </details>
+
+                <!-- 7. ADMINISTRATION OF ESTATES & SUCCESSION -->
+                <details class="course-item">
+                    <summary>Succession & Estate Admin</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('administration-of-estates-and-succession-law.html', 'succ-t1', this)">Topic 1: Systems of Succession</a></li>
+                        <li><a onclick="loadTopic('administration-of-estates-and-succession-law.html', 'succ-t2', this)">Topic 2: Testate Succession & Wills</a></li>
+                        <li><a onclick="loadTopic('administration-of-estates-and-succession-law.html', 'succ-t3', this)">Topic 3: Intestate & Gender Rights</a></li>
+                        <li><a onclick="loadTopic('administration-of-estates-and-succession-law.html', 'succ-t4', this)">Topic 4: Probate & Administration</a></li>
+                    </ul>
+                </details>
+
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT DISPLAY AREA -->
+        <main class="main-content" id="appContent">
+            <div class="welcome-card">
+                <h1>Karibu Scientia Juris</h1>
+                <p>Chagua kozi au mada yoyote kwenye menu ya pembeni kuanza kujisomea masharti, kesi, na sheria za Tanzania.</p>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; Scientia Juris - Digital Legal Knowledge Platform for Tanzania Mainland.
+    </footer>
+
+    <!-- INLINE JAVASCRIPT ENGINE -->
+    <script>
+        // Load topic dynamically via fetch API
+        async function loadTopic(fileName, topicId, element) {
+            const contentDiv = document.getElementById('appContent');
+
+            // Show Loader
+            contentDiv.innerHTML = `
+                <div class="loader-container">
+                    <i class="fa-solid fa-circle-notch fa-spin loader-icon"></i>
+                    <p>Inapakia maudhui ya sheria...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(fileName);
+                if (!response.ok) throw new Error(`Status ${response.status}`);
+
+                const htmlText = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                const newMainContent = doc.querySelector('main');
+
+                if (newMainContent) {
+                    contentDiv.innerHTML = newMainContent.innerHTML;
+
+                    if (topicId) {
+                        setTimeout(() => {
+                            const targetElement = document.getElementById(topicId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                targetElement.classList.add('highlight-topic');
+                                setTimeout(() => targetElement.classList.remove('highlight-topic'), 2500);
+                            }
+                        }, 100);
+                    } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+
+                    setActiveLink(element);
+                } else {
+                    contentDiv.innerHTML = `<div style="color:red; padding:2rem;">⚠️ Hitilafu: Tag ya &lt;main&gt; haikupatikana kwenye ${fileName}.</div>`;
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                contentDiv.innerHTML = `
+                    <div style="background:#fef2f2; border:1px solid #fecaca; color:#991b1b; padding:1.5rem; border-radius:6px;">
+                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Imeshindwa Kupakua Somo</h3>
+                        <p>Hakikisha faili la <strong>${fileName}</strong> lipo kwenye folda moja na index.html na unatumia Live Server.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function setActiveLink(element) {
+            if (!element) return;
+            document.querySelectorAll('.topic-list a').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function filterTopics() {
+            const filter = document.getElementById('searchInput').value.toLowerCase();
+            const courseItems = document.querySelectorAll('.course-item');
+
+            courseItems.forEach(item => {
+                const topics = item.querySelectorAll('.topic-list li');
+                let hasMatch = false;
+
+                topics.forEach(topic => {
+                    const text = topic.textContent || topic.innerText;
+                    if (text.toLowerCase().indexOf(filter) > -1) {
+                        topic.style.display = "";
+                        hasMatch = true;
+                    } else {
+                        topic.style.display = "none";
+                    }
+                });
+
+                if (hasMatch) {
+                    item.style.display = "";
+                    if (filter.trim() !== "") item.open = true;
+                } else {
+                    if (filter.trim() !== "") {
+                        item.style.display = "none";
+                    } else {
+                        item.style.display = "";
+                        item.open = false;
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

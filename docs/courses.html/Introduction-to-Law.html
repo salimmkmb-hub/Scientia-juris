@@ -1,44 +1,79 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-    <meta charset="UTF-8">
-    <style>
-         /* CSS kwa ajili ya Watermark ya Background */
-        body {
-            /* 1. Weka rangi ya usuli kama karatasi (hiari) */
-            background-color: #fffaf0;
-        }
-        h1 {
-            color: #113355; /* Rangi ya Bluu iliyokolea kutoka nembo */
-            text-align: center;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-    </style>
-    <title>Introduction to Law Notes</title>
-    
-</head>
-<body>
-    <div class="container">
-        <h1>Introduction to Law Notes</h1>
-        <p>Topic Digested includes: -</p>
-        <ul>
-            <h3>Topic One</h3>
-            <li>Introduction...</li>
-            <h3>Topic Two</h3>
-            <li>.....</li>
-            <h3>Topic Three</h3>
-            <li>......</li>
-            <h3>Topic Four</h3>
-            <li>.....</li>
-        </ul>
-        <hr>
-        <a href="index.html" class="back-btn">← Back</a>
+<!--
+  FAILI: introduction-to-the-law.html
+  Maelezo ya Utangulizi wa Sheria (Introduction to Law in Tanzania)
+  Limetengenezwa maalum kuingia kwenye mfumo wa Single Page Application wa Scientia Juris.
+-->
+
+<main>
+    <!-- HEADER YA KOZI -->
+    <div class="meta-info">
+        <span class="badge">INTRODUCTION TO LAW</span>
+        <span>Mfumo na Misingi ya Sheria - Tanzania</span>
     </div>
-    
+
+    <h1 class="document-title">Meaning, Nature, Classification & Sources of Law</h1>
+
+    <!-- TOPIC 1 -->
+    <h2 id="intro-t1" class="section-title">Topic 1: Meaning & Nature of Law</h2>
+    <p>
+        Law can be defined as a system of rules created and enforced through social or governmental institutions to regulate behavior, maintain order, protect rights, and resolve disputes in society. Unlike moral or social norms, legal rules are binding and backed by state sanctions upon breach.
     </p>
-</footer>
-</body>
-</html>
+
+    <!-- STATUTE / DEFINITION BOX -->
+    <div class="statute-box">
+        📌 <strong>Key Characteristics of Law:</strong><br>
+        1. <strong>Enforceability:</strong> Backed by state authority and enforcement agencies.<br>
+        2. <strong>Generality:</strong> Applies generally to citizens or specified groups within a jurisdiction.<br>
+        3. <strong>Certainty & Predictability:</strong> Provides clear rules on legal rights and liabilities.
+    </div>
+
+    <!-- TOPIC 2 -->
+    <h2 id="intro-t2" class="section-title">Topic 2: Classification of Law</h2>
+    <p>
+        Law is categorized into different branches based on subject matter, purpose, and enforcement mechanisms:
+    </p>
+
+    <h3>1. Public Law vs Private Law</h3>
+    <ul>
+        <li><strong>Public Law:</strong> Regulates the relationship between individuals and the State (e.g., Constitutional Law, Administrative Law, Criminal Law).</li>
+        <li><strong>Private Law (Civil Law):</strong> Regulates rights and duties between private individuals or corporate entities (e.g., Contract Law, Law of Torts, Family Law, Property Law).</li>
+    </ul>
+
+    <h3>2. Substantive Law vs Procedural Law</h3>
+    <ul>
+        <li><strong>Substantive Law:</strong> Defines legal rights, duties, and liabilities (e.g., Penal Code Cap. 16 defining crimes).</li>
+        <li><strong>Procedural Law (Adjective Law):</strong> Outlines the legal machinery and steps used to enforce substantive rights (e.g., Criminal Procedure Act Cap. 20, Civil Procedure Code Cap. 33).</li>
+    </ul>
+
+    <h3>3. Criminal Law vs Civil Law</h3>
+    <p>
+        Criminal Law deals with conduct considered harmful to society as a whole, prosecuted by the State (Director of Public Prosecutions - DPP), where the standard of proof is <em>beyond reasonable doubt</em>. Civil Law deals with disputes between private parties where the aggrieved party (Plaintiff) sues for remedy, and the standard of proof is on a <em>balance of probabilities</em>.
+    </p>
+
+    <!-- TOPIC 3 -->
+    <h2 id="intro-t3" class="section-title">Topic 3: Sources of Law in Tanzania</h2>
+    <p>
+        The legal system of Tanzania Mainland is a mixed legal system based on the English Common Law tradition. The legal framework governing the application of laws is provided under the <strong>Judicature and Application of Laws Act (JALA), Cap. 358</strong>.
+    </p>
+
+    <div class="statute-box">
+        📌 <strong>Judicature and Application of Laws Act (JALA), Cap. 358 - Section 2</strong><br>
+        "Subject to the provisions of this Act, the jurisdiction of the High Court shall be exercised in conformity with the Written Laws, Common Law, Doctrine of Equity, and Statutes of General Application in force in England on the 22nd day of July, 1920..."
+    </div>
+
+    <p><strong>Primary Sources of Law in Tanzania:</strong></p>
+    <ol>
+        <li><strong>The Constitution (Katiba):</strong> The supreme law of the land (Article 64 of the 1977 Constitution). Any law inconsistent with the Constitution is void to the extent of the inconsistency.</li>
+        <li><strong>Statutes / Written Laws (Acts of Parliament):</strong> Legislation enacted by the Parliament of Tanzania.</li>
+        <li><strong>Case Law / Judicial Precedent:</strong> Principles established by superior courts (Court of Appeal and High Court) which bind lower courts (<em>Stare Decisis</em>).</li>
+        <li><strong>Customary Law & Islamic Law:</strong> Applicable in personal matters (e.g., succession, inheritance, marriage) subject to specific conditions under JALA Cap. 358.</li>
+        <li><strong>Received Laws:</strong> Common Law, Doctrine of Equity, and Statutes of General Application as received on 22nd July 1920.</li>
+    </ol>
+
+    <!-- PRECEDENT CASE (CASE BOX) -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent / Constitutional Landmark: Ephrahim v. Holaria Pastory & Another (1990) TLR 215 (HC)</strong><br>
+        Mahakama Kuu iliamua kuwa sheria za kimila (Customary Law) zinazowakataza wanawake kurithi au kuuza ardhi ya ukoo ni batili kwa sababu zinapingana na Katiba na Mikataba ya Kimataifa ya Haki za Binadamu inayopiga marufuku ubaguzi wa kijinsia.
+    </div>
+
+</main>

@@ -1,86 +1,117 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scientia Juris</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<!--
+  FAILI: law-of-tort.html
+  Maelezo ya Sheria ya Madhara/Mateso ya Kijamii (Law of Torts)
+  Limetengenezwa maalum kuingia kwenye mfumo wa Single Page Application wa Scientia Juris.
+-->
 
-    body {
-      font-family: "Georgia", "Times New Roman", Garamond, serif;
-      font-size: 19px;
-      line-height: 1.6;
-      color: #1a1a1a;
-      background-color: #ffffff;
-    }
-
-    /* Top Navigation Header */
-    header {
-      background-color: #002b49; /* Bluu ya juu */
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 6px solid #008ca8; /* Mstari wa Cyan/Teal */
-    }
-
-    /* Muundo wa Nembo (Logo) */
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 45px; /* Unaweza kubadilisha urefu wa nembo hapa */
-      width: auto;  /* Inahifadhi umbo la nembo lisiharibike */
-    }
-
-    /* Ikoni za Kulia (Search & Menu) */
-    .header-icons {
-      display: flex;
-      gap: 20px;
-      color: #ffffff;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 35px auto;
-      padding: 0 20px;
-    }
-
-    p {
-      margin-bottom: 24px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Header yenye Nembo ya Scientia Juris -->
-  <header>
-    <div class="logo-container">
-      <!-- Badilisha "logo.png" kuweka jina au njia (path) ya picha yako ya nembo -->
-      <img src="background.jpg" alt="Scientia Juris Logo">
+<main>
+    <!-- HEADER YA KOZI -->
+    <div class="meta-info">
+        <span class="badge">LAW OF TORTS</span>
+        <span>Sheria ya Madhara ya Kijamii - Civil Wrongs & Remedies</span>
     </div>
 
-    <div class="header-icons">
-      <span>🔍</span>
-      <span>☰</span>
-    </div>
-  </header>
+    <h1 class="document-title">General Principles of Tortious Liability, Specific Torts & Remedies</h1>
 
-  <!-- Content -->
-  <div class="container">
+    <!-- TOPIC 1 -->
+    <h2 id="tort-t1" class="section-title">Topic 1: Foundations & Nature of Tortious Liability</h2>
     <p>
-      Karibu kwenye mfumo wa Scientia Juris...
+        A <strong>Tort</strong> is a civil wrong (other than a breach of contract or breach of trust) for which the law provides a remedy, primarily in the form of an action for unliquidated damages. The primary objective of the Law of Torts is to compensate the injured party and restore them to the position they would have been in had the tort not been committed (<em>restitutio in integrum</em>).
     </p>
-  </div>
 
-</body>
-</html>
+    <!-- STATUTE / MAXIM BOX -->
+    <div class="statute-box">
+        📌 <strong>Core Legal Maxims in Tort Law:</strong><br>
+        1. <strong>Damnum Sine Injuria:</strong> Harm or loss suffered without the violation of a legal right (No cause of action).<br>
+        2. <strong>Injuria Sine Damno:</strong> Violation of a legal right without actual physical or monetary loss (Actionable per se, e.g., Trespass).
+    </div>
+
+    <!-- PRECEDENT CASE -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: Ashby v. White (1703) 92 ER 126</strong><br>
+        Kesi ya msingi inayofundisha kanuni ya <em>Injuria Sine Damno</em>. Mteja alizuiwa kupiga kura kimakosa na afisa wa uchaguzi. Hata ingawa mgombea wake alishinda na hakupata hasara ya fedha, Mahakama iliamua kuwa haki yake ya kisheria ya kupiga kura ilivunjwa, hivyo anastahili fidia.
+    </div>
+
+    <!-- TOPIC 2 -->
+    <h2 id="tort-t2" class="section-title">Topic 2: The Tort of Negligence</h2>
+    <p>
+        Negligence is the breach of a legal duty of care owed by the defendant to the plaintiff, which results in damage or injury to the plaintiff.
+    </p>
+
+    <p><strong>Essential Elements of Negligence:</strong></p>
+    <ol>
+        <li><strong>Duty of Care:</strong> The defendant owed the plaintiff a legal duty of care.</li>
+        <li><strong>Breach of Duty:</strong> The defendant failed to exercise the standard of care expected of a reasonable person (Reasonable Man Test).</li>
+        <li><strong>Causation & Remoteness of Damage:</strong> The breach directly caused the damage, and the damage was reasonably foreseeable.</li>
+    </ol>
+
+    <!-- PRECEDENT CASE -->
+    <div class="case-box">
+        ⚖️ <strong>Precedent Case: Donoghue v. Stevenson [1932] AC 562 (The Ginger Beer Case)</strong><br>
+        Kesi iliyoweka msingi wa Kimataifa wa <em>Neighbor Principle</em> (Kanuni ya Jirani). Lord Atkin alieleza kuwa lazima umchukulie kila mtu kama "jirani" wako wa kisheria ikiwa vitendo au makosa yako yanaweza kumdhuru moja kwa moja.
+    </div>
+
+    <!-- TOPIC 3 -->
+    <h2 id="tort-t3" class="section-title">Topic 3: Vicarious Liability</h2>
+    <p>
+        <strong>Vicarious Liability</strong> is a legal doctrine under which one person is held liable for the torts committed by another person, based on a special legal relationship existing between them. The most common instance is the employer-employee relationship.
+    </p>
+
+    <p><strong>Requirements for Employer's Vicarious Liability:</strong></p>
+    <ul>
+        <li>There must be a master-servant (employer-employee) relationship (Contract of Service vs. Contract for Services).</li>
+        <li>The employee must have committed the tortious act within the <em>course of employment</em>.</li>
+    </ul>
+
+    <div class="statute-box">
+        📌 <strong>Vicarious Liability Maxims:</strong><br>
+        1. <em>Respondeat Superior:</em> Let the master answer.<br>
+        2. <em>Qui facit per alium facit per se:</em> He who acts through another acts himself.
+    </div>
+
+    <!-- TOPIC 4 -->
+    <h2 id="tort-t4" class="section-title">Topic 4: Trespass & Defamation</h2>
+
+    <h3>1. Trespass (Impairment of Land, Person, or Goods)</h3>
+    <p>
+        Direct and unlawful interference with person, land, or goods. Trespass is actionable <em>per se</em> (without proof of actual damage).
+    </p>
+    <ul>
+        <li><strong>Trespass to Person:</strong> Battery (actual physical force), Assault (apprehension of immediate force), and False Imprisonment (unlawful restraint of liberty).</li>
+        <li><strong>Trespass to Land:</strong> Unlawful entry or remaining on another person's property without justification.</li>
+    </ul>
+
+    <h3>2. Defamation (Libel & Slander)</h3>
+    <p>
+        Defamation involves the publication of a false statement that tends to lower the plaintiff in the estimation of right-thinking members of society.
+    </p>
+    <ul>
+        <li><strong>Libel:</strong> Defamatory statement made in a permanent form (e.g., written text, published books, online articles).</li>
+        <li><strong>Slander:</strong> Defamatory statement made in a temporary or transient form (e.g., spoken words, gestures).</li>
+    </ul>
+
+    <div class="statute-box">
+        📌 <strong>General Defences to Defamation:</strong><br>
+        1. <strong>Truth / Justification:</strong> Proving the statement is substantially true.<br>
+        2. <strong>Fair Comment:</strong> Honest expression of opinion on a matter of public interest.<br>
+        3. <strong>Absolute / Qualified Privilege:</strong> Statutory protection for statements made in Parliament, courts, or legal duties.
+    </div>
+
+    <!-- TOPIC 5 -->
+    <h2 id="tort-t5" class="section-title">Topic 5: General Defences & Remedies in Tort</h2>
+
+    <p><strong>General Defences in Tort Law:</strong></p>
+    <ul>
+        <li><strong>Volenti Non Fit Injuria:</strong> Voluntary assumption of risk (no injury is done to one who consents).</li>
+        <li><strong>Contributory Negligence:</strong> Where the plaintiff's own negligence contributed to the injury (reduces damages proportionally).</li>
+        <li><strong>Act of God (Vis Major):</strong> Unforeseeable natural events without human intervention.</li>
+        <li><strong>Statutory Authority:</strong> Acts authorized directly by an Act of Parliament.</li>
+    </ul>
+
+    <p><strong>Judicial Remedies:</strong></p>
+    <ul>
+        <li><strong>Damages:</strong> Financial compensation (General, Special, Exemplary, or Nominal damages).</li>
+        <li><strong>Injunctions:</strong> Court orders restraining a tortious act (Prohibitory) or commanding a positive act (Mandatory).</li>
+    </ul>
+
+</main>

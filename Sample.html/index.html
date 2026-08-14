@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientia Juris - Digital Legal Library</title>
+   
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+   
+    <style>
+        :root {
+            --primary-color: #0d1b2a;     /* Bluu nzito */
+            --accent-color: #c5a059;      /* Gold / Dhahabu */
+            --bg-body: #f8f9fa;          
+            --bg-card: #ffffff;          
+            --text-main: #1a1a1a;        
+            --text-muted: #5c677d;       
+            --border-color: #e9ecef;
+            --statute-bg: #f1f5f9;
+            --case-bg: #fdfbf7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .logo, .toc-title, details summary, .badge, footer {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 4px solid var(--accent-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .header-subtitle {
+            font-size: 0.85rem;
+            color: #d1d5db;
+        }
+
+        /* MAIN LAYOUT */
+        .container {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        /* SIDEBAR */
+        aside {
+            background: var(--bg-card);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+            position: sticky;
+            top: 90px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .toc-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* SEARCH BAR */
+        .search-box {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.65rem 0.8rem 0.65rem 2.2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            outline: none;
+            background-color: #f8f9fa;
+        }
+
+        .search-input:focus {
+            background-color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ACCORDION (DROPDOWN) FOR COURSES */
+        details.course-item {
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+
+        details summary {
+            padding: 0.7rem 0.8rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        details summary:hover {
+            background-color: #f1f5f9;
+        }
+
+        details summary::after {
+            content: '►';
+            font-size: 0.65rem;
+            color: var(--accent-color);
+            transition: transform 0.2s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            background-color: #f1f5f9;
+        }
+
+        .topic-list {
+            list-style: none;
+            padding: 0.4rem 0;
+            background-color: #ffffff;
+        }
+
+        .topic-list li a {
+            display: block;
+            padding: 0.35rem 1rem 0.35rem 1.2rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .topic-list li a:hover, .topic-list li a.active-link {
+            color: var(--primary-color);
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        /* MAIN CONTENT AREA */
+        main {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            min-height: 600px;
+        }
+
+        .meta-info {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .badge {
+            background: #e6f4ea;
+            color: #137333;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        h1.document-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        h2.section-title {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--statute-bg);
+            scroll-margin-top: 100px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        /* BOXES FOR STATUTES & CASES */
+        .statute-box {
+            background-color: var(--statute-bg);
+            border-left: 4px solid #3182ce;
+            padding: 1rem 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .case-box {
+            background-color: var(--case-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            margin-top: 4rem;
+            border-top: 4px solid var(--accent-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            aside {
+                height: auto;
+                max-height: 350px;
+                position: relative;
+                top: 0;
+            }
+            main {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">SCIENTIA<span>JURIS</span></a>
+            <div class="header-subtitle">Maktaba ya Digitali ya Sheria</div>
+        </div>
+    </header>
+
+    <!-- Container Utama -->
+    <div class="container">
+       
+        <!-- SIDEBAR -->
+        <aside>
+            <div class="toc-title">LEGAL COURSE & (TOPICS)</div>
+
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="courseSearch" class="search-input" placeholder="Tafuta kozi au mada..." onkeyup="filterCourses()">
+            </div>
+
+            <div id="courseList">
+
+                <!-- 1. LAND LAW -->
+                <details class="course-item" open>
+                    <summary>Land Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('land-law.html', 'land-t1', this)">Topic 1: Land Tenure System</a></li>
+                        <li><a onclick="loadTopic('land-law.html', 'land-t2', this)">Topic 2: Customary vs Granted Rights</a></li>
+                    </ul>
+                </details>
+
+                <!-- 2. ENVIRONMENTAL LAW -->
+                <details class="course-item">
+                    <summary>Environmental Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-dev', this)">Topic 1: Environment & Dev</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-intl', this)">Topic 2: International Level</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-tz', this)">Topic 3: Dev in Tanzania</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-iks', this)">Topic 4: Indigenous Knowledge (IKS)</a></li>
+                    </ul>
+                </details>
+
+                <!-- 3. CRIMINAL LAW -->
+                <details class="course-item">
+                    <summary>Criminal Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('criminal-law.html', 'crim-t1', this)">Topic 1: Elements of Crime</a></li>
+                        <li><a onclick="loadTopic('criminal-law.html', 'crim-t2', this)">Topic 2: General Defences</a></li>
+                    </ul>
+                </details>
+
+                <!-- 4. CONSTITUTIONAL LAW -->
+                <details class="course-item">
+                    <summary>Constitutional Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('tanzania-constitution-right.html', 'const-t1', this)">Topic 1: Human Rights</a></li>
+                    </ul>
+                </details>
+
+                <!-- 5. LABOUR LAW -->
+                <details class="course-item">
+                    <summary>Labour Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('labour-law.html', 'lab-t1', this)">Topic 1: Employment Standards</a></li>
+                    </ul>
+                </details>
+
+                <!-- 6. TAX LAW -->
+                <details class="course-item">
+                    <summary>Tax Law</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('tax-law.html', 'tax-t1', this)">Topic 1: Income Tax & VAT</a></li>
+                    </ul>
+                </details>
+
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA (Hapa ndipo maelezo yanapoingia kimya kimya) -->
+        <main id="main-content">
+            <div class="meta-info">
+                <span class="badge">LAND LAW</span>
+                <span>Mfumo wa Sheria za Tanzania</span>
+            </div>
+
+            <h1 class="document-title">Land Tenure Systems & Property Rights</h1>
+
+            <h2 id="land-t1" class="section-title">Topic 1: Land Tenure System in Tanzania</h2>
+            <p>
+                In Tanzania, all land is public land vested in the President as trustee for and on behalf of all citizens. Land tenure is broadly categorized into Granted Rights of Occupancy and Customary Rights of Occupancy.
+            </p>
+
+            <div class="statute-box">
+                📌 <strong>Land Act, Cap. 113 [R.E. 2019] - Section 4</strong><br>
+                "All land in Tanzania is public land vested in the President as trustee for and on behalf of the citizens of Tanzania."
+            </div>
+
+            <h2 id="land-t2" class="section-title">Topic 2: Customary vs Granted Rights</h2>
+            <p>
+                A Granted Right of Occupancy is issued by the Commissioner for Lands for a term up to 99 years, whereas a Customary Right of Occupancy is granted by Village Councils under Cap. 114.
+            </p>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 Scientia-Juris. Haki zote zimehifadhiwa.
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Inahifadhi jina la faili lililofunguliwa hivi sasa
+        let currentLoadedFile = '';
+
+        /**
+         * Function ya Kuvuta Mada kutoka Faili lolote la HTML (AJAX / Fetch API)
+         */
+        function loadTopic(fileName, topicId, element) {
+            const mainContent = document.getElementById('main-content');
+
+            // 1. Weka rangi ya 'Active' kwenye link iliyobonyezwa
+            document.querySelectorAll('.topic-list a').forEach(a => a.classList.remove('active-link'));
+            if (element) {
+                element.classList.add('active-link');
+            }
+
+            // 2. Kama faili hili tayari limeshapakiwa, shuka tu hadi kwenye topic husika
+            if (currentLoadedFile === fileName) {
+                scrollToTopic(topicId);
+                return;
+            }
+
+            // 3. Onyesha Kiashiria cha 'Inapakia...' kabla ya maelezo mapya kujitokeza
+            mainContent.innerHTML = `
+                <div style="text-align: center; padding: 4rem; font-family: 'Inter', sans-serif; color: var(--text-muted);">
+                    <h3>🔄 Inapakia maelezo...</h3>
+                </div>
+            `;
+
+            // 4. Vuta faili la HTML kwa kutumia Fetch API
+            fetch(fileName)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Faili halijapatikana');
+                    }
+                    return response.text();
+                })
+                .then(htmlText => {
+                    // Tenga sehemu ya <main> kutoka kwenye HTML iliyovutwa
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, 'text/html');
+                    const newMain = doc.querySelector('main');
+
+                    if (newMain) {
+                        mainContent.innerHTML = newMain.innerHTML;
+                        currentLoadedFile = fileName; // Hifadhi jina la faili
+                       
+                        // Mpeleke mtumiaji kwenye topic husika
+                        scrollToTopic(topicId);
+                    } else {
+                        mainContent.innerHTML = htmlText;
+                    }
+                })
+                .catch(error => {
+                    mainContent.innerHTML = `
+                        <div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 1.5rem; border-radius: 6px; font-family: 'Inter', sans-serif;">
+                            ⚠️ Faili la <strong>${fileName}</strong> halijapatikana. Hakikisha yapo kwenye folder moja!
+                        </div>
+                    `;
+                });
+        }
+
+        /**
+         * Function ya kushusha kioo taratibu hadi kwenye Heading/Topic husika
+         */
+        function scrollToTopic(topicId) {
+            setTimeout(() => {
+                if (topicId) {
+                    const targetElement = document.getElementById(topicId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        return;
+                    }
+                }
+                // Kama hakuna topicId, panda juu kabisa
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
+        }
+
+        /**
+         * Function ya Search (Kuchuja Kozi na Mada)
+         */
+        function filterCourses() {
+            let input = document.getElementById('courseSearch').value.toLowerCase();
+            let courseItems = document.querySelectorAll('.course-item');
+
+            courseItems.forEach(item => {
+                let text = item.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    item.style.display = "";
+                    if (input.trim() !== "") {
+                        item.setAttribute('open', 'true');
+                    }
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
