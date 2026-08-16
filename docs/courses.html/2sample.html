@@ -311,7 +311,7 @@
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">SCIENTIA<span>JURIS</span></a>
-            <div class="header-subtitle">Maktaba ya Digitali ya Sheria</div>
+            <div class="header-subtitle">Digital Legal Library</div>
         </div>
     </header>
 
@@ -410,9 +410,9 @@
                 <details class="course-item">
                     <summary>Environmental Law</summary>
                     <ul class="topic-list">
-                        <li><a onclick="loadTopic('environmental-law.html', 'env-t1', this)">Topic 1: Rights & Core Principles</a></li>
-                        <li><a onclick="loadTopic('environmental-law.html', 'env-t2', this)">Topic 2: NEMC & EIA Process</a></li>
-                        <li><a onclick="loadTopic('environmental-law.html', 'env-t3', this)">Topic 3: Locus Standi & Litigation</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-t1', this)">Topic 1: Introduction</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-t2', this)">Topic 2: Sources of Environmental Law in Tanzania</a></li>
+                        <li><a onclick="loadTopic('environmental-law.html', 'env-t3', this)">Topic 3: International Environmental Law Principles</a></li>
                         <li><a onclick="loadTopic('environmental-law.html', 'env-t4', this)">Topic 4: Compliance & Offences</a></li>
                     </ul>
                 </details>
@@ -518,9 +518,17 @@
                 <details class="course-item">
                     <summary>Law of Evidence</summary>
                     <ul class="topic-list">
-                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t1', this)">Topic 1: Relevancy & Admissibility of Facts</a></li>
-                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t2', this)">Topic 2: Oral & Documentary Evidence</a></li>
-                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t3', this)">Topic 3: Burden of Proof & Onus of Proof</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t1', this)">Topic 1: Introduction to Law of Evidence in Tanzania</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t2', this)">Topic 2: Relevancy & Admissibility of Facts</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t3', this)">Topic 3: Admission</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t4', this)">Topic 4: Confession</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t5', this)">Topic 5: Hearsay Evidence</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t6', this)">Topic 6: Documentary Evidence</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t7', this)">Topic 7: Evidence of Opinion</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t8', this)">Topic 8: Burden of Proof & Onus Proband</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t9', this)">Topic 9: Competency, Compellability and Privilege of Witnesses</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t10', this)">Topic 10: Credibility of Witnesses and Weight of Evidence</a></li>
+                        <li><a onclick="loadTopic('law-of-evidence.html', 'evid-t11', this)">Topic 11: Refreshing Memory and Production of Documents</a></li>
                     </ul>
                 </details>
 
@@ -586,6 +594,14 @@
                     </ul>
                 </details>
 
+                <!-- 30. TAX LAW -->
+                <details class="course-item">
+                    <summary>Sample</summary>
+                    <ul class="topic-list">
+                        <li><a onclick="loadTopic('tax-law.html', 'tax-t1', this)">Topic 1: Income Tax & VAT</a></li>
+                    </ul>
+                </details>
+
                 
             </div>
         </aside>
@@ -593,7 +609,7 @@
         <!-- MAIN CONTENT DISPLAY AREA -->
         <main class="main-content" id="appContent">
             <div class="welcome-card">
-                <h1>Karibu Scientia Juris</h1>
+                <h1>Welcome Scientia Juris</h1>
                 <p>Chagua kozi au mada yoyote kwenye menu ya pembeni kuanza kujisomea masharti, kesi, na sheria za Tanzania.</p>
             </div>
         </main>
@@ -603,7 +619,7 @@
 
     <!-- Footer -->
     <footer>
-        &copy; 2026 Scientia-Juris. Haki zote zimehifadhiwa.
+        &copy; 2026 Scientia-Juris. All right reserved.
     </footer>
 
     <!-- FETCH ENGINE (JAVASCRIPT) -->
@@ -615,7 +631,7 @@
             contentDiv.innerHTML = `
                 <div class="loader">
                     <i class="fa-solid fa-spinner fa-spin"></i>
-                    <p>Inapakia maelezo kutoka <strong>${fileName}</strong>...</p>
+                    <p>Loading <strong>${fileName}</strong>...</p>
                 </div>
             `;
 
