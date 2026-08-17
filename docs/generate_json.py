@@ -4,9 +4,10 @@ import json
 # 1. ORODHA YA MAFOLDA NA CATEGORY ZAKE
 # Weka majina ya mafolda yako na category unayotaka itokeze kwenye search
 folders_to_scan = [
-    {"path": "doc.html", "category": "Cases"},
-    {"path": "e-books.html", "category": "Books"},
-    {"path": "laws.html", "category": "Statute"},
+    {"path": "docs/doc.html", "category": "Cases"},
+    {"path": "docs/e-books.html", "category": "Books"},
+    {"path": "docs/laws.html", "category": "Statute"},
+   
 ]
 
 output_json_file = "laws.json"
