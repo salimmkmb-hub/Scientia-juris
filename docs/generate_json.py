@@ -10,7 +10,7 @@ folders_to_scan = [
    
 ]
 
-output_json_file = "laws.json"
+output_json_file = "docs/laws.json"
 laws_list = []
 id_counter = 1
 
