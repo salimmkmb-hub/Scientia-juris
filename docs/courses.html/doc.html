@@ -1,214 +1,480 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Law Notes: Hearsay Evidence & Dying Declaration</title>
-    <style>
-        :root {
-            --primary: #1a365d;
-            --secondary: #2b6cb0;
-            --accent: #c53030;
-            --bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text: #2d3748;
-            --border: #e2e8f0;
-        }
+<main>
+    <section id="defences">
+      <p>
+        <strong>Overview:</strong> This defence suggests that there was no <em>mens rea</em> (guilty mind) at the time of committing the act.
+        Section 14 of the Penal Code covers intoxication as a defence. Under these circumstances, the accused must prove the fact
+        that they suffered from temporary insanity induced by intoxication. However, this in no way relieves the prosecution of its
+        burden to prove the requisite intention of the accused beyond a reasonable doubt.
+      </p>
+    </article>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: var(--bg);
-            margin: 0;
-            padding: 2rem 1rem;
-        }
+    <article id="insanity">
+      <h3>Insanity (Section 13, Penal Code)</h3>
+      <p>
+        <strong>General Rule:</strong> The law presumes that every person is of sound mind (i.e., aware of the nature and consequences of their actions).
+        Therefore, the defense bears the evidentiary burden to produce evidence establishing insanity.
+      </p>
+      <p>
+        <strong>Evidentiary Threshold:</strong> The evidence produced by the defence does not need to establish insanity beyond all reasonable doubt,
+        but must be sufficient to challenge the prosecution’s case and raise a reasonable doubt as to the accused's mental state.
+      </p>
+    </article>
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+    <article id="alibi">
+      <h3>Defence of Alibi</h3>
+      <p>
+        <strong>Overview:</strong> Suggests that at the time the alleged crime took place, the accused was elsewhere and physically could not have
+        committed the act.
+      </p>
+      <p>
+        <strong>Burden of Proof (Section 110, Tanzania Evidence Act / TEA):</strong> Raising an alibi does not shift the ultimate burden of proof from
+        the prosecution to the accused. The accused only needs to adduce sufficient evidence showing that the assertion might be true. The prosecution
+        must then disprove the alibi beyond a reasonable doubt.
+      </p>
+      <p><strong>Procedure & Statutory Provisions:</strong></p>
+      <ul>
+        <li>Procedure for raising an alibi: <strong>Section 194(4) of the Criminal Procedure Act (CPA)</strong>.</li>
+        <li><strong>Relevant Case Law:</strong>
+          <ul>
+            <li><em>Joseph Kissa v. Republic</em></li>
+            <li><em>Osward s/o Godfrey @ Mussa v. Republic</em></li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </section>
 
-        h1 {
-            color: var(--primary);
-            border-bottom: 3px solid var(--secondary);
-            padding-bottom: 0.5rem;
-            margin-top: 0;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+  <hr>
 
-        h2 {
-            color: var(--secondary);
-            margin-top: 1.8rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.3rem;
-            font-size: 1.35rem;
-        }
-
-        h3 {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-top: 1.2rem;
-        }
-
-        .meta-header {
-            display: flex;
-            justify-content: space-between;
-            background: #ebf8ff;
-            padding: 0.75rem 1rem;
-            border-left: 4px solid var(--secondary);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        ol, ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1.2rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        .case-law {
-            font-style: italic;
-            font-weight: 600;
-            color: #2c5282;
-        }
-
-        .statute {
-            font-weight: bold;
-            color: #742a2a;
-        }
-
-        .principle-box {
-            background-color: #fffaf0;
-            border-left: 4px solid #dd6b20;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .question-box {
-            background-color: #f7fafc;
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--primary);
-            padding: 1rem;
-            margin: 1.2rem 0;
-            border-radius: 4px;
-        }
-
-        .highlight {
-            background-color: #feebc8;
-            padding: 0.1rem 0.3rem;
-            border-radius: 3px;
-        }
-
-        @media print {
-            body { background: #fff; padding: 0; }
-            .container { box-shadow: none; padding: 0; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-
-    <div class="meta-header">
-        <span>HEARSAY EVIDENCE & DYING DECLARATION</span>
-        <span>S. 62(1) & S. 34 TEA</span>
-    </div>
-
-    <h2>1. Definition & Fundamental Nature of Hearsay Evidence</h2>
-    <p><strong>Is the piece of evidence Hearsay?</strong> That is a kind of evidence which is provided by a third party to the matter, which was not present within the event which occurred, but heard it from another person. Under <span class="statute">s. 62(1) of TEA</span>, direct oral evidence is required.</p>
-
-    <div class="principle-box">
-        <strong>Impact on Legal Proceedings:</strong> When the court entertains hearsay evidence, it leads to an unfair hearing or proceeding, which may result in the conviction of an innocent person or the acquittal of a guilty person, because there is a possibility of providing untrue information in the matter.
-    </div>
-
-    <p>The general rule is <strong>against hearsay</strong>. An out-of-court statement offered to prove the truth of the matter asserted in the statement is hearsay under <span class="statute">s. 62(1)</span>.</p>
-
-    <h2>2. Definition under Section 3 of TEA & Core Elements</h2>
-    <p>According to <span class="statute">s. 3 of TEA</span>, oral evidence means <em>"all statements which the Court permits or requires to be made before it by witnesses being physically present at the time of making the statement or by use of other means of communication including teleconference or video conference, in relation to matters of fact under inquiry."</em></p>
-
-    <p>From the definition, we get <strong>3 main elements</strong> of hearsay:</p>
-    <ol>
-        <li>An out-of-court statement.</li>
-        <li>A statement made by a human being.</li>
-        <li>Offered to prove the truth of the matter asserted.</li>
-    </ol>
-
-    <h3>Detailed Breakdown of Elements</h3>
-
-    <p><strong>i. Out of Court:</strong> Anything said outside the four walls of a courtroom amounts to being hearsay. It includes what happens out of the trial or the matter brought into court (e.g., statements made in another courtroom, said in the past, or said in a different case).</p>
-
-    <p><strong>ii. Statement:</strong> An assertion made by a human being. It can be:</p>
+  <section id="burden-and-standard-of-proof">
+    <h2>2. Burden & Standard of Proof in Civil Cases</h2>
+    <p>
+      <strong>General Rule (Section 111, TEA):</strong> The burden of proof lies on the person who would fail if no evidence were given on either side.
+      In civil litigation, the legal burden generally rests on the plaintiff.
+    </p>
+    <p>
+      <strong>Exceptions (Higher Standard of Proof in Civil Matters):</strong> While civil cases are normally decided on the balance of probabilities,
+      certain civil actions require a standard higher than the standard balance—often approaching proof beyond a reasonable doubt:
+    </p>
     <ul>
-        <li>Orally made</li>
-        <li>Written (letter, postcard, email, fax, etc.)</li>
-        <li>Non-verbal (head nod, head shake, thumbs up or down)</li>
+      <li><strong>Election Petitions:</strong> Proof of election fraud/malpractice requires proof beyond reasonable doubt.
+        <ul>
+          <li><em>Chabanga H. Drmawalo v. Mhangi Mussa Massomo & A.G.</em></li>
+          <li><em>Mwasheni v. A.G. (1971 HCD 251)</em></li>
+          <li><em>Mbowe v. Eliufoo (1967 E.A. 240)</em> — "He who asserts must prove."</li>
+        </ul>
+      </li>
+      <li><strong>Matrimonial Cases (Desertion/Cruelty):</strong> <em>Barler v. Barler (1950 ALL ER 452)</em></li>
+      <li><strong>Professional Misconduct:</strong> <em>Akena Adoko v. Advocate Committee (1982)</em></li>
     </ul>
+  </section>
 
-    <p><strong>iii. Truth of the Matter Asserted:</strong> Occurs when the presenter uses the statement provided by the assertor/declarant to prove the truth of the matter in the court of law. It is hearsay and otherwise inadmissible unless it constitutes an Admission, Confession, or Res Gestae.</p>
+  <hr>
 
-    <div class="principle-box">
-        <strong>Key Consideration:</strong> What purpose is the party seeking to achieve by bringing this piece of evidence to the court?
-    </div>
+  <section id="presumptions">
+    <h2>3. Presumptions under the Law of Evidence</h2>
 
-    <h2>3. Exceptions to Hearsay Evidence (Part B)</h2>
-    <p>Is there an exception that would allow hearsay evidence to be admissible? Yes, the Law of Evidence Act (TEA) contains exceptions, such as <strong>Confessions</strong>, <strong>Admissions</strong>, and statements under <span class="statute">s. 34</span>.</p>
+    <article id="presumption-definition">
+      <h3>Definition & Nature</h3>
+      <p>
+        A <strong>presumption</strong> is an inference—either affirmative or disaffirmative of the truth or falsity of a doubtful fact or proposition—drawn
+        by a process of probable reasoning from something proven or granted.
+      </p>
+      <p>
+        In the law of evidence, it represents the possibility of arriving at a conclusion based on probable reasoning. It constitutes a rule of law, statutory
+        or judicial, by which proof of a basic fact gives rise to the existence of a presumed fact, allowing the court to reach a conclusion unless rebutted.
+      </p>
+    </article>
 
-    <p>Under <span class="statute">s. 34 of TEA</span>, oral or written statements of relevant facts made by a person are admissible when the person:</p>
-    <ol type="a">
-        <li>Is dead.</li>
-        <li>Has become incapable of giving evidence.</li>
-        <li>Cannot be found.</li>
-        <li>Whose attendance cannot be procured without unreasonable delay or expense.</li>
-    </ol>
+    <article id="reasons-for-presumptions">
+      <h3>Reasons for Legal Presumptions</h3>
+      <ul>
+        <li><strong>Settling Disputes:</strong> Useful in resolving matters where direct evidence is insufficient.</li>
+        <li><strong>Efficiency & Time-Saving:</strong> Eliminates the need to present formal proof for universally accepted or standard factual scenarios.</li>
+        <li><strong>Administrative Convenience:</strong> Simplifies proof regarding the execution and genuineness of legal documents.</li>
+        <li><strong>Exclusive Knowledge:</strong> Applies when knowledge of a fact lies exclusively within one party's domain.</li>
+        <li><strong>Policy & Social Justice:</strong> Promotes public policy and legitimacy (e.g., presumption of legitimacy of children born in wedlock).</li>
+      </ul>
+    </article>
 
-    <h2>4. Dying Declaration (D.D)</h2>
-    <p>A statement of a person who has died is admissible as evidence if it relates to the cause of death of that person.</p>
+    <article id="types-of-presumptions">
+      <h3>Types of Presumptions (Tanzania Evidence Act - TEA)</h3>
+      <p>Under the TEA, presumptions are categorized into three main statutory forms:</p>
+      <ol>
+        <li><strong>Presumption of Fact (May Presume - Section 4 TEA):</strong> Inferences naturally drawn from common human experience, observation, and usages. Courts have discretion to presume or require proof.</li>
+        <li><strong>Rebuttable Presumption of Law (Shall Presume - Section 5 TEA):</strong> Mandatory inferences that the law requires the court to make until disproved by evidence.</li>
+        <li><strong>Irrebuttable / Conclusive Presumption of Law (Conclusive Proof - Section 6 TEA):</strong> Inferences that the law does not allow to be challenged or disproved by opposing evidence.</li>
+      </ol>
+    </article>
+
+    <article id="statutory-provisions-presumptions">
+      <h3>Key Provisions on Presumptions</h3>
+
+      <h4>1. Presumptions of Fact / Rebuttable Presumptions (TEA):</h4>
+      <ul>
+        <li><strong>Section 122 TEA:</strong> General presumption of facts (court may presume existence of certain facts).</li>
+        <li><strong>Section 96 TEA:</strong> Presumption regarding books, maps, and charts.</li>
+        <li><strong>Section 95 TEA:</strong> Presumption regarding certified copies of foreign judicial records.</li>
+        <li><strong>Section 97 TEA:</strong> Presumption regarding telecommunication messages.</li>
+        <li><strong>Section 99 TEA:</strong> Presumption regarding documents 20 (or 30) years old.</li>
+        <li><strong>Sections 116–117 TEA:</strong> Presumption of continuous life and death.</li>
+        <li><strong>Section 121 TEA:</strong> Presumption of legitimacy of a child born during marriage.</li>
+        <li><strong>Section 93 TEA:</strong> Presumption regarding genuineness of certified copies.</li>
+      </ul>
+
+      <h4>2. Presumptions under the Penal Code (PC):</h4>
+      <ul>
+        <li><strong>Section 13 PC:</strong> Presumption of Sanity (every person is presumed sane).</li>
+        <li><strong>Section 15(3) PC:</strong> Presumptions regarding sexual capacity/intent.</li>
+        <li><strong>Section 9 PC:</strong> Presumption of Knowledge of Law (ignorance of the law is no excuse).</li>
+        <li><strong>Section 15 PC:</strong> Presumption of incapacity of a child under ten years (doli incapax).</li>
+      </ul>
+
+      <h4>3. Presumptions under the Law of Marriage Act (LMA):</h4>
+      <ul>
+        <li><strong>Presumption of Marriage:</strong> Cohabitation of spouses (<em>John Kilakue v. Iddi Siko</em>).</li>
+        <li><strong>Presumption of Death:</strong> Absence for 7 years without news (<em>Salum Omar Hamadi v. Fatuma Kituu</em>).</li>
+      </ul>
+
+      <h4>4. Irrebuttable Presumptions of Law (Conclusive Proof):</h4>
+      <ul>
+        <li>Final judgments, orders, or decrees of courts after the expiration of the statutory appeal period.</li>
+        <li>Incapacity of a child under 7 (or 10 depending on jurisdiction) years to commit a criminal offence (Section 15 PC).</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="witnesses-and-competency">
+    <h2>1. General Principles of Witness Competency & Compellability</h2>
+
+    <article id="competency-overview">
+      <h3>Meaning of Competency & Compellability</h3>
+      <p>
+        <strong>Competency:</strong> Refers to the legal capacity or qualification of a person to take the stand and give evidence in a court of law.
+      </p>
+      <p>
+        <strong>Compellability:</strong> Refers to whether a competent witness can be lawfully forced or required by the court to give evidence under penalty of law (e.g., contempt of court under Section 114(1) of the Penal Code).
+      </p>
+      <p>
+        <strong>General Rule:</strong> A person cannot give evidence in court until their competency is established. Competency is a condition precedent to giving sworn or affirmed testimony.
+      </p>
+    </article>
+
+    <article id="classification-of-witnesses">
+      <h3>Classification of Witnesses</h3>
+      <p>Witnesses generally fall into three statutory categories:</p>
+      <ol>
+        <li><strong>Competent and Compellable:</strong> Persons who have the legal capacity to testify and can be lawfully compelled to take the stand.</li>
+        <li><strong>Competent but Not Compellable:</strong> Persons who possess legal capacity but cannot be forced to testify against their will or against specific parties (e.g., spouses in certain criminal proceedings).</li>
+        <li><strong>Incompetent Witnesses:</strong> Persons whom the court determines cannot understand the nature of an oath/affirmation or cannot give rational answers due to tender age, extreme old age, disease (of body or mind), or other mental incapacities.</li>
+      </ol>
+    </article>
+
+    <article id="test-of-competency">
+      <h3>Test of Competency (Section 127(1), TEA)</h3>
+      <p>
+        Under <strong>Section 127(1) of the Tanzania Evidence Act (TEA)</strong>, all persons are competent to testify unless the court considers that they are prevented from understanding the questions put to them, or from giving rational answers to those questions, by reason of:
+      </p>
+      <ul>
+        <li>Tender age (child witness)</li>
+        <li>Extreme old age</li>
+        <li>Disease of body or mind (unsound mind/lunacy)</li>
+        <li>Any other cause of the same kind</li>
+      </ul>
+    </article>
+  </section>
+
+  <hr>
+
+  <section id="competency-in-special-cases">
+    <h2>2. Competency in Special Cases</h2>
+
+    <article id="child-witnesses">
+      <h3>Child Witnesses / Tender Age (Section 127(2)–(5), TEA)</h3>
+      <p>
+        <strong>Voire Dire Examination:</strong> When a child of tender age is called as a witness, the court must conduct a preliminary examination (<em>voire dire</em>) to ascertain two fundamental issues:
+      </p>
+      <ol>
+        <li>Whether the child understands the nature of an oath (possesses religious/moral understanding of telling the truth).</li>
+        <li>If not, whether the child possesses sufficient intelligence to understand the duty of speaking the truth and can give rational answers.</li>
+      </ol>
+      <p>
+        <strong>Unsworn Evidence of a Child (Section 127(2), TEA):</strong> If the child does not understand the nature of an oath but understands the duty to tell the truth, their unsworn evidence may be received. However, such evidence requires corroboration as a matter of law/prudence (<em>Godfrey Wilson v. Republic</em>).
+      </p>
+    </article>
+
+    <article id="unsound-mind">
+      <h3>Persons of Unsound Mind & Lunatics (Section 127(5), TEA)</h3>
+      <p>
+        A person of unsound mind or a lunatic is not incompetent unless their mental condition prevents them from understanding questions or giving rational answers. A lunatic may testify during a <strong>lucid interval</strong> when their mental capacity is restored (<em>R. v. Hill (1951)</em>).
+      </p>
+    </article>
+
+    <article id="dumb-deaf-witnesses">
+      <h3>Dumb and Deaf Witnesses (Section 128, TEA)</h3>
+      <p>
+        A witness who is unable to speak (dumb) or hear (deaf) may give evidence in any manner in which they can make it intelligible, such as by writing or by signs made in open court. Evidence so given is deemed to be oral evidence.
+      </p>
+      <p>
+        <strong>Requirement for an Interpreter:</strong> Where signs are used, an expert or qualified interpreter must be sworn to interpret the signs correctly (<em>Salum v. Republic (1951) E.A.C.A.</em>).
+      </p>
+    </article>
+
+    <article id="spousal-competency">
+      <h3>Husband and Wife (Spousal Competency & Privilege - Section 130, TEA)</h3>
+      <p>
+        <strong>General Rule:</strong> Spouses are competent witnesses, but in criminal proceedings, a spouse is generally non-compellable to give evidence against the accused spouse, subject to statutory exceptions.
+      </p>
+      <p><strong>Exceptions under Section 130(1), TEA:</strong> A spouse is competent and compellable for the prosecution in cases involving:</p>
+      <ul>
+        <li>Offences against the person or property of the spouse or children.</li>
+        <li>Offences under Chapter XV of the Penal Code (sexual offences/offences against morality).</li>
+        <li>Offences involving bigamy or under the Law of Marriage Act.</li>
+      </ul>
+      <p>
+        <strong>Duty of Court:</strong> Under Section 130(3) TEA, the court must warn a spouse called as a prosecution witness of their right to refuse to give evidence (<em>Akechi v. Republic (1971)</em>).
+      </p>
+      <p>
+        <strong>Concubines / Cohabitants:</strong> The privilege does not apply to unmarried cohabitants or concubines; they are fully competent and compellable (<em>R. v. Kibaya</em>).
+      </p>
+    </article>
+
+    <article id="accomplices">
+      <h3>Accomplice Evidence (Section 142, TEA)</h3>
+      <p>
+        An accomplice is a competent witness against an accused person. A conviction is not illegal merely because it proceeds upon the uncorroborated testimony of an accomplice, though courts apply the rule of caution requiring corroboration (<em>DPP v. Aliballah Nsyohe & Another</em>).
+      </p>
+    </article>
+  </section>
+
+  <hr>
+
+  <section id="privilege-of-witnesses">
+    <h2>3. Privilege of Witnesses (Sections 133–141, TEA)</h2>
+
+    <article id="privilege-overview">
+      <h3>Privileged Communications & Information</h3>
+      <p>
+        Certain witnesses are protected or exempted from answering specific questions or disclosing particular communications in court:
+      </p>
+      <ul>
+        <li><strong>Judges and Magistrates (Section 133 TEA):</strong> Cannot be compelled to answer questions regarding their judicial conduct or knowledge obtained in court except upon special order of a higher court.</li>
+        <li><strong>Information as to Commission of Offences / Informers (Section 137 TEA):</strong> Police officers or public officers cannot be compelled to disclose the sources of information regarding the commission of an offence.</li>
+        <li><strong>Professional Communications / Advocate-Client Privilege (Sections 134–136 TEA):</strong>
+          <ul>
+            <li>No advocate is permitted to disclose communications made by a client or advice given in the course of professional employment without the client's express consent.</li>
+            <li><em>Exceptions:</em> Communications made in furtherance of an illegal purpose/crime, or facts observing fraud or crime committed since the commencement of employment (<em>Butler v. Board of Trade (1971)</em>).</li>
+          </ul>
+        </li>
+        <li><strong>Official Records / Public Interest Immunity (Section 132 TEA):</strong> Protection of unpublished official records relating to affairs of state where disclosure would injure public interest.</li>
+      </ul>
+    </article>
+  </section>
+
+  <hr>
+
+  <section id="examination-of-witnesses">
+    <h2>4. Order and Stages of Examination of Witnesses</h2>
+
+    <article id="order-of-production">
+      <h3>Order of Production (Section 144 TEA & Section 145 TEA)</h3>
+      <p>
+        The order in which witnesses are produced is regulated by the law and practice relating to civil and criminal procedure, and in the absence of such provision, by the discretion of the court.
+      </p>
+      <p>
+        <strong>Court's Discretion on Admissibility (Section 145(1) & (2) TEA):</strong> The judge/magistrate decides the admissibility of evidence and may ask the party proposing to give evidence in what manner the alleged fact, if proved, would be relevant.
+      </p>
+    </article>
+
+    <article id="three-stages">
+      <h3>The Three Stages of Examination (Section 146, TEA)</h3>
+      <ol>
+        <li>
+          <strong>Examination-in-Chief (Section 146(1) TEA):</strong>
+          <p>
+            The examination of a witness by the party who calls them. The main purpose is to lay before the court all material facts within the witness's personal knowledge to support the party's case.
+          </p>
+          <p>
+            <em>General Rule on Leading Questions:</em> Leading questions (questions suggesting the answer desired) <strong>must not</strong> be asked in examination-in-chief without the permission of the court (Section 149 TEA / Section 150 TEA), except on introductory/undisputed matters.
+          </p>
+        </li>
+        <li>
+          <strong>Cross-Examination (Section 146(2) TEA):</strong>
+          <p>
+            The examination of a witness by the adverse party.
+          </p>
+          <p>
+            <em>Purposes of Cross-Examination:</em>
+          </p>
+          <ul>
+            <li>To test the accuracy, credibility, and general integrity of the witness.</li>
+            <li>To shake the witness's credit by injuring their character.</li>
+            <li>To elicit facts favorable to the cross-examining party's case.</li>
+          </ul>
+          <p>
+            <em>Leading Questions:</em> Leading questions <strong>are permitted</strong> in cross-examination (Section 151 TEA).
+          </p>
+        </li>
+        <li>
+          <strong>Re-Examination (Section 146(3) TEA):</strong>
+          <p>
+            The examination of a witness, subsequent to cross-examination, by the party who called them.
+          </p>
+          <p>
+            <em>Scope:</em> Re-examination must be directed strictly to the explanation of matters referred to in cross-examination. New matters cannot be introduced without leave of the court.
+          </p>
+        </li>
+      </ol>
+    </article>
+  </section>
+
+  <hr>
+
+  <section id="advocacy-rules-and-tactics">
+    <h2>5. Practical Rules & Advocacy Techniques for Examination</h2>
+    <p>Key guidelines for advocates during witness examination in trial advocacy:</p>
     <ul>
-        <li><strong>D.D</strong> is the generic name given to such a statement, and it can serve to prove the facts of the matter in cases including murder or manslaughter.</li>
-        <li>The law provides specific conditions before a D.D can be admitted in evidence.</li>
+      <li><strong>Never ask a question without a clear purpose:</strong> Ensure every question aims to establish a relevant fact or challenge credibility.</li>
+      <li><strong>Maintain control during Cross-Examination:</strong> Use short, concise leading questions rather than open-ended queries that allow the witness to explain away contradictions.</li>
+      <li><strong>Modulate tone and demeanor:</strong> Adapt voice and pacing to suit the witness and the court environment.</li>
+      <li><strong>Protect your witness during Re-Examination:</strong> Use re-examination selectively to clarify ambiguities created during cross-examination, not to re-ask examination-in-chief questions.</li>
+      <li><strong>Improper & Harassing Questions (Sections 156–161 TEA):</strong> The court has statutory power to forbid questions that are indecent, scandalous, or intended to insult/annoy the witness.</li>
     </ul>
+  </section>
 
-    <h3>Conditions for Admissibility of Dying Declaration</h3>
-    <ol>
-        <li><strong>Cause of Death Requirement:</strong> The subject matter of the statement must be the cause of death, and the person who made the statement must now be deceased.</li>
-        <li><strong>Direct Relationship:</strong> It must be a statement that directly relates to the cause of that death.</li>
-        <li><strong>Issue of Death:</strong> When the cause of death is the main issue, the statement should explain how the deceased met their death.</li>
-        <li><strong>Identity of the Maker:</strong> The D.D must relate to the cause of death of the declarant themselves, not somebody else's death. If proof shows the declarant died from other unrelated causes, such a statement is not a valid D.D (<span class="case-law">R. v. Abed Kalonga (1938)</span>).</li>
-    </ol>
+   <section id="credibility-and-weight">
+    <h2>1. Credibility of Witnesses & Weight of Evidence</h2>
 
-    <h3>Jurisdictional Variations (Common Law vs. Tanzania)</h3>
-    <p>Under Common Law, D.D is only admissible in cases of murder or manslaughter. In Tanzania, courts have interpreted D.D to apply in civil matters involving the cause of death (e.g., partition/succession context).</p>
-    <p>At Common Law, a D.D can only be admitted if the maker was in actual expectation of death. In Tanzania, a D.D is admissible <strong>irrespective of whether the person was or was not in expectation of death</strong> at the time of making it.</p>
+    <article id="credibility-concept">
+      <h3>Credibility & Weight of Evidence</h3>
+      <p>
+        <strong>Weight of Evidence:</strong> Refers to the probative value or persuasive strength that the court attaches to the evidence presented by a witness.
+      </p>
+      <p>
+        <strong>Credibility:</strong> Refers to the truthfulness, reliability, and trustworthiness of a witness. The court will not trust or rely on evidence without first assessing the credibility of the witness.
+      </p>
+    </article>
 
-    <h3>Key Case Law on Dying Declarations</h3>
-    <ul>
-        <li><span class="case-law">Pius Nsangu v. R. (1954) 21 EACA 387:</span> The court observed that a D.D taken by asking leading questions is admissible; however, the court must exercise caution when using it.</li>
-        <li><span class="case-law">R. v. Mitchell:</span> The court held that the declaration must be recorded in the actual words of the deceased.</li>
-    </ul>
+    <article id="factors-for-credibility">
+      <h3>Factors for Determining Credibility</h3>
+      <p>Courts evaluate witness credibility based on several key factors:</p>
+      <ul>
+        <li>Witness's demeanor and conduct in court</li>
+        <li>Powers of observation, memory, and perception</li>
+        <li>Knowledge of the facts in issue</li>
+        <li>Presence of bias, interest, or partiality</li>
+        <li>Consistency and rationality of the testimony given</li>
+      </ul>
+    </article>
 
-    <h2>5. Reliability, Corroboration & Prudence</h2>
-    <p>As a general rule, an incomplete or uncorroborated D.D requires careful judicial scrutiny:</p>
-    <ul>
-        <li><strong>Factors Affecting Weight:</strong> The court will consider any abnormal factors such as the declarant's capacity to remember facts, physical or mental impairment, or external influences acting upon the maker at the time of making the statement.</li>
-        <li><strong>Rule of Prudence:</strong> As a matter of prudence, a Dying Declaration requires <strong>corroborating evidence</strong> to support a conviction, except where the declaration is complete, clear, and the maker is shown to have been fully certain of what they stated.</li>
-    </ul>
+    <article id="methods-of-impeachment">
+      <h3>Impeachment of Witness Credibility (Section 157, TEA)</h3>
+      <p>
+        Impeaching credit means attacking or challenging the credibility of an adverse witness to show they are unworthy of belief. Under the Law of Evidence, the credit of a witness may be impeached in the following ways:
+      </p>
+      <ol>
+        <li>
+          <strong>By Cross-Examination:</strong> Testing accuracy, truthfulness, memory, and shaking credit by injuring character (Sections 150–153 TEA).
+        </li>
+        <li>
+          <strong>By Independent Evidence (Section 157, TEA):</strong>
+          <ul>
+            <li>Calling witnesses who testify that they believe the witness to be unworthy of credit from their general reputation.</li>
+            <li>Proving that the witness has been bribed or has accepted the offer of a bribe.</li>
+            <li>Proving former statements inconsistent with any part of their evidence which is liable to be contradicted.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>By Former Inconsistent Statements (Section 147 / Section 154, TEA):</strong> Cross-examining a witness on previous statements made in writing or reduced to writing without such writing being shown to them initially.
+        </li>
+        <li>
+          <strong>By Demeanor in Court:</strong> The judge or magistrate observes the witness's deportment, hesitation, or attitude in the witness box (<em>Homburg [1916]</em>).
+        </li>
+      </ol>
+    </article>
+  </section>
 
-</div>
+  <hr>
 
-</body>
-</html>
+  <section id="special-witness-situations">
+    <h2>2. Hostile Witness & Court Powers</h2>
+
+    <article id="hostile-witness">
+      <h3>Hostile Witness (Section 163 & Section 164, TEA)</h3>
+      <p>
+        <strong>Definition:</strong> A hostile witness is one who displays a definite animus or unwillingness to tell the truth on behalf of the party calling them, or who unexpectedly gives evidence adverse to that party.
+      </p>
+      <p>
+        <strong>Procedure:</strong> With the leave of the court, the party who called the witness may cross-examine their own witness and put leading questions or impeach their credit (<em>Todd Lucas v. Republic</em>).
+      </p>
+    </article>
+
+    <article id="court-powers-questions">
+      <h3>Power of the Court to Ask Questions (Sections 176 & 177, TEA)</h3>
+      <p>
+        Under <strong>Section 176 of the TEA</strong>, the judge or magistrate may, in order to discover or obtain proper proof of relevant facts, ask any question they please, in any form, at any time, of any witness or of the parties.
+      </p>
+      <p>
+        Under <strong>Section 177 of the TEA</strong>, assessors (where applicable) are permitted to put questions to witnesses through or with the permission of the court.
+      </p>
+    </article>
+  </section>
+
+  <hr>
+
+  <section id="refreshing-memory">
+    <h2>3. Refreshing Memory & Production of Writings</h2>
+
+    <article id="refreshing-memory-rules">
+      <h3>Refreshing Memory (Sections 168–172, TEA)</h3>
+      <p>
+        A witness may refresh their memory while under examination by referring to any writing made by themselves at the time of the transaction or so soon afterwards that the court considers it likely that the transaction was at that time fresh in their memory (Section 168 TEA).
+      </p>
+      <p><strong>Key Requirements & Conditions:</strong></p>
+      <ul>
+        <li>The writing must have been made contemporaneously or soon after the event.</li>
+        <li>A witness may also refer to a writing made by another person if they read/examined it when the matter was fresh in their memory and knew it to be correct.</li>
+        <li><strong>Expert Witnesses (Section 170 TEA):</strong> An expert witness may refresh their memory by reference to professional treatises, guidebooks, or technical tables.</li>
+        <li><strong>Bookkeepers & Business Records (Section 171 TEA):</strong> A witness may testify to facts recorded in accounting books or records even if they have no independent recollection of the specific transaction.</li>
+      </ul>
+    </article>
+
+    <article id="adverse-party-rights">
+      <h3>Right of Adverse Party to Inspect & Cross-Examine (Section 172, TEA)</h3>
+      <p>
+        Any writing referred to by a witness to refresh their memory must be produced and shown to the adverse party if requested. The adverse party has the right to:
+      </p>
+      <ol>
+        <li>Inspect the document/writing.</li>
+        <li>Cross-examine the witness upon the writing to test accuracy and completeness.</li>
+      </ol>
+    </article>
+  </section>
+
+  <hr>
+
+  <section id="production-and-tendering">
+    <h2>4. Production & Tendering of Documents (Exhibits)</h2>
+
+    <article id="production-compulsion">
+      <h3>Production of Documents (Sections 173–175, TEA)</h3>
+      <p>
+        A witness summoned to produce a document must bring it to court notwithstanding any objection to its production or admissibility. The court decides on the validity of any objection raised.
+      </p>
+    </article>
+
+    <article id="tendering-procedure">
+      <h3>Step-by-Step Procedure for Tendering Documents in Court</h3>
+      <p>To admit a document into evidence as a marked exhibit, advocates must follow a standard procedural foundation:</p>
+      <ol>
+        <li><strong>Laying the Foundation:</strong> Ask the witness questions to show their relationship to the document (how it came into their possession/knowledge).</li>
+        <li><strong>Identification:</strong> Hand the document to the witness and v ask them to identify it, state its date, and confirm its contents/signatures.</li>
+        <li><strong>Show to Opposing Counsel:</strong> Pass the document to the adverse party/counsel for inspection or potential objection.</li>
+        <li><strong>Formally Tender:</strong> Apply to the court to tender the document as an exhibit (e.g., <em>"My Lord, I pray to tender this document as Exhibit P1"</em>).</li>
+        <li><strong>Ruling on Objections:</strong> The court hears any objections from the opposing side regarding admissibility, relevance, or authenticity and rules accordingly.</li>
+        <li><strong>Marking as Exhibit:</strong> If admitted, the court marks the document with an Exhibit number/letter.</li>
+        <li><strong>Reading Content:</strong> The witness or counsel reads relevant portions into the court record.</li>
+      </ol>
+    </article>
+  </section>
+</main>
