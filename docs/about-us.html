@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Scientia-Juris</title>
+  <style>
+    :root {
+      --primary-color: #0d2b2a;
+      --accent-color: #c5a059;
+      --text-dark: #222222;
+      --text-muted: #555555;
+      --bg-light: #f8f9fa;
+      --white: #ffffff;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+
+    /* About Section Wrapper */
+    .about-section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Unit within About */
+    .about-hero {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .about-hero img {
+      max-width: 140px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .about-hero h1 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .about-hero p.tagline {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .about-hero p.description {
+      max-width: 800px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Grid layout for Vision, Mission, Core Values */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .about-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      border-top: 4px solid var(--accent-color);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .about-card h3 {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+
+    .about-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .about-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .about-card ul li {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .about-card ul li::before {
+      content: "•";
+      color: var(--accent-color);
+      font-weight: bold;
+      font-size: 1.2rem;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="about-section">
+    <div class="about-hero">
+      <img src="logo.png" alt="Scientia-Juris Logo">
+      <h1>About Scientia-Juris</h1>
+      <p class="tagline">Advancing the Science of Law</p>
+      <p class="description">
+        Scientia-Juris is a legal portal dedicated to bridging the gap between statutory regulations and practical legal knowledge. We provide structured legal education, statutory analysis, and accessible consultation services to empower individuals and organizations with clarity on their legal rights and obligations.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Our Vision</h3>
+        <p>To establish an accessible legal repository and consultation environment that fosters legal literacy, institutional compliance, and equitable access to justice across all sectors of society.</p>
+      </div>
+
+      <div class="about-card">
+        <h3>Our Mission</h3>
+        <p>To deliver clear legal analysis, comprehensive education on constitutional and statutory frameworks, and reliable advice to facilitate legal awareness and resolve complex legal issues efficiently.</p>
+      </div>
+
+      <div class="about-card">
+        <h3>Core Values</h3>
+        <ul>
+          <li><strong>Integrity:</strong> Upholding highest professional and ethical standards.</li>
+          <li><strong>Excellence:</strong> Delivering precise and thorough legal analysis.</li>
+          <li><strong>Accessibility:</strong> Demystifying complex legal procedures for everyone.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
