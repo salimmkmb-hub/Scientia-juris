@@ -7,6 +7,7 @@ folders_to_scan = [
     {"path": "docs/doc.html", "category": "Cases"},
     {"path": "docs/e-books.html", "category": "Books"},
     {"path": "docs/laws.html", "category": "Statute"},
+    {"path": "docs/L.report.html", "category": "Law Reports"},
    
 ]
 

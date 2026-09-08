@@ -113,7 +113,7 @@ body {
 .logo-text {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #1a2530;
+  color: #ffffff;
   letter-spacing: 0.5px;
 }
 
@@ -1264,10 +1264,10 @@ body {
   const searchResults = document.getElementById('searchResults');
 
   // 1. KUSOMA DATA KUTOKA KWENYE LAWS.JSON (FETCH API)
-  fetch('laws.json')
+  fetch('laws.json?v=' + new Date().getTime()) // Hii inahakikisha browser haibakii na cache ya zamani')
     .then(response => {
       if (!response.ok) {
-        throw new Error("Imeshindwa kusoma faili la laws.json");
+        throw new Error("Fail to read JSON file: " + response.status);
       }
       return response.json();
     })
@@ -1279,14 +1279,26 @@ body {
       console.error("Kosa kwenye kupakua JSON:", error);
     });
 
-  // 2. Kufungua Search Overlay
-  if (searchBtn && searchOverlay) {
+    // 1. Kuchukua element ya menu toggle (checkbox)
+const menuToggle = document.getElementById('menu-toggle');
+
+// 2. Kufungua Search Overlay na Kufunga Bango la Menu
+if (searchBtn && searchOverlay) {
     searchBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      searchOverlay.classList.add('active');
-      if (searchInput) searchInput.focus();
+        e.preventDefault();
+
+        // Kufunga bango la menu kwa kuondoa check kwenye checkbox
+        if (menuToggle) {
+            menuToggle.checked = false;
+        }
+
+        // Kufungua search overlay
+        searchOverlay.classList.add('active');
+       
+        // Kuweka cursor kwenye sehemu ya kuandikia (search input)
+        if (searchInput) searchInput.focus();
     });
-  }
+}
 
   // 3. Kufunga Search Overlay
   if (closeSearchBtn && searchOverlay) {
@@ -1312,6 +1324,8 @@ body {
         const titleMatch = item.title ? item.title.toLowerCase().includes(query) : false;
         const categoryMatch = item.category ? item.category.toLowerCase().includes(query) : false;
         return titleMatch || categoryMatch;
+        const descMatch = item.description ? item.description.toLowerCase().includes(query) : false;
+        return titleMatch || categoryMatch || descMatch;
       });
 
       // Kuonyesha majibu
@@ -1324,7 +1338,7 @@ body {
           searchResults.appendChild(a);
         });
       } else {
-        searchResults.innerHTML = '<div style="color: #64748b; padding: 12px 15px; background: #ffffff;">Haikupatikana sheria au kitabu chenye jina hilo.</div>';
+        searchResults.innerHTML = '<div style="color: #64748b; padding: 12px 15px; background: #ffffff;">No result found.</div>';
       }
     });
   }
