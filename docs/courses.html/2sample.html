@@ -656,7 +656,7 @@
                 // 2. Vuta faili la HTML
                 const response = await fetch(fileName);
                 if (!response.ok) {
-                    throw new Error(`Faili la ${fileName} halikupatikana (Error ${response.status})`);
+                    throw new Error(`Folder ${fileName} not found (Error ${response.status})`);
                 }
 
                 const htmlText = await response.text();
@@ -679,7 +679,7 @@
                         }, 100);
                     }
                 } else {
-                    contentDiv.innerHTML = `<div class="error-msg">⚠️ Faili la ${fileName} halina maudhui yaliyo ndani ya tag ya &lt;main&gt; au &lt;body&gt;.</div>`;
+                    contentDiv.innerHTML = `<div class="error-msg">⚠️ File ${fileName} has no content of tag &lt;main&gt; au &lt;body&gt;.</div>`;
                 }
 
                 // 5. Weka active state kwenye mada iliyochaguliwa
@@ -692,10 +692,10 @@
                 console.error(error);
                 contentDiv.innerHTML = `
                     <div class="error-msg">
-                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Hitilafu Imeshindikana Kupata Taarifa</h3>
+                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Error fail to get information</h3>
                         <p>${error.message}</p>
                         <br>
-                        <small><strong>Njia ya kutatua:</strong> Hakikisha faili la <code>${fileName}</code> lipo kwenye folda moja na <code>2sample.html</code>.</small>
+                        <small><strong>Solution:</strong> Make sure file <code>${fileName}</code> within the single file of <code>2sample.html</code>.</small>
                     </div>
                 `;
             }
@@ -741,7 +741,7 @@
             contentDiv.innerHTML = `
                 <div class="loader-container">
                     <i class="fa-solid fa-circle-notch fa-spin loader-icon"></i>
-                    <p>Inapakia maudhui ya sheria...</p>
+                    <p>Loading content...</p>
                 </div>
             `;
 
@@ -772,15 +772,15 @@
 
                     setActiveLink(element);
                 } else {
-                    contentDiv.innerHTML = `<div style="color:red; padding:2rem;">⚠️ Hitilafu: Tag ya &lt;main&gt; haikupatikana kwenye ${fileName}.</div>`;
+                    contentDiv.innerHTML = `<div style="color:red; padding:2rem;">⚠️ Error: Tag of &lt;main&gt; Fail to get ${fileName}.</div>`;
                 }
 
             } catch (error) {
                 console.error('Error:', error);
                 contentDiv.innerHTML = `
                     <div style="background:#fef2f2; border:1px solid #fecaca; color:#991b1b; padding:1.5rem; border-radius:6px;">
-                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Imeshindwa Kupakua Somo</h3>
-                        <p>Hakikisha faili la <strong>${fileName}</strong> lipo kwenye folda moja na index.html na unatumia Live Server.</p>
+                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Fail to get course</h3>
+                        <p>Make sure file <strong>${fileName}</strong> is within index.html </p>
                     </div>
                 `;
             }
