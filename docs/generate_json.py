@@ -36,7 +36,7 @@ for folder_info in folders_to_scan:
                 laws_list.append(item)
                 id_counter += 1
     else:
-        print(f"⚠️ Inform: File la '{folder_path}' No result (Script imeliruka).")
+        print(f"⚠️ Inform: File of '{folder_path}' No result (Script fail).")
 
 # 3. HIFADHI MATOKEO YOTE KWENYE LAWS.JSON
 with open(output_json_file, "w", encoding="utf-8") as f:
