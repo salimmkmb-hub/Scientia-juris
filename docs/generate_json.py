@@ -1,14 +1,23 @@
 import os
 import json
-
-# 1. ORODHA YA MAFOLDA NA CATEGORY ZAKE
-# Weka majina ya mafolda yako na category unayotaka itokeze kwenye search
+# 1. ORODHA YA MAFOLDA YA CATEGORY ZAKE
 folders_to_scan = [
-    {"path": "docs/doc.html", "category": "Cases"},
-    {"path": "docs/e-books.html", "category": "Books"},
-    {"path": "docs/laws.html", "category": "Statute"},
-    {"path": "docs/L.report.html", "category": "Law Reports"},
-   
+    {
+        "path": "docs/doc.html",
+        "category": "Cases",
+    },  # Badilisha iwe folda husika ya Cases kama ni saraka
+    {
+        "path": "docs/e-books.html",
+        "category": "Books",
+    },
+    {
+        "path": "docs/laws.html",
+        "category": "Statute",
+    },
+    {
+        "path": "docs/L.report.html",
+        "category": "Law Reports",
+    },  # Badilisha iwe folda husika ya L.report
 ]
 
 output_json_file = "docs/laws.json"
@@ -36,10 +45,10 @@ for folder_info in folders_to_scan:
                 laws_list.append(item)
                 id_counter += 1
     else:
-        print(f"⚠️ Inform: File of '{folder_path}' No result (Script fail).")
+        print(f"Warning: File of '{folder_path}' not found (Script fail).")
 
 # 3. HIFADHI MATOKEO YOTE KWENYE LAWS.JSON
 with open(output_json_file, "w", encoding="utf-8") as f:
     json.dump(laws_list, f, indent=2, ensure_ascii=False)
 
-print(f"✅ Umefanikiwa! Jumla ya mafaili {len(laws_list)} kutoka kwenye mafolda yote yameifadhiwa kwenye '{output_json_file}'.")
+print(f"Successfully updated {len(laws_list)} items from the specified folders and saved to '{output_json_file}'.")
